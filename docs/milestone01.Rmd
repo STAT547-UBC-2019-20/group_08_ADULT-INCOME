@@ -1,0 +1,28 @@
+---
+title: "milestone01"
+author: "Jimmy Liu and Hannah McSorley"
+date: "27/02/2020"
+output:
+  html_document:
+    keep_md: true
+---
+
+# Adult Income Study
+```{r load library, echo = F, warning = F, message = F}
+library(tidyverse)
+library(here)
+```
+
+## Data Description
+The chosen dataset consists of
+
+```{r load data}
+# read csv file
+dat <- read.csv(here("data/adult_data.csv"), header = F)
+
+# rename columns
+names(dat) <- c("age", "workclass", "fnlwgt", "education", "education-num", "martial_status", 
+                "occupation", "relationship", "race", "sex", "capital-gain", "capital-loss", 
+                "hours-per-week", "native-country", "label")
+```
+
