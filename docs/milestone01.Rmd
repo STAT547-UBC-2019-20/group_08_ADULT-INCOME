@@ -24,8 +24,5 @@ dat <- read.csv(here("data/adult.data"), header = F)
 names(dat) <- c("age", "workclass", "fnlwgt", "education", "education-num", "martial_status", 
                 "occupation", "relationship", "race", "sex", "capital-gain", "capital-loss", 
                 "hours-per-week", "native-country", "label")
-
-View(dat %>% 
-       filter(`capital-gain` != 0 & `capital-loss` != 0))
 ```
 
