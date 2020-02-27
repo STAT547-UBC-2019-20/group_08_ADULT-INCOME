@@ -18,11 +18,14 @@ The chosen dataset consists of
 
 ```{r load data}
 # read csv file
-dat <- read.csv(here("data/adult_data.csv"), header = F)
+dat <- read.csv(here("data/adult.data"), header = F)
 
 # rename columns
 names(dat) <- c("age", "workclass", "fnlwgt", "education", "education-num", "martial_status", 
                 "occupation", "relationship", "race", "sex", "capital-gain", "capital-loss", 
                 "hours-per-week", "native-country", "label")
+
+View(dat %>% 
+       filter(`capital-gain` != 0 & `capital-loss` != 0))
 ```
 
