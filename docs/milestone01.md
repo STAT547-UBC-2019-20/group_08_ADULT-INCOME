@@ -20,8 +20,8 @@ This project works with a dataset of adult incomes obtained from the University 
 This 1994 income census dataset consists of multivariate categorical and integer data that describe socioeconomic and personal classifiers of adults across the USA. Each instance (32,561) is an individual whose annual income was grouped as either above or below $50,000. Table 1 shows an overview of the 15 attributes (variables), including whether each is categorical or integer and a brief interpretation of the variable.  
 
 <br>
-<!--html_preserve--><div id="htmlwidget-7c39bf64e78b84f2064e" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-7c39bf64e78b84f2064e">{"x":{"filter":"none","caption":"<caption>description of adult income dataset variables<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],["age","workclass","fnlwgt","education","education-num","marital-status","occupation","relationship","race","sex","capital-gain","capital-loss","hours-per-week","native-country","label"],["continuous","categorical","continuous","categorical","continuous","categorical","categorical","categorical","categorical","categorical","continuous","continuous","continuous","categorical","categorical"],["age, range from 17 to 90 (mean 38.58)","Private, Self-emp-not-inc, Self-emp-inc, Federal-gov, Local-gov, State-gov, Without-pay, Never-worked.","\"final weight\" - demographic weight by US state controlled by three sets of characteristics including race/age/sex, hispanic origin, and proportion of state population over 16 years of age","Bachelors, Some-college, 11th, HS-grad, Prof-school, Assoc-acdm, Assoc-voc, 9th, 7th-8th, 12th, Masters, 1st-4th, 10th, Doctorate, 5th-6th, Preschool.","years of education. Range from 1 to 16 (mean 10.08)","Married-civ-spouse, Divorced, Never-married, Separated, Widowed, Married-spouse-absent, Married-AF-spouse.","Tech-support, Craft-repair, Other-service, Sales, Exec-managerial, Prof-specialty, Handlers-cleaners, Machine-op-inspct, Adm-clerical, Farming-fishing, Transport-moving, Priv-house-serv, Protective-serv, Armed-Forces.","Wife, Own-child, Husband, Not-in-family, Other-relative, Unmarried.","White, Asian-Pac-Islander, Amer-Indian-Eskimo, Other, Black.","Female, Male","range from 0 to 99999 (mean 1078). Assuming this is annual financial gains in $USD.","range from 0 to 4356 (mean 87.3). Assuming this is annual financial losses in $USD.","average hours worked per week. Range from 1 to 99 (mean 40.44)","United-States, Cambodia, England, Puerto-Rico, Canada, Germany, Outlying-US(Guam-USVI-etc), India, Japan, Greece, South, China, Cuba, Iran, Honduras, Philippines, Italy, Poland, Jamaica, Vietnam, Mexico, Portugal, Ireland, France, Dominican-Republic, Laos, Ecuador, Taiwan, Haiti, Columbia, Hungary, Guatemala, Nicaragua, Scotland, Thailand, Yugoslavia, El-Salvador, Trinadad&amp;Tobago, Peru, Hong, Holand-Netherlands.","annual income above or below threshold of $50000: &gt;50K or &lt;=50K"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Variable<\/th>\n      <th>Type<\/th>\n      <th>Description<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false,"columnDefs":[{"orderable":false,"targets":0}]}},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
+<!--html_preserve--><div id="htmlwidget-527d9ad76a1aa53ec0e6" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-527d9ad76a1aa53ec0e6">{"x":{"filter":"none","caption":"<caption>description of adult income dataset variables<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],["age","workclass","fnlwgt","education","education-num","marital-status","occupation","relationship","race","sex","capital-gain","capital-loss","hours-per-week","native-country","label"],["continuous","categorical","continuous","categorical","continuous","categorical","categorical","categorical","categorical","categorical","continuous","continuous","continuous","categorical","categorical"],["age, range from 17 to 90 (mean 38.58)","Private, Self-emp-not-inc, Self-emp-inc, Federal-gov, Local-gov, State-gov, Without-pay, Never-worked.","\"final weight\" - demographic weight by US state controlled by three sets of characteristics including race/age/sex, hispanic origin, and proportion of state population over 16 years of age","Bachelors, Some-college, 11th, HS-grad, Prof-school, Assoc-acdm, Assoc-voc, 9th, 7th-8th, 12th, Masters, 1st-4th, 10th, Doctorate, 5th-6th, Preschool.","years of education. Range from 1 to 16 (mean 10.08)","Married-civ-spouse, Divorced, Never-married, Separated, Widowed, Married-spouse-absent, Married-AF-spouse.","Tech-support, Craft-repair, Other-service, Sales, Exec-managerial, Prof-specialty, Handlers-cleaners, Machine-op-inspct, Adm-clerical, Farming-fishing, Transport-moving, Priv-house-serv, Protective-serv, Armed-Forces.","Wife, Own-child, Husband, Not-in-family, Other-relative, Unmarried.","White, Asian-Pac-Islander, Amer-Indian-Eskimo, Other, Black.","Female, Male","range from 0 to 99999 (mean 1078). Assuming this is annual financial gains in $USD.","range from 0 to 4356 (mean 87.3). Assuming this is annual financial losses in $USD.","average hours worked per week. Range from 1 to 99 (mean 40.44)","United-States, Cambodia, England, Puerto-Rico, Canada, Germany, Outlying-US(Guam-USVI-etc), India, Japan, Greece, South, China, Cuba, Iran, Honduras, Philippines, Italy, Poland, Jamaica, Vietnam, Mexico, Portugal, Ireland, France, Dominican-Republic, Laos, Ecuador, Taiwan, Haiti, Columbia, Hungary, Guatemala, Nicaragua, Scotland, Thailand, Yugoslavia, El-Salvador, Trinadad&amp;Tobago, Peru, Hong, Holand-Netherlands.","annual income above or below threshold of $50000: &gt;50K or &lt;=50K"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Variable<\/th>\n      <th>Type<\/th>\n      <th>Description<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false,"columnDefs":[{"orderable":false,"targets":0}]}},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
 <br>
 
 A couple of assumptions were made about these data based on information on the Census website. It is assumed that "capital gains" indicate non-cash financial benefits (e.g., food stamps, health benefits, subsidized housing or transportation, employer contributions to retirement programs, medical and educational expenses, etc.), and that "capital losses" include non-cash expenses (such as depreciated value of assets). We are also assuming that "education number" indicates the number of years allotted to education.  
@@ -54,6 +54,9 @@ dat.filt <- dat %>%
 
 # remove leading white spaces
 dat.filt$race <- trimws(dat.filt$race)
+
+# convert race to a factor
+dat.filt$race <- factor(dat.filt$race, c("Other", "Asian-Pac-Islander", "Amer-Indian-Eskimo", "White", "Black"))
 ```
 
 ### Summary overview
@@ -79,14 +82,14 @@ summary(dat.filt)
 ##   Prof-school : 213   3rd Qu.:13.00    Never-married        : 769  
 ##   Assoc-voc   : 188   Max.   :16.00    Separated            :  81  
 ##  (Other)      : 592                    Widowed              : 114  
-##               occupation           relationship      race          
-##   Prof-specialty   :850    Husband       :2454   Length:4231       
-##   Exec-managerial  :847    Not-in-family : 878   Class :character  
-##   Sales            :512    Other-relative:  71   Mode  :character  
-##   Craft-repair     :506    Own-child     : 258                     
-##   Adm-clerical     :362    Unmarried     : 274                     
-##   Machine-op-inspct:196    Wife          : 296                     
-##  (Other)           :958                                            
+##               occupation           relationship                  race     
+##   Prof-specialty   :850    Husband       :2454   Other             :  23  
+##   Exec-managerial  :847    Not-in-family : 878   Asian-Pac-Islander: 137  
+##   Sales            :512    Other-relative:  71   Amer-Indian-Eskimo:  31  
+##   Craft-repair     :506    Own-child     : 258   White             :3755  
+##   Adm-clerical     :362    Unmarried     : 274   Black             : 285  
+##   Machine-op-inspct:196    Wife          : 296                            
+##  (Other)           :958                                                   
 ##       sex        capital-gain    capital-loss    hours-per-week 
 ##   Female: 992   Min.   :    0   Min.   :   0.0   Min.   : 1.00  
 ##   Male  :3239   1st Qu.:    0   1st Qu.:   0.0   1st Qu.:40.00  
@@ -110,7 +113,7 @@ The summary overview provides a snapshot of the data spread and averages. From t
 ### Relationship between education attainment and annual net gain
 
 ```r
-# generate box plot of annual net gain across education levels
+# generate boxplot of annual net gain across education levels
 dat.filt %>% 
   ggplot(aes(x = education, y = net)) +
   geom_boxplot() +
@@ -123,13 +126,14 @@ dat.filt %>%
 
 ![](milestone01_files/figure-html/education-plot-1.png)<!-- -->
 
+From the above boxplot, there seems to be minimal correlation between annual net gain and education attainment, however there seems to be a greater spread in annual net gain for individuals with at least a high school diploma. Professional school education demonstrated the highest median in annual net gain.
+
 ### Relationship between race, gender and annual net gain
 
 ```r
 # generate violin plots of annual net gain across race and gender
-ethnicity <-  c("Other", "Asian-Pac-Islander", "Amer-Indian-Eskimo", "White", "Black")
 dat.filt %>% 
-  ggplot(aes(x = factor(race, levels = ethnicity), # reorder race factor levels
+  ggplot(aes(x = race,
              y = net, fill = sex)) +
   geom_violin() +
   coord_flip() +
@@ -140,6 +144,8 @@ dat.filt %>%
 ```
 
 ![](milestone01_files/figure-html/race-gender-plot-1.png)<!-- -->
+
+From the above violin plot, there doesn't appear to be any significant differences in annual net gain between sex across all ethnic groups. Moreover, no obvious correlation between ethncity and annual net gain can be observed.
 
 ### Correlation between work hours per week and annual net gain
 
@@ -162,6 +168,7 @@ dat.filt %>%
 
 ![](milestone01_files/figure-html/work-hours-plot-1.png)<!-- -->
 
+From the above boxplot, there appears to be an increase in annual net gain from short to long work hours. However, the differences may not be significant because greater variance in annual net gain is observed for individuals with long work hours.
 
 ## Research Questions
 
