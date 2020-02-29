@@ -7,24 +7,14 @@ output:
     keep_md: true
 ---
 
-# Adult Income Study
 ```{r load-library, echo = F, warning = F, message = F}
 
-knitr::opts_chunk$set(echo=FALSE, warning=FALSE)
+knitr::opts_chunk$set(warning=FALSE, message = F)
 
 library(tidyverse)
 library(here)
 library(DT)
-```
-
-```{r load-data}
-# read csv file
-dat <- read.csv(here("data/adult.data"), header = F)
-
-# rename columns
-names(dat) <- c("age", "workclass", "fnlwgt", "education", "education-num", "martial_status", 
-                "occupation", "relationship", "race", "sex", "capital-gain", "capital-loss", 
-                "hours-per-week", "native-country", "label")
+library(scales)
 ```
 
 ## Introduction 
@@ -50,13 +40,83 @@ It is of note that these data are from 1994 census, and the income threshold of 
 
 ## Exploratory Data Analysis 
 
-### Summary overview
+### Load data
+```{r load-data}
+# read csv file
+dat <- read.csv(here("data/adult.data"), header = F)
 
+# rename columns
+names(dat) <- c("age", "workclass", "fnlwgt", "education", "education-num", "martial_status", 
+                "occupation", "relationship", "race", "sex", "capital-gain", "capital-loss", 
+                "hours-per-week", "native-country", "label")
+```
+
+### Clean data
+```{r filter}
+# remove rows that contain zeroes for both capital gain and loss and merge capital-gain and capital-loss into a single variable, net
+dat.filt <- dat %>% 
+  filter(`capital-gain` != `capital-loss`) %>% 
+  mutate(net = if_else(`capital-gain` == 0, 
+                       as.numeric(`capital-loss`)*-1, # transform capital-loss to negative values 
+                       as.numeric(`capital-gain`)))
+
+# remove leading white spaces
+dat.filt$race <- trimws(dat.filt$race)
+```
+
+### Summary overview
 ```{r, summary}
-summary(dat)
+summary(dat.filt)
 ```
 
 The summary overview provides a snapshot of the data spread and averages. From this, we see this dataset includes a disproportionate number of middle-age, white, US-born, private-sector employees. There appears to be a fairly even distribution of individuals across occupational sectors and the majority of individuals work approximately 40 hours per week.
+
+### Relationship between education attainment and annual net gain
+```{r education-plot}
+# generate box plot of annual net gain across education levels
+dat.filt %>% 
+  ggplot(aes(x = education, y = net)) +
+  geom_boxplot() +
+  coord_flip() +
+  scale_y_continuous(labels = scales::dollar_format()) +
+  theme_bw() +
+  xlab("Education attainment level") +
+  ylab("Annual net gain")
+```
+
+### Relationship between race, gender and annual net gain
+```{r race-gender-plot}
+# generate violin plots of annual net gain across race and gender
+ethnicity <-  c("Other", "Asian-Pac-Islander", "Amer-Indian-Eskimo", "White", "Black")
+dat.filt %>% 
+  ggplot(aes(x = factor(race, levels = ethnicity), # reorder race factor levels
+             y = net, fill = sex)) +
+  geom_violin() +
+  coord_flip() +
+  scale_y_continuous(labels = scales::dollar_format()) +
+  theme_bw() +
+  xlab("Ethnicity") +
+  ylab("Annual net gain")
+```
+
+### Correlation between work hours per week and annual net gain
+```{r work-hours-plot}
+# generate a box plot of annual net gain across work hours
+dat.filt %>% 
+  mutate(`work hours` = factor(case_when(`hours-per-week` <= 25 ~ "Short", # define a new variable to bin work hours per week into 4 categories
+                                  `hours-per-week` > 25 & `hours-per-week` <= 50 ~ "Medium",
+                                  `hours-per-week` > 50 & `hours-per-week` <= 75 ~ "Long",
+                                  TRUE ~ "Very Long"),
+                               levels = c("Short", "Medium", "Long", "Very Long"))) %>% 
+  ggplot(aes(x = `work hours`, y = net, fill = `work hours`)) +
+  geom_boxplot() +
+  theme_bw() +
+  guides(fill = F) +
+  scale_y_continuous(labels = scales::dollar_format()) +
+  xlab("Work Hours") +
+  ylab("Annual net gain")
+```
+
 
 ## Research Questions
 
