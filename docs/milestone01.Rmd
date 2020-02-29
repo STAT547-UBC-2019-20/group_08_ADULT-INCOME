@@ -7,24 +7,14 @@ output:
     keep_md: true
 ---
 
-# Adult Income Study
 ```{r load-library, echo = F, warning = F, message = F}
 
-knitr::opts_chunk$set(echo=FALSE, warning=FALSE)
+knitr::opts_chunk$set(warning=FALSE, message = F)
 
 library(tidyverse)
 library(here)
 library(DT)
-```
-
-```{r load-data}
-# read csv file
-dat <- read.csv(here("data/adult.data"), header = F)
-
-# rename columns
-names(dat) <- c("age", "workclass", "fnlwgt", "education", "education-num", "martial_status", 
-                "occupation", "relationship", "race", "sex", "capital-gain", "capital-loss", 
-                "hours-per-week", "native-country", "label")
+library(scales)
 ```
 
 ## Introduction 
@@ -50,13 +40,90 @@ It is of note that these data are from 1994 census, and the income threshold of 
 
 ## Exploratory Data Analysis 
 
-### Summary overview
+### Load data
+```{r load-data}
+# read csv file
+dat <- read.csv(here("data/adult.data"), header = F)
 
+# rename columns
+names(dat) <- c("age", "workclass", "fnlwgt", "education", "education-num", "martial_status", 
+                "occupation", "relationship", "race", "sex", "capital-gain", "capital-loss", 
+                "hours-per-week", "native-country", "label")
+```
+
+### Clean data
+```{r filter}
+# remove rows that contain zeroes for both capital gain and loss and merge capital-gain and capital-loss into a single variable, net
+dat.filt <- dat %>% 
+  filter(`capital-gain` != `capital-loss`) %>% 
+  mutate(net = if_else(`capital-gain` == 0, 
+                       as.numeric(`capital-loss`)*-1, # transform capital-loss to negative values 
+                       as.numeric(`capital-gain`)))
+
+# remove leading white spaces
+dat.filt$race <- trimws(dat.filt$race)
+
+# convert race to a factor
+dat.filt$race <- factor(dat.filt$race, c("Other", "Asian-Pac-Islander", "Amer-Indian-Eskimo", "White", "Black"))
+```
+
+### Summary overview
 ```{r, summary}
-summary(dat)
+summary(dat.filt)
 ```
 
 The summary overview provides a snapshot of the data spread and averages. From this, we see this dataset includes a disproportionate number of middle-age, white, US-born, private-sector employees. There appears to be a fairly even distribution of individuals across occupational sectors and the majority of individuals work approximately 40 hours per week.
+
+### Relationship between education attainment and annual net gain
+```{r education-plot}
+# generate boxplot of annual net gain across education levels
+dat.filt %>% 
+  ggplot(aes(x = education, y = net)) +
+  geom_boxplot() +
+  coord_flip() +
+  scale_y_continuous(labels = scales::dollar_format()) +
+  theme_bw() +
+  xlab("Education attainment level") +
+  ylab("Annual net gain")
+```
+
+From the above boxplot, there seems to be minimal correlation between annual net gain and education attainment, however there seems to be a greater spread in annual net gain for individuals with at least a high school diploma. Professional school education demonstrated the highest median in annual net gain.
+
+### Relationship between race, gender and annual net gain
+```{r race-gender-plot}
+# generate violin plots of annual net gain across race and gender
+dat.filt %>% 
+  ggplot(aes(x = race,
+             y = net, fill = sex)) +
+  geom_violin() +
+  coord_flip() +
+  scale_y_continuous(labels = scales::dollar_format()) +
+  theme_bw() +
+  xlab("Ethnicity") +
+  ylab("Annual net gain")
+```
+
+From the above violin plot, there doesn't appear to be any significant differences in annual net gain between sex across all ethnic groups. Moreover, no obvious correlation between ethncity and annual net gain can be observed.
+
+### Correlation between work hours per week and annual net gain
+```{r work-hours-plot}
+# generate a box plot of annual net gain across work hours
+dat.filt %>% 
+  mutate(`work hours` = factor(case_when(`hours-per-week` <= 25 ~ "Short", # define a new variable to bin work hours per week into 4 categories
+                                  `hours-per-week` > 25 & `hours-per-week` <= 50 ~ "Medium",
+                                  `hours-per-week` > 50 & `hours-per-week` <= 75 ~ "Long",
+                                  TRUE ~ "Very Long"),
+                               levels = c("Short", "Medium", "Long", "Very Long"))) %>% 
+  ggplot(aes(x = `work hours`, y = net, fill = `work hours`)) +
+  geom_boxplot() +
+  theme_bw() +
+  guides(fill = F) +
+  scale_y_continuous(labels = scales::dollar_format()) +
+  xlab("Work Hours") +
+  ylab("Annual net gain")
+```
+
+From the above boxplot, there appears to be an increase in annual net gain from short to long work hours. However, the differences may not be significant because greater variance in annual net gain is observed for individuals with long work hours.
 
 ## Research Questions
 
