@@ -20,8 +20,8 @@ This project works with a dataset of adult incomes obtained from the University 
 This 1994 income census dataset consists of multivariate categorical and integer data that describe socioeconomic and personal classifiers of adults across the USA. Each instance (32,561) is an individual whose annual income was grouped as either above or below $50,000. Table 1 shows an overview of the 15 attributes (variables), including whether each is categorical or integer and a brief interpretation of the variable.  
 
 <br>
-<!--html_preserve--><div id="htmlwidget-4faa5feb753966db9ca4" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-4faa5feb753966db9ca4">{"x":{"filter":"none","caption":"<caption>description of adult income dataset variables<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],["age","workclass","fnlwgt","education","education-num","marital-status","occupation","relationship","race","sex","capital-gain","capital-loss","hours-per-week","native-country","label"],["continuous","categorical","continuous","categorical","continuous","categorical","categorical","categorical","categorical","categorical","continuous","continuous","continuous","categorical","categorical"],["age, range from 17 to 90 (mean 38.58)","Private, Self-emp-not-inc, Self-emp-inc, Federal-gov, Local-gov, State-gov, Without-pay, Never-worked.","\"final weight\" - demographic weight by US state controlled by three sets of characteristics including race/age/sex, hispanic origin, and proportion of state population over 16 years of age","Bachelors, Some-college, 11th, HS-grad, Prof-school, Assoc-acdm, Assoc-voc, 9th, 7th-8th, 12th, Masters, 1st-4th, 10th, Doctorate, 5th-6th, Preschool.","years of education. Range from 1 to 16 (mean 10.08)","Married-civ-spouse, Divorced, Never-married, Separated, Widowed, Married-spouse-absent, Married-AF-spouse.","Tech-support, Craft-repair, Other-service, Sales, Exec-managerial, Prof-specialty, Handlers-cleaners, Machine-op-inspct, Adm-clerical, Farming-fishing, Transport-moving, Priv-house-serv, Protective-serv, Armed-Forces.","Wife, Own-child, Husband, Not-in-family, Other-relative, Unmarried.","White, Asian-Pac-Islander, Amer-Indian-Eskimo, Other, Black.","Female, Male","range from 0 to 99999 (mean 1078). Assuming this is annual financial gains in $USD.","range from 0 to 4356 (mean 87.3). Assuming this is annual financial losses in $USD.","average hours worked per week. Range from 1 to 99 (mean 40.44)","United-States, Cambodia, England, Puerto-Rico, Canada, Germany, Outlying-US(Guam-USVI-etc), India, Japan, Greece, South, China, Cuba, Iran, Honduras, Philippines, Italy, Poland, Jamaica, Vietnam, Mexico, Portugal, Ireland, France, Dominican-Republic, Laos, Ecuador, Taiwan, Haiti, Columbia, Hungary, Guatemala, Nicaragua, Scotland, Thailand, Yugoslavia, El-Salvador, Trinadad&amp;Tobago, Peru, Hong, Holand-Netherlands.","annual income above or below threshold of $50000: &gt;50K or &lt;=50K"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Variable<\/th>\n      <th>Type<\/th>\n      <th>Description<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false,"columnDefs":[{"orderable":false,"targets":0}]}},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
+<!--html_preserve--><div id="htmlwidget-fc48a65506bbf6cd4be0" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-fc48a65506bbf6cd4be0">{"x":{"filter":"none","caption":"<caption>description of adult income dataset variables<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],["age","workclass","fnlwgt","education","education-num","marital-status","occupation","relationship","race","sex","capital-gain","capital-loss","hours-per-week","native-country","label"],["continuous","categorical","continuous","categorical","continuous","categorical","categorical","categorical","categorical","categorical","continuous","continuous","continuous","categorical","categorical"],["age, range from 17 to 90 (mean 38.58)","Private, Self-emp-not-inc, Self-emp-inc, Federal-gov, Local-gov, State-gov, Without-pay, Never-worked.","\"final weight\" - demographic weight by US state controlled by three sets of characteristics including race/age/sex, hispanic origin, and proportion of state population over 16 years of age","Bachelors, Some-college, 11th, HS-grad, Prof-school, Assoc-acdm, Assoc-voc, 9th, 7th-8th, 12th, Masters, 1st-4th, 10th, Doctorate, 5th-6th, Preschool.","years of education. Range from 1 to 16 (mean 10.08)","Married-civ-spouse, Divorced, Never-married, Separated, Widowed, Married-spouse-absent, Married-AF-spouse.","Tech-support, Craft-repair, Other-service, Sales, Exec-managerial, Prof-specialty, Handlers-cleaners, Machine-op-inspct, Adm-clerical, Farming-fishing, Transport-moving, Priv-house-serv, Protective-serv, Armed-Forces.","Wife, Own-child, Husband, Not-in-family, Other-relative, Unmarried.","White, Asian-Pac-Islander, Amer-Indian-Eskimo, Other, Black.","Female, Male","range from 0 to 99999 (mean 1078). Assuming this is annual financial gains in $USD.","range from 0 to 4356 (mean 87.3). Assuming this is annual financial losses in $USD.","average hours worked per week. Range from 1 to 99 (mean 40.44)","United-States, Cambodia, England, Puerto-Rico, Canada, Germany, Outlying-US(Guam-USVI-etc), India, Japan, Greece, South, China, Cuba, Iran, Honduras, Philippines, Italy, Poland, Jamaica, Vietnam, Mexico, Portugal, Ireland, France, Dominican-Republic, Laos, Ecuador, Taiwan, Haiti, Columbia, Hungary, Guatemala, Nicaragua, Scotland, Thailand, Yugoslavia, El-Salvador, Trinadad&amp;Tobago, Peru, Hong, Holand-Netherlands.","annual income above or below threshold of $50000: &gt;50K or &lt;=50K"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Variable<\/th>\n      <th>Type<\/th>\n      <th>Description<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false,"columnDefs":[{"orderable":false,"targets":0}]}},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
 <br>
 
 A couple of assumptions were made about these data based on information on the Census website. It is assumed that "capital gains" indicate non-cash financial benefits (e.g., food stamps, health benefits, subsidized housing or transportation, employer contributions to retirement programs, medical and educational expenses, etc.), and that "capital losses" include non-cash expenses (such as depreciated value of assets). We are also assuming that "education number" indicates the number of years allotted to education.  
@@ -126,7 +126,7 @@ summary(dat.filt)
 ```
 ##       age                    workclass        fnlwgt       
 ##  Min.   :17.00    Private         :2714   Min.   :  19302  
-##  1st Qu.:34.00    Self-emp-not-inc: 413   1st Qu.: 118347  
+##  1st Qu.:34.00    Self-emp-not-inc: 413   1st Qu.: 118346  
 ##  Median :42.00    Local-gov       : 321   Median : 175669  
 ##  Mean   :43.18    Self-emp-inc    : 284   Mean   : 187152  
 ##  3rd Qu.:51.00    ?               : 181   3rd Qu.: 234292  
@@ -175,9 +175,10 @@ dat.filt %>%
   geom_boxplot() +
   coord_flip() +
   scale_y_continuous(labels = scales::dollar_format()) +
-  theme_bw() +
-  xlab("Education attainment level") +
-  ylab("Annual net gain")
+  theme_bw(12) +
+  labs(x = "Education attainment level",
+       y = "Annual net gain",
+       title = "Relationship between education attainment and annual net gain")
 ```
 
 ![](milestone01_files/figure-html/education-plot-1.png)<!-- -->
@@ -194,9 +195,10 @@ dat.filt %>%
   geom_violin() +
   coord_flip() +
   scale_y_continuous(labels = scales::dollar_format()) +
-  theme_bw() +
-  xlab("Ethnicity") +
-  ylab("Annual net gain")
+  theme_bw(12) +
+  labs(x = "Ethnicity",
+       y = "Annual net gain",
+       title = "Relationship between race, gender, and annual net gain")
 ```
 
 ![](milestone01_files/figure-html/race-gender-plot-1.png)<!-- -->
@@ -213,13 +215,14 @@ dat.filt %>%
                                   `hours-per-week` > 50 & `hours-per-week` <= 75 ~ "Long",
                                   TRUE ~ "Very Long"),
                                levels = c("Short", "Medium", "Long", "Very Long"))) %>% 
-  ggplot(aes(x = `work hours`, y = net, fill = `work hours`)) +
+  ggplot(aes(x = `work hours`, y = net)) +
   geom_boxplot() +
-  theme_bw() +
+  theme_bw(12) +
   guides(fill = F) +
   scale_y_continuous(labels = scales::dollar_format()) +
-  xlab("Work Hours") +
-  ylab("Annual net gain")
+  labs(x = "Work Hours",
+       y = "Annual net gain",
+       title = "Relationship between work hours per week and annual net gain")
 ```
 
 ![](milestone01_files/figure-html/work-hours-plot-1.png)<!-- -->
