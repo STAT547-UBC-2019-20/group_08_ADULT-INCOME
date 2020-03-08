@@ -33,7 +33,6 @@ Below are the instuctions for achieving Milestone 2 goals:
       ```
    Note: this will also be achieved by cloning the repo to an RStudio Project through git version control
    
-   * when you have the directory available, run the following lines of code in the terminal *
    b. _Process raw data_ (Task 2.2)
       ```
       Rscript scripts/data_processing.R --input data/adult.data --output data/adult.data.processed
