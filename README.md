@@ -22,20 +22,20 @@ Each Project Milestone can be viewed as a _GitHub Page_ here:
    * glue
    * docopt
 
-3. __Run the scripts under ```scripts/``` in the following order via command-line__
+3. __Run the scripts under in the following order via command-line__
 
    a. _Download raw data_
 
-   b. _Process raw data_
+   b. _Process raw data_ 
       ```
-      data_processing.R --input data/adult.data --output data/adult.data.processed
+      Rscript scripts/data_processing.R --input data/adult.data --output data/adult.data.processed
       ```
    c. _Visualize processed data_
       * Net gain vs education boxplot
         ```
-        net_education_plot.R --input data/adult.data.processed --output images/net_education_plot.png
+        Rscript scripts/net_education_plot.R --input data/adult.data.processed --output images/net_education_plot.png
         ```
       * Net gain vs work hours per week boxplot
         ```
-        net_work_hours_plot.R --input data/adult.data.processed --output images/net_work_hours_plot.png
+        Rscript scripts/net_work_hours_plot.R --input data/adult.data.processed --output images/net_work_hours_plot.png
         ```
