@@ -1,10 +1,10 @@
 # author: Jimmy Liu and Hannah McSorley
 # date: 03-06-2020
 
-"This script will generate a boxplot that describes the distribution of annual net gain across education levels from the processed data file as input.
+doc <- "This script will generate a boxplot that describes the distribution of annual net gain across education levels from the processed data file as input.
 
 Usage: net_education_plot.R --input=</path/to/input_filename> --output=</path/to/output_filename.png>
-" -> doc
+"
 
 # load library
 suppressMessages(library(tidyverse))
@@ -34,7 +34,7 @@ main <- function(input_path) {
          title = "Relationship between education attainment and annual net gain")
   
   # export plot as png
-  print(glue("[",as.character(Sys.time()),"] Exporting plot image to: ", opt$output))
+  print(glue("[",as.character(Sys.time()),"] Success! Exporting plot image to: ", opt$output))
   suppressMessages(ggsave(here(opt$output), p))
 }
 
