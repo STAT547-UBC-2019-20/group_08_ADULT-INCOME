@@ -28,7 +28,10 @@ Below are the instuctions for achieving Milestone 2 goals:
 3. __Run the scripts under in the following order via command-line__
 
    a. _Download raw data_ (Task 2.1) 
-   Note: this will be achieved by cloning the repo to an RStudio Project through git version control
+      ```
+      Rscript scripts/load_data.R --data_url="https://github.com/STAT547-UBC-2019-20/data_sets/blob/master/adult_data.csv" --output data/datafile_loaded
+      ```
+   Note: this will also be achieved by cloning the repo to an RStudio Project through git version control
    
    * when you have the directory available, run the following lines of code in the terminal *
    b. _Process raw data_ (Task 2.2)
