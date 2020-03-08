@@ -8,11 +8,14 @@ The dataset we're working with is adult income data from the 1994 US Census Bure
 ## Milestones and Releases
 This repo will evolve with project milestones throughout the course (until April 8, 2020) and each milestone submission will be a tagged release.
 
-Each Project Milestone can be viewed as a _GitHub Page_ here:
-  * Milestone 1: https://stat547-ubc-2019-20.github.io/group_08_ADULT-INCOME/docs/milestone01.html
-  * Milestone 2:
+### Milestone 1
+View the _GitHub Page_ for Milestone 1 here:  https://stat547-ubc-2019-20.github.io/group_08_ADULT-INCOME/docs/milestone01.html
 
-## Scripts Usage
+### Milestone 2
+Milestone 2 focused on running scripts through command line (or RStudio terminal). 
+Below are the instuctions for achieving Milestone 2 goals:
+
+#### Scripts Usage
 
 1. __Clone this repository__
 
@@ -22,20 +25,25 @@ Each Project Milestone can be viewed as a _GitHub Page_ here:
    * glue
    * docopt
 
-3. __Run the scripts under ```scripts/``` in the following order via command-line__
+3. __Run the scripts under in the following order via command-line__
 
-   a. _Download raw data_
-
-   b. _Process raw data_
+   a. _Download raw data_ (Task 2.1) 
       ```
-      data_processing.R --input data/adult.data --output data/adult.data.processed
+      Rscript scripts/load_data.R --data_url="https://github.com/STAT547-UBC-2019-20/data_sets/blob/master/adult_data.csv" --output data/datafile_loaded
       ```
-   c. _Visualize processed data_
+   Note: this will also be achieved by cloning the repo to an RStudio Project through git version control
+   
+   * when you have the directory available, run the following lines of code in the terminal *
+   b. _Process raw data_ (Task 2.2)
+      ```
+      Rscript scripts/data_processing.R --input data/adult.data --output data/adult.data.processed
+      ```
+   c. _Visualize processed data_ (Task 2.3)
       * Net gain vs education boxplot
         ```
-        net_education_plot.R --input data/adult.data.processed --output images/net_education_plot.png
+        Rscript scripts/net_education_plot.R --input data/adult.data.processed --output images/net_education_plot.png
         ```
       * Net gain vs work hours per week boxplot
         ```
-        net_work_hours_plot.R --input data/adult.data.processed --output images/net_work_hours_plot.png
+        Rscript scripts/net_work_hours_plot.R --input data/adult.data.processed --output images/net_work_hours_plot.png
         ```
