@@ -1,11 +1,11 @@
 # author: Jimmy Liu and Hannah McSorley
 # date: 03-06-2020
 
-"This script will perform preliminary processing and filtering of 
+doc <- "This script will perform preliminary processing and filtering of 
 adult income dataset (adult.data)
 
 Usage: data_processing.R --input=</path/to/input_filename> --output=</path/to/output_filename>
-" -> doc
+"
 
 # load library
 suppressMessages(library(docopt))
