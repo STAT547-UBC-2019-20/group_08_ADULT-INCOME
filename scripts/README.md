@@ -1,22 +1,8 @@
-## Group 08 Team Project
+The scripts in this folder are intended to be run via command line execution. 
 
-__Adult Income and Personal Attributes__
+## Scripts Usage
 
-This repo is for UBC STAT 547 Group project for Group-8, The team members are Jimmy Liu and Hannah McSorley. 
-The dataset we're working with is adult income data from the 1994 US Census Bureau available through University California Irvine Machine Learning Repository (https://archive.ics.uci.edu/ml/datasets/adult).
-
-## Milestones and Releases
-This repo will evolve with project milestones throughout the course (until April 8, 2020) and each milestone submission will be a tagged release.
-
-### Milestone 1
-View the _GitHub Page_ for Milestone 1 here:  https://stat547-ubc-2019-20.github.io/group_08_ADULT-INCOME/docs/milestone01.html
-
-### Milestone 2
-Milestone 2 focused on running scripts through command line (or RStudio terminal). Below are the instuctions for use:
-
-#### Scripts Usage
-
-1. __Clone this repository__
+1. __Clone the project repository__
 
 2. __Check the follow R libraries are installed:__
    * tidyverse
@@ -33,14 +19,15 @@ Milestone 2 focused on running scripts through command line (or RStudio terminal
    _Note: a copy of the datafile will also be available by cloning the repo to an RStudio Project through git version control_
    
    b. __Process raw data__ (Task 2.2)
+   
    There are two options to process the data:
    _1: load the data from a local file:_
       ```
       Rscript scripts/data_processing.R --input data/adult.data --output data/adult.data.processed
       ```
-   _2: load the data from the file downloaded in Task 2.1:_
+   _2: load the data from the dile downloaded in Task 2.1:_
       ```
-      Rscript scripts/data_processing2.R --input data/downloaded_datafile --output data/processed_DL_datafile
+      Rscript scripts/data_processing.R --input data/downloaded_datafile --output data/processed_DL_datafile
       ```
    These two commands generate equivalent output files, from different sources. 
    
