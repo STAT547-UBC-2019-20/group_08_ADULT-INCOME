@@ -33,7 +33,6 @@ Milestone 2 focused on running scripts through command line (or RStudio terminal
    _Note: a copy of the datafile will also be available by cloning the repo to an RStudio Project through git version control_
    
    b. __Process raw data__ (Task 2.2)
-   
    There are two options to process the data:
    _1: load the data from a local file:_
       ```
