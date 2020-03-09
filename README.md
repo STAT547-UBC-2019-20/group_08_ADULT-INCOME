@@ -34,6 +34,7 @@ Milestone 2 focused on running scripts through command line (or RStudio terminal
    
    b. __Process raw data__ (Task 2.2)
    There are two options to process the data:
+   
    _1: load the data from a local file:_
       ```
       Rscript scripts/data_processing.R --input data/adult.data --output data/adult.data.processed
