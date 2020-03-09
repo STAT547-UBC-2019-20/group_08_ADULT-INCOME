@@ -12,8 +12,7 @@ This repo will evolve with project milestones throughout the course (until April
 View the _GitHub Page_ for Milestone 1 here:  https://stat547-ubc-2019-20.github.io/group_08_ADULT-INCOME/docs/milestone01.html
 
 ### Milestone 2
-Milestone 2 focused on running scripts through command line (or RStudio terminal). 
-Below are the instuctions for achieving Milestone 2 goals:
+Milestone 2 focused on running scripts through command line (or RStudio terminal). Below are the instuctions for use:
 
 #### Scripts Usage
 
@@ -27,18 +26,17 @@ Below are the instuctions for achieving Milestone 2 goals:
 
 3. __Run the scripts under in the following order via command-line__
 
-   a. _Download raw data_ (Task 2.1) 
+   a. __Download raw data__ (Task 2.1) 
       ```
-      Rscript scripts/load_data.R --data_url="https://github.com/STAT547-UBC-2019-20/data_sets/blob/master/adult_data.csv" --output data/datafile_loaded
+      Rscript scripts/load_data.R --data_url="https://raw.githubusercontent.com/STAT547-UBC-2019-20/data_sets/master/adult_data.csv" --output data/downloaded_datafile
       ```
-   Note: this will also be achieved by cloning the repo to an RStudio Project through git version control
+   _Note: a copy of the datafile will also be available by cloning the repo to an RStudio Project through git version control_
    
-   * when you have the directory available, run the following lines of code in the terminal *
-   b. _Process raw data_ (Task 2.2)
+   b. __Process raw data__ (Task 2.2)
       ```
       Rscript scripts/data_processing.R --input data/adult.data --output data/adult.data.processed
       ```
-   c. _Visualize processed data_ (Task 2.3)
+   c. __Visualize processed data__ (Task 2.3)
       * Net gain vs education boxplot
         ```
         Rscript scripts/net_education_plot.R --input data/adult.data.processed --output images/net_education_plot.png

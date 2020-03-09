@@ -17,15 +17,17 @@ opt <- docopt(doc)
 
 # main function: read csv from web
 
-main <- function(link){
+main <- function(data_url){
   
-  # read data file
+  # download data file and save
   print(glue("[",as.character(Sys.time()),"] Reading data file from public repo: ", opt$data_url))
-  datafile <- read_csv(link, col_names = TRUE)
   
-  # save data file
-  print(glue("[",as.character(Sys.time()),"] Writing datafile to: ", opt$output))
-  write_csv(datafile, file = here(opt$output))
+  datafile <- download.file(data_url, here(opt$output)) 
+  
+  print(glue("[",as.character(Sys.time()),"] Datafile downloaded..."))
+  
+  print(glue("[",as.character(Sys.time()),"] Raw datafile saved to: ", opt$output))
+
 }
 
 # call for result of main function
