@@ -54,4 +54,14 @@ Milestone 2 focused on running scripts through command line (or RStudio terminal
         ```
         Rscript scripts/net_work_hours_plot.R --input data/adult.data.processed --output images/net_work_hours_plot.png
         ```
-   _note that each of the above scripts can be run with 'processed_DL_datafile' as input to generate the same plots._      
+   _note that each of the above scripts can be run with 'processed_DL_datafile' as input to generate the same plots._  
+
+4. Run the entire analysis pipeline using `make` after cloning the repository
+
+   a. In the terminal, type `make all`
+      
+      Expected outputs:
+         * Report.html
+   
+   b. To remove temporary files produced by the pipeline, run `make clean`
+   
