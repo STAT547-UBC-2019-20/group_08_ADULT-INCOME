@@ -27,18 +27,18 @@ Milestone 2 focused on running scripts through command line (or RStudio terminal
 
 3. __Run the scripts under in the following order via command-line__
 
-   a. __Download raw data__ 
+   2-a. __Download raw data__ 
    _Note: a copy of the datafile will also be available by cloning the repo to an RStudio Project through git version control_
       ```
       Rscript scripts/load_data.R --data_url="https://raw.githubusercontent.com/STAT547-UBC-2019-20/data_sets/master/adult_data.csv" --output data/downloaded_datafile
       ```
-   b. __Process raw data__
+   2-b. __Process raw data__
    _load and process the data from the previously downloaded file_
       ```
       Rscript scripts/data_processing.R --input data/downloaded_datafile --output data/processed_adult-data.csv
       ```
 
-   c. __Visualize processed data__
+   2-c. __Visualize processed data__
       * Net gain vs education boxplot
         ```
         Rscript scripts/net_education_plot.R --input data/processed_adult-data.csv --output images/net_education_plot.png
@@ -47,8 +47,12 @@ Milestone 2 focused on running scripts through command line (or RStudio terminal
         ```
         Rscript scripts/net_work_hours_plot.R --input data/processed_adult-data.csv --output images/net_work_hours_plot.png
         ```
-   d. __Generate a linear model__
-   _this uses a subset of data to create a linear model_
+        
+### Milestone 3
+
+To generate a linear model on filtered data, and create a plot, run the following script:
+
+   3-a. __Linear model__
       ```
       Rscript scripts/linear_regression.R --input data/processed_adult-data.csv --output data/lm_age-hrs.RDS
       ```
@@ -57,5 +61,5 @@ Milestone 2 focused on running scripts through command line (or RStudio terminal
         Rscript scripts/linear-regression_plot.R --input data/processed_adult-data.csv --output images/linear-regression_plot.png
         ```
    
-   e. __Produce a complete final report__
-   _knit a report via RMD file
+   3-b. __Produce a complete final report__
+_knit a report via RMD file_
