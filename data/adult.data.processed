@@ -1,4 +1,5 @@
 age,workclass,fnlwgt,education,education-num,martial_status,occupation,relationship,race,sex,capital-gain,capital-loss,hours-per-week,native-country,label,net
+39, State-gov,77516, Bachelors,13, Never-married, Adm-clerical, Not-in-family,White, Male,2174,0,40, United-States, <=50K,2174
 31, Private,45781, Masters,14, Never-married, Prof-specialty, Not-in-family,White, Female,14084,0,50, United-States, >50K,14084
 42, Private,159449, Bachelors,13, Married-civ-spouse, Exec-managerial, Husband,White, Male,5178,0,40, United-States, >50K,5178
 43, Private,117037, 11th,7, Married-civ-spouse, Transport-moving, Husband,White, Male,0,2042,40, United-States, <=50K,-2042

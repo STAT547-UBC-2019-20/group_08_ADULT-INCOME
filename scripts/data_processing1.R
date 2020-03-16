@@ -21,7 +21,7 @@ main <- function(input_path) {
   
   # read input file
   print(glue("[",as.character(Sys.time()),"] Reading input file from: ", opt$input))
-  dat <- read.table(here(input_path), sep = ",", header = F)
+  dat <- read.csv(here(input_path), header = T)
   
   # rename columns
   names(dat) <- c("age", "workclass", "fnlwgt", "education", "education-num", "martial_status", 

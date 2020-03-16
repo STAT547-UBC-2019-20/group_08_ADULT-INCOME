@@ -19,7 +19,9 @@ opt <- docopt(doc)
 main <- function(input_path) {
   # read input file
   print(glue("[",as.character(Sys.time()),"] Reading input file from: ", opt$input))
-  dat <- read.csv(here(input_path), header = T, check.names = F)
+  dat <- suppressMessages(
+    read_csv(here(input_path), col_names = TRUE)
+  )
   
   # generate boxplot
   print(glue("[",as.character(Sys.time()),"] Generating plot..."))

@@ -1,8 +1,9 @@
 # author: Jimmy Liu and Hannah McSorley
 # date: 03-06-2020
+# updated 2020-03-13
 
 doc <- "This script will perform preliminary processing and filtering of 
-adult income dataset (adult.data)
+adult income dataset (downloaded_datafile) and 
 
 Usage: data_processing.R --input=</path/to/input_filename> --output=</path/to/output_filename>
 "
@@ -19,34 +20,28 @@ opt <- docopt(doc)
 # define main
 main <- function(input_path) {
   
-  # read input file
+  # provide message
   print(glue("[",as.character(Sys.time()),"] Reading input file from: ", opt$input))
-  dat <- read.csv(here(input_path), header = T)
   
-  # rename columns
-  names(dat) <- c("age", "workclass", "fnlwgt", "education", "education-num", "martial_status", 
-                  "occupation", "relationship", "race", "sex", "capital-gain", "capital-loss", 
-                  "hours-per-week", "native-country", "label")
+  # read input file
+  dat <- suppressMessages(
+    read_csv(here(input_path), col_names = c("age", "workclass", "fnlwgt", "education", "education_num", "martial_status", 
+                                                  "occupation", "relationship", "race", "sex", "capital_gain", "capital_loss", 
+                                                  "hours_per_week", "native_country", "label"))
+  )
   
   # remove rows that contain zeroes for both capital gain and loss and merge capital-gain and capital-loss into a single variable, net
   dat.filt <- dat %>% 
-    filter(`capital-gain` != `capital-loss`) %>% 
-    mutate(net = if_else(`capital-gain` == 0, 
-                         as.numeric(`capital-loss`)*-1, # transform capital-loss to negative values 
-                         as.numeric(`capital-gain`)))
+    dplyr::filter(capital_gain != capital_loss) %>% 
+    dplyr::mutate(net = if_else(capital_gain == 0, 
+                                as.numeric(capital_loss)*-1, # transform capital-loss to negative values 
+                                as.numeric(capital_gain)),
+                  race = factor(trimws(race)))  # remove leading white spaces, convert to factor
   
-  # remove leading white spaces
-  dat.filt$race <- trimws(dat.filt$race)
-  
-  # convert race to a factor
-  dat.filt$race <- factor(dat.filt$race, 
-                          c("Other", "Asian-Pac-Islander", "Amer-Indian-Eskimo", "White", "Black"))
-  
-  # write out processed df as csv
+  # write out processed dataframe as csv
   print(glue("[",as.character(Sys.time()),"] Finished processing file..."))
   print(glue("[",as.character(Sys.time()),"] Writing output to: ", opt$output))
-  write.table(dat.filt, file = here(opt$output), 
-              row.names = F, quote = F, sep = ",")
+  readr::write_csv(dat.filt, path = here(opt$output),col_names = TRUE)
 }
 
 # call main

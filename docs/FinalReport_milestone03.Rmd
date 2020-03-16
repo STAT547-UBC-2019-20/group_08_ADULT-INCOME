@@ -1,0 +1,220 @@
+---
+title: "Adult Income Study: Milestone 03"
+author: "Jimmy Liu and Hannah McSorley"
+date: "2020-03-14"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    keep_md: true
+---
+
+```{r load-library, echo = F, warning = F, message = F}
+
+knitr::opts_chunk$set(warning=FALSE, message = FALSE, echo = TRUE)
+
+library(tidyverse)
+library(here)
+library(DT)
+library(scales)
+```
+
+## Introduction 
+
+The economic well-being of individuals is reliant on their income, where income is defined as the money an individual (or household) receives on a regular basis. In the United States, the Census Bureau uses income  (money received before expenses and deductions) to gauge the population's range of poverty, wealth, and financial security (United States Census Bureau, 2016). There are a variety of factors that can influence one's income, including socioeconomic drivers, education and vocation. This project examines some of the variables that are often related to income. 
+
+## Description of Dataset
+
+This project works with a dataset of adult incomes obtained from the University of California Irvine (UCI) [Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/adult). The data was donated by Ronny Kohavi and Barry Becker (Silicon Graphics) and was originally extracted by Barry Becker from the 1994 Census database and used for machine learning predictions of whether a person makes over $50,000 per year based on personal factors.
+
+This 1994 income census dataset consists of multivariate categorical and integer data that describe socioeconomic and personal classifiers of adults across the USA. Each instance (32,561) is an individual whose annual income was grouped as either above or below $50,000. Table 1 shows an overview of the 15 attributes (variables), including whether each is categorical or integer and a brief interpretation of the variable.  
+
+```{r, variable-table, echo = FALSE}
+read_csv(here::here("data/variable_summary.csv"), col_names = TRUE) %>% 
+  DT::datatable(caption = "description of adult income dataset variables")
+```
+
+### Notes on original dataset
+
+A couple of assumptions were made about these data based on information on the Census website. It was assumed that "capital gains" indicate non-cash financial benefits (e.g., food stamps, health benefits, subsidized housing or transportation, employer contributions to retirement programs, medical and educational expenses, etc.), and that "capital losses" include non-cash expenses (such as depreciated value of assets). We also assumed that "education number" indicated the number of years allotted to education.  
+
+It is of note that these data are from 1994 census, and the income threshold of $50,000 held a different meaning for wealth than it holds today. Additionally, as this dataset includes socioeconomic attributes, it's worth noting that the majority of data instances were dominated by middle-age, white, US-born, male, private-sector employees. Overall, there appeared to be a fairly even distribution of individuals across occupational sectors and the majority of individuals work approximately 40 hours per week.
+
+
+## Project Objectives
+
+This project developed data analysis skills in R and R studio with a strong focus on writing Rscripts and executing script commands via RStudio Terminal or the command line. The ultimate goal was to generate a full report using a pipeline of scripts, run in sequence, and to create a report using 'Make'.
+
+### EDA Research Questions
+
+In this study, we explored the relationships between personal attributes and quantitative income-related variables with the goal of identifying relationships and interesting patterns. We focused on addressing the following exploratory research questions: 
+
+1. Is there an observable relationship between personal attributes data and income level?
+2. Does the number of hours worked per week relate more to occupation, sex, race, age (or is there no clear relationship)?
+3. What is the relationship between education and hours worked per week (e.g. does a person work fewer hours if they have completed more schooling)?
+
+### Plan of Action
+
+The variables that effect income may be confounding and are unlikely to be direct, therefore these data may not be appropriate for linear regression analyses. We focus on exploring the relationships variables and identifying relationships and patterns through the initial project's exploratory data analysis and first steps of running a data analysis pipeline. 
+
+## Exploratory Data Analysis 
+
+The original data set was loaded into RStudio where we ran a summary and performed initial exploratory data analysis. A key discovery was that the variable 'income' was not (as might be expected) annual income values for each data instance, it was instead a categorical variable that distinguished whether that instance (row value, person) had earned more than or less than $50,000 USD. Below is a summary of the initial dataset. 
+
+```{r load-data}
+# read original data file 
+dat <- read.table(here("data", "adult.data"), sep = ",", header = FALSE,
+                  col.names = c("age", "workclass", "fnlwgt", "education", "education-num", "martial_status", "occupation", "relationship", "race", "sex", "capital-gain", "capital-loss", "hours-per-week", "native-country", "label"))
+
+# Summary overview
+summary(dat)
+```
+
+### Data handling
+
+Summary of the original data showed that 'capital-gains' and 'capital-losses' were not categorical values like the 'income' variable, and while these variables were numeric, there were many 'zero' values for capital gains and losses. Because the 'income' variable in this dataset was a binary category (above or below $50K) the capital gains and losses appeared to be a more interesting metric in gauging wealth for the individuals in the Census. Therefore, we filtered the dataset to include only instances when there was a non-zero value for capital gains or losses, then combined values of gains and losses to create a 'net' capital gain variable. The filtering we performed was similar to this process: 
+```
+# remove rows that contain zeroes for both capital gain and loss 
+# merge capital-gain and capital-loss into a single 'net' variable
+
+dat.filt <- dat %>% 
+  filter(capital.gain != capital.loss) %>% 
+  mutate(net = if_else(capital.gain == 0, 
+                       as.numeric(capital.loss)*-1, # transform capital-loss to negative values 
+                       as.numeric(capital.gain))) %>% 
+  mutate(race = factor(trimws(race)),  # remove leading white spaces, convert to factor
+         sex = factor(sex))            # convert sex to factor
+```
+To create a data analysis pipeline, data filtering was performed with Rscripts executed via command line arguments in the RStudio Terminal. The resulting filtered dataframe (augmented by filtering for instances that included capital gains and losses) the data demographics were shifted to slightly older individuals represented by more men than women. Below is a summary of the filtered dataframe.
+
+```{r load-clean-data}
+# read cleaned data file 
+# cleaned in "data_processing2.R" script 
+# original data downloaded in "load_data.R" script
+dat <- read.table(here("data", "adult.data.processes"), sep = ",", header = TRUE)
+
+# Summary overview
+summary(dat)
+```
+
+### EDA: Relationship between education attainment and annual net gain
+
+As part of exploratory data analysis, we visualized some relationships among the data. A script was written to generate a box plot of annual net gain across education levels. The code was similar to the following chunk, and generated Figure 1, which follows.
+```
+# generate boxplot of annual net gain across education levels
+dat.filt %>% 
+  ggplot(aes(x = education, y = net)) +
+  geom_boxplot() +
+  coord_flip() +
+  scale_y_continuous(labels = scales::dollar_format()) +
+  theme_bw(12) +
+  labs(x = "Education attainment level",
+       y = "Annual net gain",
+       title = "Relationship between education attainment and annual net gain")
+```
+
+```{r, out.width='25%', fig.align='center', fig.cap='Figure 1: Boxplot of annual net capital gain across education levels'}
+knitr::include_graphics(here("images/linear-regression_plot.png"))
+```
+
+Figure 1 shows that minimal correlation between annual net gain and education attainment. However, there appeared to be a greater spread in annual net gain for individuals with at least a high school diploma, and persons with professional school education demonstrated the highest median in annual net gain.
+
+### EDA: Relationship between race, gender and annual net gain
+
+We were interested to see if there were any visible patterns between annual net gain and individucal's race and or gender. In the inital exploratory data analysis, we examined the relationships between annual net gain across race and gender. 
+```{r net-race-gender, out.width='25%', fig.align='center', fig.cap='Figure 2: Violin plot of annual net capital gain by ethnicity and gender'}
+# generate violin plots of annual net gain across race and gender
+dat.filt %>% 
+  ggplot(aes(x = race,
+             y = net, fill = sex)) +
+  geom_violin() +
+  coord_flip() +
+  scale_y_continuous(labels = scales::dollar_format()) +
+  theme_bw(12) +
+  labs(x = "Ethnicity",
+       y = "Annual net gain",
+       title = "Relationship between race, gender, and annual net gain")
+
+```
+
+There did not appear to be any significant differences in annual net gain between sex across all ethnic groups (Figure 2). Moreover, no obvious correlation between ethnicity and annual net gain was observed.
+
+### EDA: Correlation between work hours per week and annual net gain
+
+We generated an additional script as part of the data analysis pipeline, to plot the relationship between annual net gain and hours worked per week. We categorized work hours per week as being short (under 25 hrs), medium (between 25 and 50), long (50-75 hrs/wk) and very long (over 75 hrs/wk).
+
+```{r work-hours-plot}
+# generate a box plot of annual net gain across work hours
+dat.filt %>% 
+  filter(net != 99999) %>% 
+  mutate(work_hours = factor(case_when(hours_per_week <= 25 ~ "Short", # define a new variable to bin work hours per week into 4 categories
+                                  hours_per_week > 25 & hours_per_week <= 50 ~ "Medium",
+                                  hours_per_week > 50 & hours_per_week <= 75 ~ "Long",
+                                  TRUE ~ "Very Long"),
+                               levels = c("Short", "Medium", "Long", "Very Long"))) %>% 
+  ggplot(aes(x = work_hours, y = net)) +
+  geom_boxplot() +
+  theme_bw(12) +
+  guides(fill = F) +
+  scale_y_continuous(labels = scales::dollar_format()) +
+  labs(x = "Work Hours",
+       y = "Annual net gain",
+       title = "Relationship between work hours per week and annual net gain")
+```
+
+From the above boxplot, there appears to be an increase in annual net gain from short to long work hours. However, the differences may not be significant because greater variance in annual net gain is observed for individuals with long work hours.
+
+## Linear Regression
+
+A goal of this project was to generate a linear model for later use. The 'adult income' dataset does not have many linear relationships, so we isolated a section of data which showed a more direct relationship between variables, in order to accomplish the scripting task of creating a linear model. 
+
+```{r}
+
+```
+
+
+## References
+
+United States Census Bureau, 2016. Income and Poverty, 'about income'.
+https://www.census.gov/topics/income-poverty/income/about.html
+
+
+```{r, linear-regression-practice}
+
+# age versus hours worked
+# when we filter out the "normal" 40 hours per week
+# filter out those who work less than 10 hours per week
+# and filter out people over the age of 80
+dat.filt %>% 
+  filter(age < 30,
+         hours_per_week != 40, hours_per_week >= 10) %>% 
+  ggplot(aes(x = age, y = hours.per.week))+
+  geom_jitter()+
+  geom_smooth(method = lm)+
+  labs(y = "work hours per week", x = "age of worker",
+       title = "hours worked per week for workers under 30 yrs of age")
+
+# on the other side...
+dat.filt %>% 
+  filter(between(age, 45, 80),
+         hours_per_week != 40, hours_per_week >= 10) %>% 
+  ggplot(aes(x = age, y = hours_per_week))+
+  geom_jitter()+
+  geom_smooth(method = lm)+
+  labs(y = "work hours per week", x = "age of worker",
+       title = "hours worked per week for workers 45-80 yrs of age")
+
+# what about just 50K vs net capital
+dat.filt %>% 
+  ggplot(aes(x = label, y = net))+
+  geom_boxplot(aes(fill = label))+
+  #geom_jitter(aes(colour = label), alpha = 0.5)+
+  labs(y = "net capital", x = "income category",
+       title = "hours worked per week for workers 45-80 yrs of age")
+       
+  
+```
+
+
+
+University of California Irvine, Machine Learning Repository. https://archive.ics.uci.edu/ml/datasets/adult.
