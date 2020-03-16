@@ -18,11 +18,12 @@ Milestone 2 focused on running scripts through command line (or RStudio terminal
 
 1. __Clone this repository__
 
-2. __Check the follow R libraries are installed:__
+2. __Check that you have the follow R packages installed:__
    * tidyverse
    * here
    * glue
    * docopt
+   * ggpmisc
 
 3. __Run the scripts under in the following order via command-line__
 
@@ -51,7 +52,7 @@ Milestone 2 focused on running scripts through command line (or RStudio terminal
       ```
       Rscript scripts/linear_regression.R --input data/processed_adult-data.csv --output data/lm_age-hrs.RDS
       ```
-      * Data visualization
+      * Linear regression data visualization
          ```
         Rscript scripts/linear-regression_plot.R --input data/processed_adult-data.csv --output images/linear-regression_plot.png
         ```

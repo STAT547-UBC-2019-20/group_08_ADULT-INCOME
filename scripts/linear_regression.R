@@ -17,12 +17,12 @@ suppressMessages(library(glue))
 opt <- docopt(doc)
 
 # define main
-main <- function(input) {
+main <- function(input_path) {
   
   # read (filtered and processed) input file
   print(glue("[",as.character(Sys.time()),"] Reading input file from: ", opt$input))
   dat <- suppressMessages(
-    read_csv(here(input), col_names = TRUE)
+    read_csv(here(input_path), col_names = TRUE)
   )
   
   # provide process message

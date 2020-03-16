@@ -12,6 +12,7 @@ suppressMessages(library(tidyverse))
 suppressMessages(library(here))
 suppressMessages(library(glue))
 suppressMessages(library(docopt))
+suppressMessages(library(ggpmisc))
 
 # parse arguments
 opt <- docopt(doc)
@@ -22,7 +23,7 @@ main <- function(input_path) {
   # read input file
   print(glue("[",as.character(Sys.time()),"] Reading input file from: ", opt$input))
   dat <- suppressMessages(
-    read_csv(here(input), col_names = TRUE)
+    read_csv(here(input_path), col_names = TRUE)
   )
   
   # generate scatter plot
@@ -36,7 +37,7 @@ main <- function(input_path) {
     geom_smooth(method = lm)+
     labs(y = "work hours per week", x = "age of worker",
          title = "hours worked per week for workers under 30 yrs of age")+
-    stat_poly_eq(formula = y ~ x, 
+    ggpmisc::stat_poly_eq(formula = y ~ x, 
                  aes(label = paste(..eq.label.., ..rr.label.., sep = "~~~")), 
                  parse = TRUE, rr.digits = 4)
   
