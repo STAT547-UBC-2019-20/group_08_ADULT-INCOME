@@ -73,9 +73,8 @@ Milestone 2 focused on running scripts through command line (or RStudio terminal
 
 5. Run the entire analysis pipeline using `make` after cloning the repository
 
-   a. In the terminal, type `make all`
-      
-         __Expected final outputs:__
+   a. In the terminal, type `make all` to produce final report under:
+   
       * docs/FinalReport_milestone03.html
       * docs/FinalReport_milestone03.pdf
    
