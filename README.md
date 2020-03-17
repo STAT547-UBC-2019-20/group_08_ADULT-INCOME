@@ -75,6 +75,6 @@ Milestone 2 focused on running scripts through command line (or RStudio terminal
 
    a. In the terminal, type `make all` to produce final report saved as:
    
-      * [docs/FinalReport_milestone03.html](https://stat547-ubc-2019-20.github.io/group_08_ADULT-INCOME/docs/FinalReport_milestone03.html.html)
+      * [docs/FinalReport_milestone03.html](https://stat547-ubc-2019-20.github.io/group_08_ADULT-INCOME/docs/FinalReport_milestone03.html)
    
    b. To remove temporary files produced by the pipeline, run `make clean` in the terminal
