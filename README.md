@@ -47,6 +47,10 @@ Milestone 2 focused on running scripts through command line (or RStudio terminal
         ```
         Rscript scripts/net_work_hours_plot.R --input data/processed_adult-data.csv --output images/net_work_hours_plot.png
         ```
+      * Net gain vs race vs gender boxplot
+        ```
+        Rscript scripts/net_race_gender_plot.R --input data/processed_adult-data.csv --output images/net_work_hours_plot.png
+        ```
         
 ### Milestone 3
 

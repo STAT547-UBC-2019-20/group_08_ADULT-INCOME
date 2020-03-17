@@ -23,8 +23,8 @@ This project works with a dataset of adult incomes obtained from the University 
 
 This 1994 income census dataset consists of multivariate categorical and integer data that describe socioeconomic and personal classifiers of adults across the USA. Each instance (32,561) is an individual whose annual income was grouped as either above or below $50,000. Table 1 shows an overview of the 15 attributes (variables), including whether each is categorical or integer and a brief interpretation of the variable.  
 
-<!--html_preserve--><div id="htmlwidget-dc08160b97fa45b89b02" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-dc08160b97fa45b89b02">{"x":{"filter":"none","caption":"<caption>description of adult income dataset variables<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],["age","workclass","fnlwgt","education","education-num","marital-status","occupation","relationship","race","sex","capital-gain","capital-loss","hours-per-week","native-country","label"],["continuous","categorical","continuous","categorical","continuous","categorical","categorical","categorical","categorical","categorical","continuous","continuous","continuous","categorical","categorical"],["age, range from 17 to 90 (mean 38.58)","Private, Self-emp-not-inc, Self-emp-inc, Federal-gov, Local-gov, State-gov, Without-pay, Never-worked.","\"final weight\" - demographic weight by US state controlled by three sets of characteristics including race/age/sex, hispanic origin, and proportion of state population over 16 years of age","Bachelors, Some-college, 11th, HS-grad, Prof-school, Assoc-acdm, Assoc-voc, 9th, 7th-8th, 12th, Masters, 1st-4th, 10th, Doctorate, 5th-6th, Preschool.","years of education. Range from 1 to 16 (mean 10.08)","Married-civ-spouse, Divorced, Never-married, Separated, Widowed, Married-spouse-absent, Married-AF-spouse.","Tech-support, Craft-repair, Other-service, Sales, Exec-managerial, Prof-specialty, Handlers-cleaners, Machine-op-inspct, Adm-clerical, Farming-fishing, Transport-moving, Priv-house-serv, Protective-serv, Armed-Forces.","Wife, Own-child, Husband, Not-in-family, Other-relative, Unmarried.","White, Asian-Pac-Islander, Amer-Indian-Eskimo, Other, Black.","Female, Male","range from 0 to 99999 (mean 1078). Assuming this is annual financial gains in $USD.","range from 0 to 4356 (mean 87.3). Assuming this is annual financial losses in $USD.","average hours worked per week. Range from 1 to 99 (mean 40.44)","United-States, Cambodia, England, Puerto-Rico, Canada, Germany, Outlying-US(Guam-USVI-etc), India, Japan, Greece, South, China, Cuba, Iran, Honduras, Philippines, Italy, Poland, Jamaica, Vietnam, Mexico, Portugal, Ireland, France, Dominican-Republic, Laos, Ecuador, Taiwan, Haiti, Columbia, Hungary, Guatemala, Nicaragua, Scotland, Thailand, Yugoslavia, El-Salvador, Trinadad&amp;Tobago, Peru, Hong, Holand-Netherlands.","annual income above or below threshold of $50000: &gt;50K or &lt;=50K"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Variable<\/th>\n      <th>Type<\/th>\n      <th>Description<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false,"columnDefs":[{"orderable":false,"targets":0}]}},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
+<!--html_preserve--><div id="htmlwidget-eef599b4c979b14ea8d0" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-eef599b4c979b14ea8d0">{"x":{"filter":"none","caption":"<caption>Description of adult income dataset variables<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],["age","workclass","fnlwgt","education","education-num","marital-status","occupation","relationship","race","sex","capital-gain","capital-loss","hours-per-week","native-country","label"],["continuous","categorical","continuous","categorical","continuous","categorical","categorical","categorical","categorical","categorical","continuous","continuous","continuous","categorical","categorical"],["age, range from 17 to 90 (mean 38.58)","Private, Self-emp-not-inc, Self-emp-inc, Federal-gov, Local-gov, State-gov, Without-pay, Never-worked.","\"final weight\" - demographic weight by US state controlled by three sets of characteristics including race/age/sex, hispanic origin, and proportion of state population over 16 years of age","Bachelors, Some-college, 11th, HS-grad, Prof-school, Assoc-acdm, Assoc-voc, 9th, 7th-8th, 12th, Masters, 1st-4th, 10th, Doctorate, 5th-6th, Preschool.","years of education. Range from 1 to 16 (mean 10.08)","Married-civ-spouse, Divorced, Never-married, Separated, Widowed, Married-spouse-absent, Married-AF-spouse.","Tech-support, Craft-repair, Other-service, Sales, Exec-managerial, Prof-specialty, Handlers-cleaners, Machine-op-inspct, Adm-clerical, Farming-fishing, Transport-moving, Priv-house-serv, Protective-serv, Armed-Forces.","Wife, Own-child, Husband, Not-in-family, Other-relative, Unmarried.","White, Asian-Pac-Islander, Amer-Indian-Eskimo, Other, Black.","Female, Male","range from 0 to 99999 (mean 1078). Assuming this is annual financial gains in $USD.","range from 0 to 4356 (mean 87.3). Assuming this is annual financial losses in $USD.","average hours worked per week. Range from 1 to 99 (mean 40.44)","United-States, Cambodia, England, Puerto-Rico, Canada, Germany, Outlying-US(Guam-USVI-etc), India, Japan, Greece, South, China, Cuba, Iran, Honduras, Philippines, Italy, Poland, Jamaica, Vietnam, Mexico, Portugal, Ireland, France, Dominican-Republic, Laos, Ecuador, Taiwan, Haiti, Columbia, Hungary, Guatemala, Nicaragua, Scotland, Thailand, Yugoslavia, El-Salvador, Trinadad&amp;Tobago, Peru, Hong, Holand-Netherlands.","annual income above or below threshold of $50000: &gt;50K or &lt;=50K"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Variable<\/th>\n      <th>Type<\/th>\n      <th>Description<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false,"columnDefs":[{"orderable":false,"targets":0}]}},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
 
 ### Notes on original dataset
 
@@ -53,19 +53,6 @@ The variables that effect income may be confounding and are unlikely to be direc
 
 The original data set was loaded into RStudio where we ran a summary and performed initial exploratory data analysis. A key discovery was that the variable 'income' was not (as might be expected) annual income values for each data instance, it was instead a categorical variable that distinguished whether that instance (row value, person) had earned more than or less than $50,000 USD. Below is a summary of the initial dataset. 
 
-
-```r
-# read original data file 
-dat <- read.table(here("data", "adult.data"), sep = ",", header = FALSE,
-                  col.names = c("age", "workclass", "fnlwgt", "education",
-                                "education-num", "martial_status", "occupation", 
-                                "relationship", "race", "sex", "capital-gain", 
-                                "capital-loss", "hours-per-week", "native-country", 
-                                "label"))
-
-# Summary overview
-summary(dat)
-```
 
 ```
 ##       age                    workclass         fnlwgt       
@@ -112,33 +99,10 @@ summary(dat)
 
 ### Data handling
 
-Summary of the original data showed that 'capital-gains' and 'capital-losses' were not categorical values like the 'income' variable, and while these variables were numeric, there were many 'zero' values for capital gains and losses. Because the 'income' variable in this dataset was a binary category (above or below $50K) the capital gains and losses appeared to be a more interesting metric in gauging wealth for the individuals in the Census. Therefore, we filtered the dataset to include only instances when there was a non-zero value for capital gains or losses, then combined values of gains and losses to create a 'net' capital gain variable. The filtering we performed was similar to this process: 
-
-```r
-# remove rows that contain zeroes for both capital gain and loss 
-# merge capital-gain and capital-loss into a single 'net' variable
-
-dat.filt <- dat %>% 
-  filter(capital.gain != capital.loss) %>% 
-  mutate(net = if_else(capital.gain == 0, 
-  as.numeric(capital.loss)*-1,         # transform capital-loss to negative values 
-  as.numeric(capital.gain))) %>% 
-  mutate(race = factor(trimws(race)),  # remove leading white spaces, convert to factor
-  sex = factor(sex))                   # convert sex to factor
-```
+Summary of the original data showed that 'capital-gains' and 'capital-losses' were not categorical values like the 'income' variable, and while these variables were numeric, there were many 'zero' values for capital gains and losses. Because the 'income' variable in this dataset was a binary category (above or below $50K) the capital gains and losses appeared to be a more interesting metric in gauging wealth for the individuals in the Census. Therefore, we filtered the dataset to include only instances when there was a non-zero value for capital gains or losses, then combined values of gains and losses to create a 'net' capital gain variable. 
 
 To create a data analysis pipeline, data filtering was performed with Rscripts executed via command line arguments in the RStudio Terminal. The resulting filtered dataframe (augmented by filtering for instances that included capital gains and losses) the data demographics were shifted to slightly older individuals represented by more men than women. Below is a summary of the filtered dataframe.
 
-
-```r
-# read cleaned data file 
-# cleaned in "data_processing2.R" script 
-# original data downloaded in "load_data.R" script
-dat <- read.table(here("data", "processed_DL_datafile"), sep = ",", header = TRUE)
-
-# Summary overview
-summary(dat)
-```
 
 ```
 ##       age                   workclass        fnlwgt               education   
@@ -185,20 +149,7 @@ summary(dat)
 
 ### EDA: Relationship between education attainment and annual net gain
 
-As part of exploratory data analysis, we visualized some relationships among the data. A script was written to generate a box plot of annual net gain across education levels. The code was similar to the following chunk, and generated Figure 1, which follows.
-
-```r
-# generate boxplot of annual net gain across education levels
-dat.filt %>% 
-  ggplot(aes(x = education, y = net)) +
-  geom_boxplot() +
-  coord_flip() +
-  scale_y_continuous(labels = scales::dollar_format()) +
-  theme_bw(12) +
-  labs(x = "Education attainment level",
-  y = "Annual net gain",
-  title = "Relationship between education attainment and annual net gain")
-```
+As part of exploratory data analysis, we visualized some relationships among the data. Here we are visualizing the annual net gain across education levels.
 
 <div class="figure" style="text-align: center">
 <img src="/mnt/HDD/Documents/R_Projects/R Projects/group_08_ADULT-INCOME-1/images/net_education_plot.png" alt="Figure 1: Boxplot of annual net capital gain across education levels" width="75%" />
@@ -212,21 +163,11 @@ Figure 1 shows that minimal correlation between annual net gain and education at
 We were interested to see if there were any visible patterns between annual net gain and individucal's race and or gender. In the inital exploratory data analysis, we examined the relationships between annual net gain across race and gender. 
 
 ```r
-# generate violin plots of annual net gain across race and gender
-dat %>% 
-  ggplot(aes(x = race,
-             y = net, fill = sex)) +
-  geom_violin() +
-  coord_flip() +
-  scale_y_continuous(labels = scales::dollar_format()) +
-  theme_bw(12) +
-  labs(x = "Ethnicity",
-       y = "Annual net gain",
-       title = "Relationship between race, sex, and annual net gain")
+knitr::include_graphics(here("images/net_race_gender_plot.png"))
 ```
 
 <div class="figure" style="text-align: center">
-<img src="FinalReport_milestone03_files/figure-html/net-race-gender-1.png" alt="Figure 2: Violin plot of annual net capital gain by ethnicity and sex" width="75%" />
+<img src="/mnt/HDD/Documents/R_Projects/R Projects/group_08_ADULT-INCOME-1/images/net_race_gender_plot.png" alt="Figure 2: Violin plot of annual net capital gain by ethnicity and sex" width="75%" />
 <p class="caption">Figure 2: Violin plot of annual net capital gain by ethnicity and sex</p>
 </div>
 
@@ -234,29 +175,7 @@ There did not appear to be any significant differences in annual net gain betwee
 
 ### EDA: Correlation between work hours per week and annual net gain
 
-We generated an additional script as part of the data analysis pipeline, to plot the relationship between annual net gain and hours worked per week. We categorized work hours per week as being short (under 25 hrs), medium (between 25 and 50), long (50-75 hrs/wk) and very long (over 75 hrs/wk).
-
-
-```r
-# generate a box plot of annual net gain across work hours
-dat.filt %>% 
-  filter(net != 99999) %>%
-  # define a new variable to bin work hours per week into 4 categories
-  mutate(work_hours = factor(
-    case_when(hours_per_week <= 25 ~ "Short", 
-              hours_per_week > 25 & hours_per_week <= 50 ~ "Medium",
-              hours_per_week > 50 & hours_per_week <= 75 ~ "Long",
-              TRUE ~ "Very Long"),
-    levels = c("Short", "Medium", "Long", "Very Long"))) %>% 
-  ggplot(aes(x = work_hours, y = net)) +
-  geom_boxplot() +
-  theme_bw(12) +
-  guides(fill = F) +
-  scale_y_continuous(labels = scales::dollar_format()) +
-  labs(x = "Work Hours",
-       y = "Annual net gain",
-       title = "Relationship between work hours per week and annual net gain")
-```
+We generated an additional script as part of the data analysis pipeline, to plot the relationship between annual net gain and hours worked per week. We categorized work hours per week as being short (under 25 hrs), medium (25-50 hrs/wk), long (50-75 hrs/wk) and very long (over 75 hrs/wk).
 
 <div class="figure" style="text-align: center">
 <img src="/mnt/HDD/Documents/R_Projects/R Projects/group_08_ADULT-INCOME-1/images/net_work_hours_plot.png" alt="Figure 3: Plot of annual net capital gain by hours worked per week" width="75%" />
