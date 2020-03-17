@@ -107,7 +107,7 @@ Figure 1 shows that minimal correlation between annual net gain and education at
 ### EDA: Relationship between race, gender and annual net gain
 
 We were interested to see if there were any visible patterns between annual net gain and individucal's race and or gender. In the inital exploratory data analysis, we examined the relationships between annual net gain across race and gender. 
-```{r net-race-gender, out.width='75%', fig.align='center', fig.cap='Figure 2: Violin plot of annual net capital gain by ethnicity and sex'}
+```{r net-race-gender, out.width='75%', fig.align='center', fig.cap='Figure 2: Violin plot of annual net capital gain by ethnicity and sex', echo = F}
 knitr::include_graphics(here("images/net_race_gender_plot.png"))
 ```
 
