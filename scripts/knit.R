@@ -17,4 +17,5 @@ main <- function(finalreport) {
                     c("html_document", "pdf_document"))
 }
 
+# call main
 main(opt$finalreport)

@@ -27,20 +27,18 @@ Milestone 2 focused on running scripts through command line (or RStudio terminal
 
 3. __Run the scripts under in the following order via command-line__
 
-   2-a. __Download raw data__ 
+   a. __Download raw data__ 
    _Note: a copy of the datafile will also be available by cloning the repo to an RStudio Project through git version control_
-
-   _1: load the data from a local file:_
       ```
       Rscript scripts/load_data.R --data_url="https://raw.githubusercontent.com/STAT547-UBC-2019-20/data_sets/master/adult_data.csv" --output data/downloaded_datafile
       ```
-   2-b. __Process raw data__
+   b. __Process raw data__
    _load and process the data from the previously downloaded file_
       ```
       Rscript scripts/data_processing.R --input data/downloaded_datafile --output data/processed_adult-data.csv
       ```
 
-   2-c. __Visualize processed data__
+   c. __Visualize processed data__
       * Net gain vs education boxplot
         ```
         Rscript scripts/net_education_plot.R --input data/processed_adult-data.csv --output images/net_education_plot.png
@@ -49,30 +47,35 @@ Milestone 2 focused on running scripts through command line (or RStudio terminal
         ```
         Rscript scripts/net_work_hours_plot.R --input data/processed_adult-data.csv --output images/net_work_hours_plot.png
         ```
+      * Net gain vs race vs gender boxplot
+        ```
+        Rscript scripts/net_race_gender_plot.R --input data/processed_adult-data.csv --output images/net_work_hours_plot.png
+        ```
         
 ### Milestone 3
 
-To generate a linear model on filtered data, and create a plot, run the following script:
+4. To generate a linear model on filtered data, and create a plot, run the following script:
 
-   3-a. __Linear model__
+   a. __Linear model__
+      * Generate .RDS file containing linear model object
       ```
       Rscript scripts/linear_regression.R --input data/processed_adult-data.csv --output data/lm_age-hrs.RDS
       ```
       * Linear regression data visualization
-         ```
-        Rscript scripts/linear-regression_plot.R --input data/processed_adult-data.csv --output images/linear-regression_plot.png
-        ```
+      ```
+      Rscript scripts/linear-regression_plot.R --input data/processed_adult-data.csv --output images/linear-regression_plot.png
+      ```
    
-   3-b. __Produce a complete final report__
-_knit a report via RMD file_
+   b. __Produce a complete final report__ _knit a report via R markdown file_
+      ```
+      Rscript scripts/knit.R --finalreport docs/FinalReport_milestone03.Rmd
+      ```
 
-   _note that each of the above scripts can be run with 'processed_DL_datafile' as input to generate the same plots._  
+5. Run the entire analysis pipeline using `make` after cloning the repository
 
-4. Run the entire analysis pipeline using `make` after cloning the repository
-
-   a. In the terminal, type `make all`
-      
-      Expected outputs:
-         * Report.html
+   a. In the terminal, type `make all` to produce final report under:
    
-   b. To remove temporary files produced by the pipeline, run `make clean`
+      * docs/FinalReport_milestone03.html
+      * docs/FinalReport_milestone03.pdf
+   
+   b. To remove temporary files produced by the pipeline, run `make clean` in the terminal
