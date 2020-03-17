@@ -29,6 +29,8 @@ Milestone 2 focused on running scripts through command line (or RStudio terminal
 
    2-a. __Download raw data__ 
    _Note: a copy of the datafile will also be available by cloning the repo to an RStudio Project through git version control_
+
+   _1: load the data from a local file:_
       ```
       Rscript scripts/load_data.R --data_url="https://raw.githubusercontent.com/STAT547-UBC-2019-20/data_sets/master/adult_data.csv" --output data/downloaded_datafile
       ```
@@ -63,3 +65,14 @@ To generate a linear model on filtered data, and create a plot, run the followin
    
    3-b. __Produce a complete final report__
 _knit a report via RMD file_
+
+   _note that each of the above scripts can be run with 'processed_DL_datafile' as input to generate the same plots._  
+
+4. Run the entire analysis pipeline using `make` after cloning the repository
+
+   a. In the terminal, type `make all`
+      
+      Expected outputs:
+         * Report.html
+   
+   b. To remove temporary files produced by the pipeline, run `make clean`
