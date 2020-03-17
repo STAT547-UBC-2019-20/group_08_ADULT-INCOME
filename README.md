@@ -28,6 +28,7 @@ Milestone 2 focused on running scripts through command line (or RStudio terminal
 3. __Run the scripts under in the following order via command-line__
 
    a. __Download raw data__ 
+   
    _Note: a copy of the datafile will also be available by cloning the repo to an RStudio Project through git version control_
       ```
       Rscript scripts/load_data.R --data_url="https://raw.githubusercontent.com/STAT547-UBC-2019-20/data_sets/master/adult_data.csv" --output data/downloaded_datafile
