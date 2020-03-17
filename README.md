@@ -8,34 +8,74 @@ The dataset we're working with is adult income data from the 1994 US Census Bure
 ## Milestones and Releases
 This repo will evolve with project milestones throughout the course (until April 8, 2020) and each milestone submission will be a tagged release.
 
-Each Project Milestone can be viewed as a _GitHub Page_ here:
-  * Milestone 1: https://stat547-ubc-2019-20.github.io/group_08_ADULT-INCOME/docs/milestone01.html
-  * Milestone 2:
+### Milestone 1
+View the _GitHub Page_ for Milestone 1 here:  https://stat547-ubc-2019-20.github.io/group_08_ADULT-INCOME/docs/milestone01.html
 
-## Scripts Usage
+### Milestone 2
+Milestone 2 focused on running scripts through command line (or RStudio terminal). Below are the instuctions for use:
+
+#### Scripts Usage
 
 1. __Clone this repository__
 
-2. __Check the follow R libraries are installed:__
+2. __Check that you have the follow R packages installed:__
    * tidyverse
    * here
    * glue
    * docopt
+   * ggpmisc
 
-3. __Run the scripts under ```scripts/``` in the following order via command-line__
+3. __Run the scripts under in the following order via command-line__
 
-   a. _Download raw data_
-
-   b. _Process raw data_
+   a. __Download raw data__ 
+   
+   _Note: a copy of the datafile will also be available by cloning the repo to an RStudio Project through git version control_
       ```
-      data_processing.R --input data/adult.data --output data/adult.data.processed
+      Rscript scripts/load_data.R --data_url="https://raw.githubusercontent.com/STAT547-UBC-2019-20/data_sets/master/adult_data.csv" --output data/downloaded_datafile
       ```
-   c. _Visualize processed data_
+   b. __Process raw data__
+   _load and process the data from the previously downloaded file_
+      ```
+      Rscript scripts/data_processing.R --input data/downloaded_datafile --output data/processed_adult-data.csv
+      ```
+
+   c. __Visualize processed data__
       * Net gain vs education boxplot
         ```
-        net_education_plot.R --input data/adult.data.processed --output images/net_education_plot.png
+        Rscript scripts/net_education_plot.R --input data/processed_adult-data.csv --output images/net_education_plot.png
         ```
       * Net gain vs work hours per week boxplot
         ```
-        net_work_hours_plot.R --input data/adult.data.processed --output images/net_work_hours_plot.png
+        Rscript scripts/net_work_hours_plot.R --input data/processed_adult-data.csv --output images/net_work_hours_plot.png
         ```
+      * Net gain vs race vs gender boxplot
+        ```
+        Rscript scripts/net_race_gender_plot.R --input data/processed_adult-data.csv --output images/net_work_hours_plot.png
+        ```
+        
+### Milestone 3
+
+4. To generate a linear model on filtered data, and create a plot, run the following script:
+
+   a. __Linear model__
+      * Generate .RDS file containing linear model object
+      ```
+      Rscript scripts/linear_regression.R --input data/processed_adult-data.csv --output data/lm_age-hrs.RDS
+      ```
+      * Linear regression data visualization
+      ```
+      Rscript scripts/linear-regression_plot.R --input data/processed_adult-data.csv --output images/linear-regression_plot.png
+      ```
+   
+   b. __Produce a complete final report__ _knit a report via R markdown file_
+      ```
+      Rscript scripts/knit.R --finalreport docs/FinalReport_milestone03.Rmd
+      ```
+
+5. Run the entire analysis pipeline using `make` after cloning the repository
+
+   a. In the terminal, type `make all` to produce final report saved as:
+   
+      * [docs/FinalReport_milestone03.html](https://stat547-ubc-2019-20.github.io/group_08_ADULT-INCOME/docs/FinalReport_milestone03.html)
+   
+   b. To remove temporary files produced by the pipeline, run `make clean` in the terminal
