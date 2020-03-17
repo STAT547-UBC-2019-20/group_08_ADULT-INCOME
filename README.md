@@ -18,42 +18,54 @@ Milestone 2 focused on running scripts through command line (or RStudio terminal
 
 1. __Clone this repository__
 
-2. __Check the follow R libraries are installed:__
+2. __Check that you have the follow R packages installed:__
    * tidyverse
    * here
    * glue
    * docopt
+   * ggpmisc
 
 3. __Run the scripts under in the following order via command-line__
 
-   a. __Download raw data__ (Task 2.1) 
+   2-a. __Download raw data__ 
+   _Note: a copy of the datafile will also be available by cloning the repo to an RStudio Project through git version control_
+
+   _1: load the data from a local file:_
       ```
       Rscript scripts/load_data.R --data_url="https://raw.githubusercontent.com/STAT547-UBC-2019-20/data_sets/master/adult_data.csv" --output data/downloaded_datafile
       ```
-   _Note: a copy of the datafile will also be available by cloning the repo to an RStudio Project through git version control_
-   
-   b. __Process raw data__ (Task 2.2)
-   There are two options to process the data:
-   
-   _1: load the data from a local file:_
+   2-b. __Process raw data__
+   _load and process the data from the previously downloaded file_
       ```
-      Rscript scripts/data_processing.R --input data/adult.data --output data/adult.data.processed
+      Rscript scripts/data_processing.R --input data/downloaded_datafile --output data/processed_adult-data.csv
       ```
-   _2: load the data from the file downloaded in Task 2.1:_
-      ```
-      Rscript scripts/data_processing2.R --input data/downloaded_datafile --output data/processed_DL_datafile
-      ```
-   These two commands generate equivalent output files, from different sources. 
-   
-   c. __Visualize processed data__ (Task 2.3)
+
+   2-c. __Visualize processed data__
       * Net gain vs education boxplot
         ```
-        Rscript scripts/net_education_plot.R --input data/adult.data.processed --output images/net_education_plot.png
+        Rscript scripts/net_education_plot.R --input data/processed_adult-data.csv --output images/net_education_plot.png
         ```
       * Net gain vs work hours per week boxplot
         ```
-        Rscript scripts/net_work_hours_plot.R --input data/adult.data.processed --output images/net_work_hours_plot.png
+        Rscript scripts/net_work_hours_plot.R --input data/processed_adult-data.csv --output images/net_work_hours_plot.png
         ```
+        
+### Milestone 3
+
+To generate a linear model on filtered data, and create a plot, run the following script:
+
+   3-a. __Linear model__
+      ```
+      Rscript scripts/linear_regression.R --input data/processed_adult-data.csv --output data/lm_age-hrs.RDS
+      ```
+      * Linear regression data visualization
+         ```
+        Rscript scripts/linear-regression_plot.R --input data/processed_adult-data.csv --output images/linear-regression_plot.png
+        ```
+   
+   3-b. __Produce a complete final report__
+_knit a report via RMD file_
+
    _note that each of the above scripts can be run with 'processed_DL_datafile' as input to generate the same plots._  
 
 4. Run the entire analysis pipeline using `make` after cloning the repository
@@ -64,4 +76,3 @@ Milestone 2 focused on running scripts through command line (or RStudio terminal
          * Report.html
    
    b. To remove temporary files produced by the pipeline, run `make clean`
-   

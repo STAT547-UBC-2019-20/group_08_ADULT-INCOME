@@ -19,17 +19,19 @@ opt <- docopt(doc)
 main <- function(input_path) {
   # read input file
   print(glue("[",as.character(Sys.time()),"] Reading input file from: ", opt$input))
-  dat <- read.csv(here(input_path), header = T, check.names = F)
+  dat <- suppressMessages(
+    read_csv(here(input_path), col_names = TRUE)
+  )
   
   # generate boxplot
   print(glue("[",as.character(Sys.time()),"] Generating plot..."))
   p <- dat %>% 
-    mutate(`work hours` = factor(case_when(`hours-per-week` <= 25 ~ "Short", # define a new variable to bin work hours per week into 4 categories
-                                           `hours-per-week` > 25 & `hours-per-week` <= 50 ~ "Medium",
-                                           `hours-per-week` > 50 & `hours-per-week` <= 75 ~ "Long",
+    mutate(work.hours = factor(case_when(`hours_per_week` <= 25 ~ "Short", # define a new variable to bin work hours per week into 4 categories
+                                           `hours_per_week` > 25 & `hours_per_week` <= 50 ~ "Medium",
+                                           `hours_per_week` > 50 & `hours_per_week` <= 75 ~ "Long",
                                            TRUE ~ "Very Long"),
                                  levels = c("Short", "Medium", "Long", "Very Long"))) %>% 
-    ggplot(aes(x = `work hours`, y = net)) +
+    ggplot(aes(x = work.hours, y = net)) +
     geom_boxplot() +
     theme_bw(12) +
     guides(fill = F) +
