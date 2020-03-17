@@ -1,7 +1,7 @@
 ---
 title: "Adult Income Study: Milestone 03"
 author: "Jimmy Liu and Hannah McSorley"
-date: "2020-03-14"
+date: "2020-03-17"
 output:
   html_document:
     toc: true
@@ -67,7 +67,11 @@ The original data set was loaded into RStudio where we ran a summary and perform
 ```{r load-raw-data}
 # read original data file 
 dat <- read.table(here("data", "adult.data"), sep = ",", header = FALSE,
-                  col.names = c("age", "workclass", "fnlwgt", "education", "education-num", "martial_status", "occupation", "relationship", "race", "sex", "capital-gain", "capital-loss", "hours-per-week", "native-country", "label"))
+                  col.names = c("age", "workclass", "fnlwgt", "education",
+                                "education-num", "martial_status", "occupation", 
+                                "relationship", "race", "sex", "capital-gain", 
+                                "capital-loss", "hours-per-week", "native-country", 
+                                "label"))
 
 # Summary overview
 summary(dat)
@@ -76,7 +80,7 @@ summary(dat)
 ### Data handling
 
 Summary of the original data showed that 'capital-gains' and 'capital-losses' were not categorical values like the 'income' variable, and while these variables were numeric, there were many 'zero' values for capital gains and losses. Because the 'income' variable in this dataset was a binary category (above or below $50K) the capital gains and losses appeared to be a more interesting metric in gauging wealth for the individuals in the Census. Therefore, we filtered the dataset to include only instances when there was a non-zero value for capital gains or losses, then combined values of gains and losses to create a 'net' capital gain variable. The filtering we performed was similar to this process: 
-```
+``` {r, eval = F}
 # remove rows that contain zeroes for both capital gain and loss 
 # merge capital-gain and capital-loss into a single 'net' variable
 
@@ -88,13 +92,14 @@ dat.filt <- dat %>%
   mutate(race = factor(trimws(race)),  # remove leading white spaces, convert to factor
   sex = factor(sex))                   # convert sex to factor
 ```
+
 To create a data analysis pipeline, data filtering was performed with Rscripts executed via command line arguments in the RStudio Terminal. The resulting filtered dataframe (augmented by filtering for instances that included capital gains and losses) the data demographics were shifted to slightly older individuals represented by more men than women. Below is a summary of the filtered dataframe.
 
 ```{r load-clean-data}
 # read cleaned data file 
 # cleaned in "data_processing2.R" script 
 # original data downloaded in "load_data.R" script
-dat <- read.table(here("data", "adult.data.processed"), sep = ",", header = TRUE)
+dat <- read.table(here("data", "processed_DL_datafile"), sep = ",", header = TRUE)
 
 # Summary overview
 summary(dat)
@@ -103,7 +108,7 @@ summary(dat)
 ### EDA: Relationship between education attainment and annual net gain
 
 As part of exploratory data analysis, we visualized some relationships among the data. A script was written to generate a box plot of annual net gain across education levels. The code was similar to the following chunk, and generated Figure 1, which follows.
-```
+``` {r, eval = F}
 # generate boxplot of annual net gain across education levels
 dat.filt %>% 
   ggplot(aes(x = education, y = net)) +
@@ -116,7 +121,7 @@ dat.filt %>%
   title = "Relationship between education attainment and annual net gain")
 ```
 
-```{r net-gain-education, out.width='75%', fig.align='center', fig.cap='Figure 1: Boxplot of annual net capital gain across education levels'}
+```{r net-gain-education, out.width='75%', fig.align='center', fig.cap='Figure 1: Boxplot of annual net capital gain across education levels', echo = F}
 knitr::include_graphics(here("images/net_education_plot.png"))
 ```
 
@@ -146,7 +151,7 @@ There did not appear to be any significant differences in annual net gain betwee
 
 We generated an additional script as part of the data analysis pipeline, to plot the relationship between annual net gain and hours worked per week. We categorized work hours per week as being short (under 25 hrs), medium (between 25 and 50), long (50-75 hrs/wk) and very long (over 75 hrs/wk).
 
-```
+``` {r, eval = F}
 # generate a box plot of annual net gain across work hours
 dat.filt %>% 
   filter(net != 99999) %>%
@@ -167,7 +172,7 @@ dat.filt %>%
        title = "Relationship between work hours per week and annual net gain")
 ```
 
-```{r work-hours-plot, out.width='75%', fig.align='center', fig.cap='Figure 3: Plot of annual net capital gain by hours worked per week'}
+```{r work-hours-plot, out.width='75%', fig.align='center', fig.cap='Figure 3: Plot of annual net capital gain by hours worked per week', echo = F}
 knitr::include_graphics(here("images/net_work_hours_plot.png"))
 ```
 
@@ -179,15 +184,15 @@ A goal of this project was to generate a linear model for later use. The 'adult 
 
 ```{r age-hours, out.width='75%', fig.align='center', fig.cap="Figure 4: Hours worked per week by age where plot 'A' shows the full dataset and plot 'B' shows a more linear section of filtered data (for workers under 30)"}
 p1 <- dat %>% 
-  ggplot(aes(x = age, y = hours.per.week))+
+  ggplot(aes(x = age, y = hours_per_week))+
   geom_jitter(alpha = 0.4)+
   theme_bw()+
   labs(y = "hrs/wk", x = "")
 
 p2 <- dat %>% 
   filter(age < 30,
-         hours.per.week != 40, hours.per.week >= 10) %>% 
-  ggplot(aes(x = age, y = hours.per.week))+
+         hours_per_week != 40, hours_per_week >= 10) %>% 
+  ggplot(aes(x = age, y = hours_per_week))+
   geom_jitter(alpha = 0.4)+
   geom_smooth(method = lm)+
   labs(y = "hrs/wk", x = "age of worker")+
@@ -205,7 +210,7 @@ The relationship between age and hours worked appeared to be loosely parabolic. 
 
 We wrote a script to generate a linear model based on the filtered data shown in Figure 4-B, as well as a script to generate that sub-plot as a stand-alone graphic.
 
-```{r age-hrs-plot, out.width='75%', fig.align='center', fig.cap='Figure 5: Plot of linear regression model data for hours worked by those under age 30'}
+```{r age-hrs-plot, out.width='75%', fig.align='center', fig.cap='Figure 5: Plot of linear regression model data for hours worked by those under age 30', echo = F}
 knitr::include_graphics(here("images/linear-regression_plot.png"))
 ```
 
