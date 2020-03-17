@@ -75,8 +75,8 @@ Milestone 2 focused on running scripts through command line (or RStudio terminal
 
    a. In the terminal, type `make all`
       
-      Expected final outputs:
-         * docs/FinalReport_milestone03.html
-         * docs/FinalReport_milestone03.pdf
+         __Expected final outputs:__
+      * docs/FinalReport_milestone03.html
+      * docs/FinalReport_milestone03.pdf
    
-   b. To remove temporary files produced by the pipeline, run `make clean`
+   b. To remove temporary files produced by the pipeline, run `make clean` in the terminal
