@@ -42,15 +42,15 @@ Milestone 2 focused on running scripts through command line (or RStudio terminal
    c. __Visualize processed data__
       * Net gain vs education boxplot
         ```
-        Rscript scripts/net_education_plot.R --input data/processed_adult-data.csv --output images/net_education_plot.png
+        Rscript scripts/net_education_plot.R --input data/processed_adult-data.csv --output images/plot_net-education.png
         ```
       * Net gain vs work hours per week boxplot
         ```
-        Rscript scripts/net_work_hours_plot.R --input data/processed_adult-data.csv --output images/net_work_hours_plot.png
+        Rscript scripts/net_work_hours_plot.R --input data/processed_adult-data.csv --output images/plot_net-work-hours.png
         ```
       * Net gain vs race vs gender boxplot
         ```
-        Rscript scripts/net_race_gender_plot.R --input data/processed_adult-data.csv --output images/net_work_hours_plot.png
+        Rscript scripts/net_race_gender_plot.R --input data/processed_adult-data.csv --output images/plot_net-work-hours.png
         ```
         
 ### Milestone 3
@@ -64,7 +64,7 @@ Milestone 2 focused on running scripts through command line (or RStudio terminal
       ```
       * Linear regression data visualization
       ```
-      Rscript scripts/linear-regression_plot.R --input data/processed_adult-data.csv --output images/linear-regression_plot.png
+      Rscript scripts/linear-regression_plot.R --input data/processed_adult-data.csv --output images/plot_linear-regression.png
       ```
    
    b. __Produce a complete final report__ _knit a report via R markdown file_
