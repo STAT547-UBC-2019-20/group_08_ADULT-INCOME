@@ -138,7 +138,7 @@ knitr::include_graphics(here("images/plot_linear-regression.png"))
 ```
 
 The linear model based on this section of data is summarized here:
-```{r linear-model}
+```{r linear-model, echo = F}
 readRDS(here("data", "lm_age-hrs.RDS")) %>% 
   broom::glance()
 ```
