@@ -24,6 +24,7 @@ Milestone 2 focused on running scripts through command line (or RStudio terminal
    * glue
    * docopt
    * ggpmisc
+   * cowplot
 
 3. __Run the scripts under in the following order via command-line__
 
@@ -78,8 +79,8 @@ Milestone 2 focused on running scripts through command line (or RStudio terminal
 
 5. Run the entire analysis pipeline using `make` after cloning the repository
 
-   a. In the terminal, type `make all` to produce final report saved as:
+   In the terminal, type `make all` to produce final report, and view it here:
    
       * [docs/FinalReport_milestone03.html](https://stat547-ubc-2019-20.github.io/group_08_ADULT-INCOME/docs/FinalReport_milestone03.html)
    
-   b. To remove temporary files produced by the pipeline, run `make clean` in the terminal
+   _Note, to remove temporary files produced by the pipeline, run `make clean` in the terminal_
