@@ -5,7 +5,6 @@ date: "2020-03-17"
 output:
   html_document:
     toc: true
-    toc_float: false
     keep_md: true
     theme: sandstone
     highlight: zenburn
@@ -23,8 +22,8 @@ This project works with a dataset of adult incomes obtained from the University 
 
 This 1994 income census dataset consists of multivariate categorical and integer data that describe socioeconomic and personal classifiers of adults across the USA. Each instance (32,561) is an individual whose annual income was grouped as either above or below $50,000. Table 1 shows an overview of the 15 attributes (variables), including whether each is categorical or integer and a brief interpretation of the variable.  
 
-<!--html_preserve--><div id="htmlwidget-eef599b4c979b14ea8d0" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-eef599b4c979b14ea8d0">{"x":{"filter":"none","caption":"<caption>Description of adult income dataset variables<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],["age","workclass","fnlwgt","education","education-num","marital-status","occupation","relationship","race","sex","capital-gain","capital-loss","hours-per-week","native-country","label"],["continuous","categorical","continuous","categorical","continuous","categorical","categorical","categorical","categorical","categorical","continuous","continuous","continuous","categorical","categorical"],["age, range from 17 to 90 (mean 38.58)","Private, Self-emp-not-inc, Self-emp-inc, Federal-gov, Local-gov, State-gov, Without-pay, Never-worked.","\"final weight\" - demographic weight by US state controlled by three sets of characteristics including race/age/sex, hispanic origin, and proportion of state population over 16 years of age","Bachelors, Some-college, 11th, HS-grad, Prof-school, Assoc-acdm, Assoc-voc, 9th, 7th-8th, 12th, Masters, 1st-4th, 10th, Doctorate, 5th-6th, Preschool.","years of education. Range from 1 to 16 (mean 10.08)","Married-civ-spouse, Divorced, Never-married, Separated, Widowed, Married-spouse-absent, Married-AF-spouse.","Tech-support, Craft-repair, Other-service, Sales, Exec-managerial, Prof-specialty, Handlers-cleaners, Machine-op-inspct, Adm-clerical, Farming-fishing, Transport-moving, Priv-house-serv, Protective-serv, Armed-Forces.","Wife, Own-child, Husband, Not-in-family, Other-relative, Unmarried.","White, Asian-Pac-Islander, Amer-Indian-Eskimo, Other, Black.","Female, Male","range from 0 to 99999 (mean 1078). Assuming this is annual financial gains in $USD.","range from 0 to 4356 (mean 87.3). Assuming this is annual financial losses in $USD.","average hours worked per week. Range from 1 to 99 (mean 40.44)","United-States, Cambodia, England, Puerto-Rico, Canada, Germany, Outlying-US(Guam-USVI-etc), India, Japan, Greece, South, China, Cuba, Iran, Honduras, Philippines, Italy, Poland, Jamaica, Vietnam, Mexico, Portugal, Ireland, France, Dominican-Republic, Laos, Ecuador, Taiwan, Haiti, Columbia, Hungary, Guatemala, Nicaragua, Scotland, Thailand, Yugoslavia, El-Salvador, Trinadad&amp;Tobago, Peru, Hong, Holand-Netherlands.","annual income above or below threshold of $50000: &gt;50K or &lt;=50K"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Variable<\/th>\n      <th>Type<\/th>\n      <th>Description<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false,"columnDefs":[{"orderable":false,"targets":0}]}},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
+<!--html_preserve--><div id="htmlwidget-453ad758bb2959f89b34" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-453ad758bb2959f89b34">{"x":{"filter":"none","caption":"<caption>Description of adult income dataset variables<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],["age","workclass","fnlwgt","education","education-num","marital-status","occupation","relationship","race","sex","capital-gain","capital-loss","hours-per-week","native-country","label"],["continuous","categorical","continuous","categorical","continuous","categorical","categorical","categorical","categorical","categorical","continuous","continuous","continuous","categorical","categorical"],["age, range from 17 to 90 (mean 38.58)","Private, Self-emp-not-inc, Self-emp-inc, Federal-gov, Local-gov, State-gov, Without-pay, Never-worked.","\"final weight\" - demographic weight by US state controlled by three sets of characteristics including race/age/sex, hispanic origin, and proportion of state population over 16 years of age","Bachelors, Some-college, 11th, HS-grad, Prof-school, Assoc-acdm, Assoc-voc, 9th, 7th-8th, 12th, Masters, 1st-4th, 10th, Doctorate, 5th-6th, Preschool.","years of education. Range from 1 to 16 (mean 10.08)","Married-civ-spouse, Divorced, Never-married, Separated, Widowed, Married-spouse-absent, Married-AF-spouse.","Tech-support, Craft-repair, Other-service, Sales, Exec-managerial, Prof-specialty, Handlers-cleaners, Machine-op-inspct, Adm-clerical, Farming-fishing, Transport-moving, Priv-house-serv, Protective-serv, Armed-Forces.","Wife, Own-child, Husband, Not-in-family, Other-relative, Unmarried.","White, Asian-Pac-Islander, Amer-Indian-Eskimo, Other, Black.","Female, Male","range from 0 to 99999 (mean 1078). Assuming this is annual financial gains in $USD.","range from 0 to 4356 (mean 87.3). Assuming this is annual financial losses in $USD.","average hours worked per week. Range from 1 to 99 (mean 40.44)","United-States, Cambodia, England, Puerto-Rico, Canada, Germany, Outlying-US(Guam-USVI-etc), India, Japan, Greece, South, China, Cuba, Iran, Honduras, Philippines, Italy, Poland, Jamaica, Vietnam, Mexico, Portugal, Ireland, France, Dominican-Republic, Laos, Ecuador, Taiwan, Haiti, Columbia, Hungary, Guatemala, Nicaragua, Scotland, Thailand, Yugoslavia, El-Salvador, Trinadad&amp;Tobago, Peru, Hong, Holand-Netherlands.","annual income above or below threshold of $50000: &gt;50K or &lt;=50K"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Variable<\/th>\n      <th>Type<\/th>\n      <th>Description<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false,"columnDefs":[{"orderable":false,"targets":0}]}},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
 
 ### Notes on original dataset
 
@@ -105,46 +104,34 @@ To create a data analysis pipeline, data filtering was performed with Rscripts e
 
 
 ```
-##       age                   workclass        fnlwgt               education   
-##  Min.   :17.00   Private         :2714   Min.   :  19302   HS-grad     :1086  
-##  1st Qu.:34.00   Self-emp-not-inc: 413   1st Qu.: 118346   Bachelors   : 971  
-##  Median :42.00   Local-gov       : 321   Median : 175669   Some-college: 758  
-##  Mean   :43.18   Self-emp-inc    : 284   Mean   : 187152   Masters     : 423  
-##  3rd Qu.:51.00   ?               : 181   3rd Qu.: 234292   Prof-school : 213  
-##  Max.   :90.00   State-gov       : 164   Max.   :1033222   Assoc-voc   : 188  
-##                  (Other)         : 154                     (Other)     : 592  
-##  education_num                 martial_status             occupation 
-##  Min.   : 1.00   Divorced             : 453   Prof-specialty   :850  
-##  1st Qu.: 9.00   Married-AF-spouse    :   2   Exec-managerial  :847  
-##  Median :10.00   Married-civ-spouse   :2777   Sales            :512  
-##  Mean   :11.03   Married-spouse-absent:  35   Craft-repair     :506  
-##  3rd Qu.:13.00   Never-married        : 769   Adm-clerical     :362  
-##  Max.   :16.00   Separated            :  81   Machine-op-inspct:196  
-##                  Widowed              : 114   (Other)          :958  
-##          relationship                  race          sex        capital_gain  
-##  Husband       :2454   Amer-Indian-Eskimo:  31   Female: 992   Min.   :    0  
-##  Not-in-family : 878   Asian-Pac-Islander: 137   Male  :3239   1st Qu.:    0  
-##  Other-relative:  71   Black             : 285                 Median : 3137  
-##  Own-child     : 258   Other             :  23                 Mean   : 8293  
-##  Unmarried     : 274   White             :3755                 3rd Qu.: 7688  
-##  Wife          : 296                                           Max.   :99999  
-##                                                                               
-##   capital_loss    hours_per_week        native_country   label     
-##  Min.   :   0.0   Min.   : 1.00   United-States:3850   <=50K:1781  
-##  1st Qu.:   0.0   1st Qu.:40.00   ?            :  90   >50K :2450  
-##  Median :   0.0   Median :40.00   Mexico       :  31               
-##  Mean   : 671.9   Mean   :43.42   Philippines  :  24               
-##  3rd Qu.:1740.0   3rd Qu.:50.00   India        :  21               
-##  Max.   :4356.0   Max.   :99.00   Germany      :  20               
-##                                   (Other)      : 195               
-##       net       
-##  Min.   :-4356  
-##  1st Qu.:-1740  
-##  Median : 3137  
-##  Mean   : 7622  
-##  3rd Qu.: 7688  
-##  Max.   :99999  
-## 
+##       age         workclass             fnlwgt         education        
+##  Min.   :17.00   Length:4231        Min.   :  19302   Length:4231       
+##  1st Qu.:34.00   Class :character   1st Qu.: 118347   Class :character  
+##  Median :42.00   Mode  :character   Median : 175669   Mode  :character  
+##  Mean   :43.18                      Mean   : 187152                     
+##  3rd Qu.:51.00                      3rd Qu.: 234292                     
+##  Max.   :90.00                      Max.   :1033222                     
+##  education_num   martial_status      occupation        relationship      
+##  Min.   : 1.00   Length:4231        Length:4231        Length:4231       
+##  1st Qu.: 9.00   Class :character   Class :character   Class :character  
+##  Median :10.00   Mode  :character   Mode  :character   Mode  :character  
+##  Mean   :11.03                                                           
+##  3rd Qu.:13.00                                                           
+##  Max.   :16.00                                                           
+##      race               sex             capital_gain    capital_loss   
+##  Length:4231        Length:4231        Min.   :    0   Min.   :   0.0  
+##  Class :character   Class :character   1st Qu.:    0   1st Qu.:   0.0  
+##  Mode  :character   Mode  :character   Median : 3137   Median :   0.0  
+##                                        Mean   : 8293   Mean   : 671.9  
+##                                        3rd Qu.: 7688   3rd Qu.:1740.0  
+##                                        Max.   :99999   Max.   :4356.0  
+##  hours_per_week  native_country        label                net       
+##  Min.   : 1.00   Length:4231        Length:4231        Min.   :-4356  
+##  1st Qu.:40.00   Class :character   Class :character   1st Qu.:-1740  
+##  Median :40.00   Mode  :character   Mode  :character   Median : 3137  
+##  Mean   :43.42                                         Mean   : 7622  
+##  3rd Qu.:50.00                                         3rd Qu.: 7688  
+##  Max.   :99.00                                         Max.   :99999
 ```
 
 ### EDA: Relationship between education attainment and annual net gain
@@ -152,7 +139,7 @@ To create a data analysis pipeline, data filtering was performed with Rscripts e
 As part of exploratory data analysis, we visualized some relationships among the data. Here we are visualizing the annual net gain across education levels.
 
 <div class="figure" style="text-align: center">
-<img src="/mnt/HDD/Documents/R_Projects/R Projects/group_08_ADULT-INCOME-1/images/net_education_plot.png" alt="Figure 1: Boxplot of annual net capital gain across education levels" width="75%" />
+<img src="D:/Documents/STAT547/group_08_ADULT-INCOME-1/images/plot_net-education.png" alt="Figure 1: Boxplot of annual net capital gain across education levels" width="75%" />
 <p class="caption">Figure 1: Boxplot of annual net capital gain across education levels</p>
 </div>
 
@@ -161,13 +148,8 @@ Figure 1 shows that minimal correlation between annual net gain and education at
 ### EDA: Relationship between race, gender and annual net gain
 
 We were interested to see if there were any visible patterns between annual net gain and individucal's race and or gender. In the inital exploratory data analysis, we examined the relationships between annual net gain across race and gender. 
-
-```r
-knitr::include_graphics(here("images/net_race_gender_plot.png"))
-```
-
 <div class="figure" style="text-align: center">
-<img src="/mnt/HDD/Documents/R_Projects/R Projects/group_08_ADULT-INCOME-1/images/net_race_gender_plot.png" alt="Figure 2: Violin plot of annual net capital gain by ethnicity and sex" width="75%" />
+<img src="D:/Documents/STAT547/group_08_ADULT-INCOME-1/images/plot_net-race-gender.png" alt="Figure 2: Violin plot of annual net capital gain by ethnicity and sex" width="75%" />
 <p class="caption">Figure 2: Violin plot of annual net capital gain by ethnicity and sex</p>
 </div>
 
@@ -178,7 +160,7 @@ There did not appear to be any significant differences in annual net gain betwee
 We generated an additional script as part of the data analysis pipeline, to plot the relationship between annual net gain and hours worked per week. We categorized work hours per week as being short (under 25 hrs), medium (25-50 hrs/wk), long (50-75 hrs/wk) and very long (over 75 hrs/wk).
 
 <div class="figure" style="text-align: center">
-<img src="/mnt/HDD/Documents/R_Projects/R Projects/group_08_ADULT-INCOME-1/images/net_work_hours_plot.png" alt="Figure 3: Plot of annual net capital gain by hours worked per week" width="75%" />
+<img src="D:/Documents/STAT547/group_08_ADULT-INCOME-1/images/plot_net-work-hours.png" alt="Figure 3: Plot of annual net capital gain by hours worked per week" width="75%" />
 <p class="caption">Figure 3: Plot of annual net capital gain by hours worked per week</p>
 </div>
 
@@ -188,44 +170,35 @@ From the above boxplot, there appears to be an increase in annual net gain from 
 
 A goal of this project was to generate a linear model for later use. The 'adult income' dataset did not have many linear relationships, so we isolated a section of data which showed a more direct relationship between variables in order to accomplish the scripting task of creating a linear model. Figure 4 shows scatter plots of the relationship between hours worked per week and age of worker, including the full dataset and a subsection with a near-linear trend.
 
-
-```r
-p1 <- dat %>% 
-  ggplot(aes(x = age, y = hours_per_week))+
-  geom_jitter(alpha = 0.4)+
-  theme_bw()+
-  labs(y = "hrs/wk", x = "")
-
-p2 <- dat %>% 
-  filter(age < 30,
-         hours_per_week != 40, hours_per_week >= 10) %>% 
-  ggplot(aes(x = age, y = hours_per_week))+
-  geom_jitter(alpha = 0.4)+
-  geom_smooth(method = lm)+
-  labs(y = "hrs/wk", x = "age of worker")+
-  ggpmisc::stat_poly_eq(formula = y ~ x, 
-               aes(label = paste(..eq.label.., ..rr.label.., sep = "~~~")), 
-               parse = TRUE, rr.digits = 3)+
-  theme_bw()
-
-# arrange plots
-cowplot::plot_grid(p1, p2, align = "v", nrow = 2,
-                   labels = c("A", "B"))
-```
-
 <div class="figure" style="text-align: center">
-<img src="FinalReport_milestone03_files/figure-html/age-hours-1.png" alt="Figure 4: Hours worked per week by age where plot 'A' shows the full dataset and plot 'B' shows a more linear section of filtered data (for workers under 30)" width="75%" />
+<img src="D:/Documents/STAT547/group_08_ADULT-INCOME-1/images/plot_EDA_linear-regression.png" alt="Figure 4: Hours worked per week by age where plot 'A' shows the full dataset and plot 'B' shows a more linear section of filtered data (for workers under 30)" width="75%" />
 <p class="caption">Figure 4: Hours worked per week by age where plot 'A' shows the full dataset and plot 'B' shows a more linear section of filtered data (for workers under 30)</p>
 </div>
 
 The relationship between age and hours worked appeared to be loosely parabolic. Work hours increased with age until approximately age 30-50, at which time work hours stabilize before beginning to decrease with age up to approximately 80 years old (Figure 4-A). In order to perform a linear regression, we isolated the earlier part of this data, for workers under the age of 30 who worked more than 10 hours per week and not standard full time of 40 hours per week (Figure 4-B).
 
-We wrote a script to generate a linear model based on the filtered data shown in Figure 4-B, as well as a script to generate that sub-plot as a stand-alone graphic.
+We wrote a script to generate a linear model based on the filtered data shown in Figure 4-B, as well as a script to generate that sub-plot as a stand-alone graphic (Figure 5).
 
 <div class="figure" style="text-align: center">
-<img src="/mnt/HDD/Documents/R_Projects/R Projects/group_08_ADULT-INCOME-1/images/linear-regression_plot.png" alt="Figure 5: Plot of linear regression model data for hours worked by those under age 30" width="75%" />
+<img src="D:/Documents/STAT547/group_08_ADULT-INCOME-1/images/plot_linear-regression.png" alt="Figure 5: Plot of linear regression model data for hours worked by those under age 30" width="75%" />
 <p class="caption">Figure 5: Plot of linear regression model data for hours worked by those under age 30</p>
 </div>
+
+The linear model based on this section of data is summarized here:
+
+```r
+readRDS(here("data", "lm_age-hrs.RDS")) %>% 
+  broom::glance()
+```
+
+```
+## # A tibble: 1 x 11
+##   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
+##       <dbl>         <dbl> <dbl>     <dbl>    <dbl> <int>  <dbl> <dbl> <dbl>
+## 1     0.332         0.330  3.16      164. 8.29e-31     2  -854. 1714. 1726.
+## # ... with 2 more variables: deviance <dbl>, df.residual <int>
+```
+
 
 ## References
 

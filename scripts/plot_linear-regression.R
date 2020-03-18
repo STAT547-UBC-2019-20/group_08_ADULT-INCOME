@@ -4,7 +4,7 @@
 doc <- "This script will generate a scatter plot of worker age (under 30) 
 versus hours worked per week with linear regression line.
 
-Usage: linear-regression_plot.R --input=</path/to/input_filename> --output=</path/to/output_filename.png>
+Usage: plot_linear-regression.R --input=</path/to/input_filename> --output=</path/to/output_filename.png>
 "
 
 # load library
@@ -35,6 +35,7 @@ main <- function(input_path) {
     ggplot(aes(x = age, y = hours_per_week))+
     geom_jitter()+
     geom_smooth(method = lm)+
+    theme_bw()+
     labs(y = "work hours per week", x = "age of worker",
          title = "hours worked per week for workers under 30 yrs of age")+
     ggpmisc::stat_poly_eq(formula = y ~ x, 
