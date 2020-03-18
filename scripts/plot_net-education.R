@@ -3,7 +3,7 @@
 
 doc <- "This script will generate a boxplot that describes the distribution of annual net gain across education levels from the processed data file as input.
 
-Usage: net_education_plot.R --input=</path/to/input_filename> --output=</path/to/output_filename.png>
+Usage: plot_net-education-plot.R --input=</path/to/input_filename> --output=</path/to/output_filename.png>
 "
 
 # load library

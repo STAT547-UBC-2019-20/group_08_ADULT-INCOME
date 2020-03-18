@@ -4,8 +4,8 @@ author: "Jimmy Liu and Hannah McSorley"
 date: "2020-03-17"
 output:
   html_document:
+    always_allow_html: true
     toc: true
-    keep_md: true
     theme: sandstone
     highlight: zenburn
 ---
@@ -18,7 +18,7 @@ library(tidyverse)
 library(here)
 library(DT)
 library(scales)
-library(ggpmisc)
+library(broom)
 ```
 
 ## Introduction 
@@ -97,7 +97,7 @@ summary(dat)
 As part of exploratory data analysis, we visualized some relationships among the data. Here we are visualizing the annual net gain across education levels.
 
 ```{r net-gain-education, out.width='75%', fig.align='center', fig.cap='Figure 1: Boxplot of annual net capital gain across education levels', echo = F}
-knitr::include_graphics(here("images/net_education_plot.png"))
+knitr::include_graphics(here("images/plot_net-education.png"))
 ```
 
 Figure 1 shows that minimal correlation between annual net gain and education attainment. However, there appeared to be a greater spread in annual net gain for individuals with at least a high school diploma, and persons with professional school education demonstrated the highest median in annual net gain.
@@ -106,7 +106,7 @@ Figure 1 shows that minimal correlation between annual net gain and education at
 
 We were interested to see if there were any visible patterns between annual net gain and individucal's race and or gender. In the inital exploratory data analysis, we examined the relationships between annual net gain across race and gender. 
 ```{r net-race-gender, out.width='75%', fig.align='center', fig.cap='Figure 2: Violin plot of annual net capital gain by ethnicity and sex', echo = F}
-knitr::include_graphics(here("images/net_race_gender_plot.png"))
+knitr::include_graphics(here("images/plot_net-race-gender.png"))
 ```
 
 There did not appear to be any significant differences in annual net gain between sex across all ethnic groups (Figure 2). Moreover, no obvious correlation between ethnicity and annual net gain was observed.
@@ -116,7 +116,7 @@ There did not appear to be any significant differences in annual net gain betwee
 We generated an additional script as part of the data analysis pipeline, to plot the relationship between annual net gain and hours worked per week. We categorized work hours per week as being short (under 25 hrs), medium (25-50 hrs/wk), long (50-75 hrs/wk) and very long (over 75 hrs/wk).
 
 ```{r work-hours-plot, out.width='75%', fig.align='center', fig.cap='Figure 3: Plot of annual net capital gain by hours worked per week', echo = F}
-knitr::include_graphics(here("images/net_work_hours_plot.png"))
+knitr::include_graphics(here("images/plot_net-work-hours.png"))
 ```
 
 From the above boxplot, there appears to be an increase in annual net gain from short to long work hours. However, the differences may not be significant because greater variance in annual net gain is observed for individuals with long work hours.
@@ -125,37 +125,24 @@ From the above boxplot, there appears to be an increase in annual net gain from 
 
 A goal of this project was to generate a linear model for later use. The 'adult income' dataset did not have many linear relationships, so we isolated a section of data which showed a more direct relationship between variables in order to accomplish the scripting task of creating a linear model. Figure 4 shows scatter plots of the relationship between hours worked per week and age of worker, including the full dataset and a subsection with a near-linear trend.
 
-```{r age-hours, out.width='75%', fig.align='center', fig.cap="Figure 4: Hours worked per week by age where plot 'A' shows the full dataset and plot 'B' shows a more linear section of filtered data (for workers under 30)"}
-p1 <- dat %>% 
-  ggplot(aes(x = age, y = hours_per_week))+
-  geom_jitter(alpha = 0.4)+
-  theme_bw()+
-  labs(y = "hrs/wk", x = "")
-
-p2 <- dat %>% 
-  filter(age < 30,
-         hours_per_week != 40, hours_per_week >= 10) %>% 
-  ggplot(aes(x = age, y = hours_per_week))+
-  geom_jitter(alpha = 0.4)+
-  geom_smooth(method = lm)+
-  labs(y = "hrs/wk", x = "age of worker")+
-  ggpmisc::stat_poly_eq(formula = y ~ x, 
-               aes(label = paste(..eq.label.., ..rr.label.., sep = "~~~")), 
-               parse = TRUE, rr.digits = 3)+
-  theme_bw()
-
-# arrange plots
-cowplot::plot_grid(p1, p2, align = "v", nrow = 2,
-                   labels = c("A", "B"))
+```{r EDA-linear-plot, out.width='75%', fig.align='center', fig.cap="Figure 4: Hours worked per week by age where plot 'A' shows the full dataset and plot 'B' shows a more linear section of filtered data (for workers under 30)", echo = F}
+knitr::include_graphics(here("images/plot_EDA_linear-regression.png"))
 ```
 
 The relationship between age and hours worked appeared to be loosely parabolic. Work hours increased with age until approximately age 30-50, at which time work hours stabilize before beginning to decrease with age up to approximately 80 years old (Figure 4-A). In order to perform a linear regression, we isolated the earlier part of this data, for workers under the age of 30 who worked more than 10 hours per week and not standard full time of 40 hours per week (Figure 4-B).
 
-We wrote a script to generate a linear model based on the filtered data shown in Figure 4-B, as well as a script to generate that sub-plot as a stand-alone graphic.
+We wrote a script to generate a linear model based on the filtered data shown in Figure 4-B, as well as a script to generate that sub-plot as a stand-alone graphic (Figure 5).
 
-```{r age-hrs-plot, out.width='75%', fig.align='center', fig.cap='Figure 5: Plot of linear regression model data for hours worked by those under age 30', echo = F}
-knitr::include_graphics(here("images/linear-regression_plot.png"))
+```{r linear-regression-plot, out.width='75%', fig.align='center', fig.cap='Figure 5: Plot of linear regression model data for hours worked by those under age 30', echo = F}
+knitr::include_graphics(here("images/plot_linear-regression.png"))
 ```
+
+The linear model based on this section of data is summarized here:
+```{r linear-model}
+readRDS(here("data", "lm_age-hrs.RDS")) %>% 
+  broom::glance()
+```
+
 
 ## References
 

@@ -3,7 +3,7 @@
 
 doc <- "This script will generate boxplot that describes the relationship between work hours per week and annual net gain from the processed data file as input.
 
-Usage: net_work_hours_plot.R --input=</path/to/input_filename> --output=</path/to/output_filename.png>
+Usage: plot_net-work-hours.R --input=</path/to/input_filename> --output=</path/to/output_filename.png>
 " 
 
 # load library

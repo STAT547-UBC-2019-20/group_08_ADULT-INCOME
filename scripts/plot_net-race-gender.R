@@ -3,7 +3,7 @@
 
 doc <- "This script will generate boxplot that describes the relationship between net gain, race and gender from the processed data file as input.
 
-Usage: net_race_gender_plot.R --input=</path/to/input_filename> --output=</path/to/output_filename.png>
+Usage: plot_net-race-gender.R --input=</path/to/input_filename> --output=</path/to/output_filename.png>
 " 
 
 # load library
