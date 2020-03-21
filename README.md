@@ -35,12 +35,14 @@ Milestone 2 focused on running scripts through command line (or RStudio terminal
       Rscript scripts/load_data.R --data_url="https://raw.githubusercontent.com/STAT547-UBC-2019-20/data_sets/master/adult_data.csv" --output data/downloaded_datafile.csv
       ```
    b. __Process raw data__
+   
    _load and process the data from the previously downloaded file_
       ```
       Rscript scripts/data_processing.R --input data/downloaded_datafile.csv --output data/processed_adult-data.csv
       ```
 
    c. __Visualize processed data__
+   
    _generate four different exploratory analysis plots from the processed data_
       ```
       Rscript scripts/EDA_plots.R --input data/processed_adult-data.csv
