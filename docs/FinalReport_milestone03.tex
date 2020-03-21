@@ -35,6 +35,9 @@
             breaklinks=true}
 \urlstyle{same}  % don't use monospace font for urls
 \usepackage[margin=1in]{geometry}
+\usepackage{longtable,booktabs}
+% Fix footnotes in tables (requires footnote package)
+\IfFileExists{footnote.sty}{\usepackage{footnote}\makesavenoteenv{longtable}}{}
 \usepackage{graphicx,grffile}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
@@ -359,7 +362,7 @@ a subsection with a near-linear trend.
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.75\linewidth]{/mnt/HDD/Documents/R_Projects/R Projects/group_08_ADULT-INCOME-1/images/plot_EDA_linear-regression} 
+{\centering \includegraphics[width=0.75\linewidth]{/mnt/HDD/Documents/R_Projects/R Projects/group_08_ADULT-INCOME-1/images/plot_EDA-linear-regression} 
 
 }
 
@@ -389,13 +392,16 @@ stand-alone graphic (Figure 5).
 
 The linear model based on this section of data is summarized here:
 
-\begin{verbatim}
-## # A tibble: 1 x 11
-##   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
-##       <dbl>         <dbl> <dbl>     <dbl>    <dbl> <int>  <dbl> <dbl> <dbl>
-## 1     0.332         0.330  3.16      164. 8.29e-31     2  -854. 1714. 1726.
-## # ... with 2 more variables: deviance <dbl>, df.residual <int>
-\end{verbatim}
+\begin{longtable}[]{@{}rrrrrrrrrrr@{}}
+\toprule
+r.squared & adj.r.squared & sigma & statistic & p.value & df & logLik &
+AIC & BIC & deviance & df.residual\tabularnewline
+\midrule
+\endhead
+0.3316372 & 0.329618 & 3.155915 & 164.24 & 0 & 2 & -854.2133 & 1714.427
+& 1725.851 & 3296.694 & 331\tabularnewline
+\bottomrule
+\end{longtable}
 
 \hypertarget{references}{%
 \subsection{References}\label{references}}

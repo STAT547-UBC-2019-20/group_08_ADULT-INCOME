@@ -32,31 +32,19 @@ Milestone 2 focused on running scripts through command line (or RStudio terminal
    
    _Note: a copy of the datafile will also be available by cloning the repo to an RStudio Project through git version control_
       ```
-      Rscript scripts/load_data.R --data_url="https://raw.githubusercontent.com/STAT547-UBC-2019-20/data_sets/master/adult_data.csv" --output data/downloaded_datafile
+      Rscript scripts/load_data.R --data_url="https://raw.githubusercontent.com/STAT547-UBC-2019-20/data_sets/master/adult_data.csv" --output data/downloaded_datafile.csv
       ```
    b. __Process raw data__
    _load and process the data from the previously downloaded file_
       ```
-      Rscript scripts/data_processing.R --input data/downloaded_datafile --output data/processed_adult-data.csv
+      Rscript scripts/data_processing.R --input data/downloaded_datafile.csv --output data/processed_adult-data.csv
       ```
 
    c. __Visualize processed data__
-      * Net gain vs education boxplot
-        ```
-        Rscript scripts/plot_net-education.R --input data/processed_adult-data.csv --output images/plot_net-education.png
-        ```
-      * Net gain vs work hours per week boxplot
-        ```
-        Rscript scripts/plot_net-work-hours.R --input data/processed_adult-data.csv --output images/plot_net-work-hours.png
-        ```
-      * Net gain vs race vs gender boxplot
-        ```
-        Rscript scripts/plot_net-race-gender.R --input data/processed_adult-data.csv --output images/plot_net-race-gender.png
-        ```
-      * Isolate a linear section of data
-        ```
-        Rscript scripts/plot_EDA_linear-regression.R --input data/processed_adult-data.csv --output images/plot_EDA_linear-regression.png
-        ```
+   _generate four different exploratory analysis plots from the processed data_
+      ```
+      Rscript scripts/EDA_plots.R --input data/processed_adult-data.csv
+      ```
         
 ### Milestone 3
 
