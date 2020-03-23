@@ -81,8 +81,9 @@ __Description__
 
 Our app will have a landing page that presents both a summary of the (1994 adult income census) data demographics as well as bi-variate data comparisons. The 'summary' section will provide an overview of the dataset where the user can choose (from a dropdown menu) which key variable to summarize in a plot and a table of min/med/max net gain. In addition to the dropdown menu, there will be a radio-button/radiometer option to toggle between options for the selected key variable (e.g., male vs female, under or over \$50K income). The 'analysis' portion of the app will show the distribution of each person's education, age, sex, ethnicity as they relate to each other and to annual net gain (monetary gains over employment income). These plots will likely be a combination of boxplots, violin plots and/or density ridge plots. Users will be able to compare variables by toggling between different explanatory variables to visualize their relationship to net income and/or to eachother. From a drop-down list, users will be able to select different demographic variables to visualize the metadata distribution of the census participants (i.e. only show females, or specific ethnicities). Via a slider bar, users will be able to narrow the range of data displayed based on filterable variables (e.g., age, education level, average hours worked per week). This app will allow users to compare two variables such as education level, age, sex, hours worked, ethnicity or annual net gain, and also to rank personal attributes relative to whether annual income is predicted to be above or below $50,000.
 
-__Sketch__
-![Sketch of Dashboard Plan](images/dahboard-sketch.jpg)
+__Sketch of dashboard plan__
+
+<img src = "https://github.com/HJMcSorley/group_08_ADULT-INCOME-1/blob/master/images/dashboard-sketch.jpg" height="75%" width="75%">
 
 
 __Usage Scenario__
