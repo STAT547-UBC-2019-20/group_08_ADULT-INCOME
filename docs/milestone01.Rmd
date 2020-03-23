@@ -43,7 +43,7 @@ It is of note that these data are from 1994 census, and the income threshold of 
 ### Load data
 ```{r load-data}
 # read csv file
-dat <- read.csv(here("data/adult.data"), header = F)
+dat <- read.csv(here("data/downloaded_datafile"), header = F)
 
 # rename columns
 names(dat) <- c("age", "workclass", "fnlwgt", "education", "education-num", "martial_status", 
