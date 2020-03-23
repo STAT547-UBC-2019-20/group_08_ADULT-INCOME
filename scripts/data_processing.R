@@ -20,8 +20,17 @@ opt <- docopt(doc)
 # define main
 main <- function(input_path) {
   
-  # provide message
-  print(glue("[",as.character(Sys.time()),"] Reading input file from: ", opt$input))
+  # provide read file message
+  print(glue("[",as.character(Sys.time()), "] Reading input file from: ", opt$input))
+  
+  # check if file exists
+  print(glue("[",as.character(Sys.time()), "] Validating path to file..."))
+  
+  if (file.exists(opt$input) == T) {
+    print(glue("[",as.character(Sys.time()), "] Success validation!")) 
+  } else {
+    stop(glue(opt$input, " does not exist"), call. = F) # stop script execution
+  }
   
   # read input file
   dat <- suppressMessages(

@@ -3,6 +3,10 @@ title: "Adult Income Study: Milestone 03"
 author: "Jimmy Liu and Hannah McSorley"
 date: "2020-03-17"
 output:
+  pdf_document:
+    toc: true
+    toc_depth: 3
+    number_sections: true
   html_document:
     always_allow_html: true
     toc: true
@@ -65,7 +69,7 @@ The original data set was loaded into RStudio where we ran a summary and perform
 
 ```{r load-raw-data, echo = F}
 # read original data file 
-dat <- read.table(here("data", "downloaded_datafile"), sep = ",", header = FALSE,
+dat <- read.table(here("data", "downloaded_datafile.csv"), sep = ",", header = FALSE,
                   col.names = c("age", "workclass", "fnlwgt", "education",
                                 "education-num", "martial_status", "occupation", 
                                 "relationship", "race", "sex", "capital-gain", 
@@ -126,7 +130,7 @@ From the above boxplot, there appears to be an increase in annual net gain from 
 A goal of this project was to generate a linear model for later use. The 'adult income' dataset did not have many linear relationships, so we isolated a section of data which showed a more direct relationship between variables in order to accomplish the scripting task of creating a linear model. Figure 4 shows scatter plots of the relationship between hours worked per week and age of worker, including the full dataset and a subsection with a near-linear trend.
 
 ```{r EDA-linear-plot, out.width='75%', fig.align='center', fig.cap="Figure 4: Hours worked per week by age where plot 'A' shows the full dataset and plot 'B' shows a more linear section of filtered data (for workers under 30)", echo = F}
-knitr::include_graphics(here("images/plot_EDA_linear-regression.png"))
+knitr::include_graphics(here("images/plot_EDA-linear-regression.png"))
 ```
 
 The relationship between age and hours worked appeared to be loosely parabolic. Work hours increased with age until approximately age 30-50, at which time work hours stabilize before beginning to decrease with age up to approximately 80 years old (Figure 4-A). In order to perform a linear regression, we isolated the earlier part of this data, for workers under the age of 30 who worked more than 10 hours per week and not standard full time of 40 hours per week (Figure 4-B).
@@ -140,7 +144,8 @@ knitr::include_graphics(here("images/plot_linear-regression.png"))
 The linear model based on this section of data is summarized here:
 ```{r linear-model, echo = F}
 readRDS(here("data", "lm_age-hrs.RDS")) %>% 
-  broom::glance()
+  broom::glance() %>% 
+  knitr::kable()
 ```
 
 
