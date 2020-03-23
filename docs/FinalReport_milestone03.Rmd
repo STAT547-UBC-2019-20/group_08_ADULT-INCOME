@@ -3,6 +3,10 @@ title: "Adult Income Study: Milestone 03"
 author: "Jimmy Liu and Hannah McSorley"
 date: "2020-03-17"
 output:
+  pdf_document:
+    toc: true
+    toc_depth: 3
+    number_sections: true
   html_document:
     always_allow_html: true
     toc: true
