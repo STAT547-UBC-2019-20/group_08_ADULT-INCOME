@@ -30,10 +30,11 @@ Milestone 2 focused on running scripts through command line (or RStudio terminal
 
    a. __Download raw data__ 
    
-   _Note: a copy of the datafile will also be available by cloning the repo to an RStudio Project through git version control_
       ```
       Rscript scripts/load_data.R --data_url="https://raw.githubusercontent.com/STAT547-UBC-2019-20/data_sets/master/adult_data.csv" --output data/downloaded_datafile.csv
       ```
+   _Note: a copy of the datafile will also be available by cloning the repo to an RStudio Project through git version control_
+      
    b. __Process raw data__
    
    _load and process the data from the previously downloaded file_
@@ -50,7 +51,7 @@ Milestone 2 focused on running scripts through command line (or RStudio terminal
         
 ### Milestone 3
 
-4. To generate a linear model on filtered data, and create a plot, run the following script:
+4. To generate a linear model on filtered data, create a plot, and knit a final report - run the following scripts:
 
    a. __Linear model__
       * Generate .RDS file containing linear model object
@@ -62,18 +63,20 @@ Milestone 2 focused on running scripts through command line (or RStudio terminal
       Rscript scripts/plot_linear-regression.R --input data/processed_adult-data.csv --output images/plot_linear-regression.png
       ```
    
-   b. __Produce a complete final report__ _knit a report via R markdown file_
+   b. __Produce a complete final report__ 
       ```
       Rscript scripts/knit.R --finalreport docs/FinalReport_milestone03.Rmd
       ```
+   _the above command knits a report via R markdown file_
 
 5. Run the entire analysis pipeline using `make` after cloning the repository
 
-   In the terminal, type `make all` to produce final report, and view it here:
+   In the terminal, type `make all` to produce final report. View the product here:
    
       * [docs/FinalReport_milestone03.html](https://stat547-ubc-2019-20.github.io/group_08_ADULT-INCOME/docs/FinalReport_milestone03.html)
    
-   _Note, to remove temporary files produced by the pipeline, run `make clean` in the terminal_
+   _Note, to remove files produced by the pipeline, run `make clean` in the terminal._
+   _Only run 'make clean' if you are certain it is necessary (we discourage running this command)._
    
 ### Milestone 4 (Task 2): Dashboard Proposal
 
