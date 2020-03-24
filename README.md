@@ -86,7 +86,7 @@ Our app will have a landing page that presents both a summary of the (1994 adult
 
 __Sketch of dashboard plan__
 
-<img src = "https://github.com/HJMcSorley/group_08_ADULT-INCOME-1/blob/master/images/dashboard-sketch.jpg" height="75%" width="75%">
+<img src = "https://github.com/HJMcSorley/group_08_ADULT-INCOME-1/blob/master/images/dashboard-sketch.jpg" height="90%" width="90%">
 
 
 __Usage Scenario__
