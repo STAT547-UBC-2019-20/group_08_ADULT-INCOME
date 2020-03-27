@@ -93,7 +93,11 @@ bottom_sidebar <- htmlDiv(
 # distribution plot
 distribution <- htmlDiv(dccGraph(id = "distribution",
                          figure = make_distribution()),
-                        style = list("padding"=75))
+                        style = list("display"="block",
+                                     "margin-right"='auto',
+                                     "margin-left"='auto',
+                                     'width'="100%",
+                                     "marginTop"=75))
 
 # empty plot
 empty <- dccGraph(id = "empty",
