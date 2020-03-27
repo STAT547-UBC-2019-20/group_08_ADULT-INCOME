@@ -6,6 +6,7 @@ suppressPackageStartupMessages(library(glue))
 # create distribution plots
 make_distribution <- function(variable = "sex") {
   p <- dat %>%
+    filter(!!sym(variable) != "?") %>% 
     count(!!sym(variable)) %>%
     ggplot(aes(x = !!sym(variable), y = n)) +
     geom_bar(stat = "identity") +

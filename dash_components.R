@@ -73,7 +73,7 @@ top_sidebar <- htmlDiv(
         dropdown,
         htmlBr()
       ), style = list('columnCount' = 1,
-                      'height'=150,
+                      'height'=300,
                       'width'='100%',
                       'white-space' = 'pre-line')
 )
@@ -85,7 +85,7 @@ bottom_sidebar <- htmlDiv(
     place_holder,
     htmlBr()
     ), style = list('columnCount' = 1,
-                    'height'=475,
+                    'height'=500,
                     'width'="20.5%",
                     'white-space' = 'pre-line')
 )

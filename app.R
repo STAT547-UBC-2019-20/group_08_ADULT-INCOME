@@ -54,7 +54,7 @@ app$layout(
                     className = "pretty_container",
                     distribution,
                     style = list("width"="80%",
-                                 "height"="100%",
+                                 "height"=600,
                                  'margin-left'=50)
                   )
                 ), style = list('display'= 'flex',
@@ -87,6 +87,18 @@ app$layout(
                           'height'='80%')
         ) 
 )
+
+# app call back
+app$callback(
+  #update figure of box_scatter_plot
+  output=list(id = 'distribution', property='figure'),
+  #based on values of cut quality
+  params=list(input(id = 'dropdown', property='value')),
+  #this translates your list of params into function arguments
+  function(dropdown_value) {
+    make_distribution(dropdown_value)
+  })
+
 # Run app
 
 app$run_server(debug = TRUE)
