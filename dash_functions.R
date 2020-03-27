@@ -11,11 +11,11 @@ make_distribution <- function(variable = "sex") {
     ggplot(aes(x = !!sym(variable), y = n)) +
     geom_bar(stat = "identity") +
     labs(
-      x = variable,
+      x = dropdownkey$label[which(dropdownkey$value == variable)],
       y = "Count",
-      title = glue("Distribution of ", variable)
+      title = glue("Distribution of ", dropdownkey$label[which(dropdownkey$value == variable)])
     ) +
-    theme_bw()
+    theme_bw(14)
 
 ggplotly(p)
 }

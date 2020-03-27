@@ -20,9 +20,6 @@ dat <- read.csv(here("data/processed_adult-data.csv"), header = T)
 source(here("dash_functions.R"))
 source(here("dash_components.R"))
 
-
-
-
 # Create Dash instance
 app <- Dash$new()
 
