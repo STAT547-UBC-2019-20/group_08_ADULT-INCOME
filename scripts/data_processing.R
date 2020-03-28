@@ -34,7 +34,7 @@ main <- function(input_path) {
   
   # read input file
   dat <- suppressMessages(
-    read_csv(here(input_path), col_names = c("age", "workclass", "fnlwgt", "education", "education_num", "martial_status", 
+    read_csv(here(input_path), col_names = c("age", "workclass", "fnlwgt", "education", "education_num", "marital_status", 
                                                   "occupation", "relationship", "race", "sex", "capital_gain", "capital_loss", 
                                                   "hours_per_week", "native_country", "label"))
   )
