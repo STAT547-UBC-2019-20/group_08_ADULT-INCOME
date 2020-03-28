@@ -45,7 +45,7 @@ make_table <- function(variable = "sex", value = "Male") {
   summary
 }
 
-# create analytics graph
+# create analytics graph -- this is currently not interactive (callback issue?)
 make_analytics <- function(variable_x = "age", variable_y = "hours_per_week") {
   p2 <- dat %>%
     filter(!!sym(variable_x) != "?",

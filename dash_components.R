@@ -67,8 +67,8 @@ place_holder <- dccDropdown(
   value = "sex" # set default value
 )
 
-# --- H
-# dropdown for analytics (x)
+# Analytics ---
+# dropdown for analytics (x variable)
 dropdownkey_x <-
   tibble(
     label = c("Sex", "Age", "Years of Ed.", "Race", "Net Capital Gain", "Hours Worked per Week"),
@@ -90,7 +90,7 @@ place_holder_x <- dccDropdown(
   value = "age" # set default value
 )
 
-# dropdown for analytics (y)
+# dropdown for analytics (yv variable)
 dropdownkey_y <-
   tibble(
     label = c("Sex", "Age", "Work Class", "Education", "Years of Ed.", "Net Capital Gain", "Hours Worked per Week"),

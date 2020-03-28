@@ -86,7 +86,7 @@ app$layout(
         ) 
 )
 
-# app call back
+# app call back (demographics)
 app$callback(
   #update distribution figure
   output=list(id = 'distribution', property='figure'),
@@ -94,16 +94,19 @@ app$callback(
   params=list(input(id = 'dropdown', property='value')),
   #this translates your list of params into function arguments
   function(dropdown_value) {
-    make_distribution(dropdown_value)}
+    make_distribution(dropdown_value)
+    })
   
-  #update analytics figure 
-  output2=list(id = 'analytics', property='figure'),
-  #based on variables selected
-  params=list(input(id = 'dropdown_x', property='value')),
-  params=list(input(id = 'dropdown_y', property='value')),
+# app call back (analytics)  -- I think there's an error here - graph is not interactive.
+app$callback(
+  # update analytics figure
+  output=list(id = 'analytics', property='figure'),
+  #based on variables selected (errors??)
+  params=list(input(id = 'dropdown_x', property='value'),
+              input(id = 'dropdown_y', property='value')),
   #this translates your list of params into function arguments
-  function(dropdown_value_x, dropdown_value_y) {
-    make_analytics(dropdown_value_x, dropdown_value_y)
+  function(x_selection, y_selection) {
+    make_analytics(x_selection, y_selection)
   })
 
 # Run app
