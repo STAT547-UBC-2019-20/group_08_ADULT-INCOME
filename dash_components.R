@@ -12,21 +12,38 @@ title <- htmlDiv(
     )
 )
 
+# app overview
+introduction <- htmlDiv(
+  className = "pretty_container",
+  list(
+    htmlH2("Introduction"),
+    dccMarkdown(
+      "
+Welcome to the dashboard developed by UBC STAT 547 Group 8!
+
+This app allows folks to explore data from the 1994 Adult Income Census.
+
+Below, you can _interactively visualize_ the demographics of participants included in the '94 census, and see a financial summary. In the 'Analytics' section, you can compare variables such as education level, age, sex, hours worked, ethnicity or annual net gain.
+
+      "
+    ))
+)
+
 # app instructions
 instructions <- htmlDiv(
   className = "pretty_container",
   list(
     htmlH2("Instructions"),
     dccMarkdown(
-"
-Welcome to the dashboard developed by Group 8!
-        
-Blah..Blah..Blah,
-Blah..Blah..Blah
-"
-              ))
+      "
+Use the dropdown menus to select variables, and further explore relationships in the data by narrowing the range of numeric data with the slider.
+      
+Do you notice any interesting patterns in the data? Do you think this data was representative of all 1994 adult income earners?      
+      "
+    ))
 )
 
+# Demographics ---
 # demographics header
 demographics_header <- htmlDiv(
   className = "pretty_container",
@@ -34,15 +51,6 @@ demographics_header <- htmlDiv(
   style = list('background-color'='',
                'height'=30
                )
-)
-
-# analytics header
-analytics_header <- htmlDiv(
-  className = "pretty_container",
-  list(htmlH2("Analytics")),
-  style = list('background-color'='',
-               'height'=30,
-               'vertical-align'='middle')
 )
 
 # dropdown for distribution
@@ -56,18 +64,20 @@ dropdown <- dccDropdown(
   options = map(1:nrow(dropdownkey), function(i) {
     list(label = dropdownkey$label[i], value = dropdownkey$value[i])
   }),
-  value = "sex" # set default value
+  value = "age" # set default value
 )
 
-place_holder <- dccDropdown(
-  id = "place_holder",
-  options = map(1:nrow(dropdownkey), function(i) {
-    list(label = dropdownkey$label[i], value = dropdownkey$value[i])
-  }),
-  value = "sex" # set default value
-)
 
 # Analytics ---
+# analytics header
+analytics_header <- htmlDiv(
+  className = "pretty_container",
+  list(htmlH2("Analytics")),
+  style = list('background-color'='',
+               'height'=30,
+               'vertical-align'='middle')
+)
+
 # dropdown for analytics (x variable)
 dropdownkey_x <-
   tibble(
@@ -82,15 +92,7 @@ dropdown_x <- dccDropdown(
   value = "age" # set default value
 )
 
-place_holder_x <- dccDropdown(
-  id = "place_holder_x",
-  options = map(1:nrow(dropdownkey_x), function(i) {
-    list(label = dropdownkey_x$label[i], value = dropdownkey_x$value[i])
-  }),
-  value = "age" # set default value
-)
-
-# dropdown for analytics (yv variable)
+# dropdown for analytics (y variable)
 dropdownkey_y <-
   tibble(
     label = c("Sex", "Age", "Work Class", "Education", "Years of Ed.", "Net Capital Gain", "Hours Worked per Week"),
@@ -103,15 +105,7 @@ dropdown_y <- dccDropdown(
   }),
   value = "hours_per_week" # set default value
 )
-
-place_holder_y <- dccDropdown(
-  id = "place_holder_y",
-  options = map(1:nrow(dropdownkey_y), function(i) {
-    list(label = dropdownkey_y$label[i], value = dropdownkey_y$value[i])
-  }),
-  value = "hours_per_week" # set default value
-)
-# --- 
+ 
 
 # sidebars
 # demographics overview
@@ -132,8 +126,8 @@ bottom_sidebar <- htmlDiv(
   className = "pretty_container",
   list(
     htmlP("Select the plot variables:"),
-    place_holder_x,
-    place_holder_y,
+    dropdown_x,
+    dropdown_y,
     htmlBr()
     ), style = list('columnCount' = 1,
                     'height'=500,
@@ -141,7 +135,7 @@ bottom_sidebar <- htmlDiv(
                     'white-space' = 'pre-line')
 )
 
-# distribution plot
+# distribution plot (demographics)
 distribution <- htmlDiv(dccGraph(id = "distribution",
                          figure = make_distribution()),
                         style = list("display"="block",
@@ -151,7 +145,7 @@ distribution <- htmlDiv(dccGraph(id = "distribution",
                                      "marginTop"=75))
 
 
-# summary table
+# summary table (demographics)
 table <- dashDataTable(
   id = "table",
   columns = lapply(colnames(make_table()), 

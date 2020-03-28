@@ -26,6 +26,7 @@ app <- Dash$new()
 # Specify App layout
 app$layout(
       title,
+      introduction,
       instructions,
       htmlDiv( # content board
         list(
@@ -101,7 +102,7 @@ app$callback(
 app$callback(
   # update analytics figure
   output=list(id = 'analytics', property='figure'),
-  #based on variables selected (errors??)
+  #based on variables selected 
   params=list(input(id = 'dropdown_x', property='value'),
               input(id = 'dropdown_y', property='value')),
   #this translates your list of params into function arguments
