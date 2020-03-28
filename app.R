@@ -1,7 +1,7 @@
 # author: Jimmy Liu and Hannah McSorley
 # date: 2020-03-23
 
-"This script is the main file that creates a Dash app.
+"This script is the main file that creates a Dash app for Group 8, Adult Income.
 
 Usage: app.R
 "
@@ -67,7 +67,8 @@ app$layout(
                   bottom_sidebar,
                   htmlDiv( # bottom component plots
                         className = "pretty_container",
-                        list(empty), 
+                        analytics,
+                        #list(empty), 
                         style = list('width'='80%')
                         )
                     ), style = list('display'='flex',
@@ -87,13 +88,22 @@ app$layout(
 
 # app call back
 app$callback(
-  #update figure of box_scatter_plot
+  #update distribution figure
   output=list(id = 'distribution', property='figure'),
-  #based on values of cut quality
+  #based on variables selected
   params=list(input(id = 'dropdown', property='value')),
   #this translates your list of params into function arguments
   function(dropdown_value) {
-    make_distribution(dropdown_value)
+    make_distribution(dropdown_value)}
+  
+  #update analytics figure 
+  output2=list(id = 'analytics', property='figure'),
+  #based on variables selected
+  params=list(input(id = 'dropdown_x', property='value')),
+  params=list(input(id = 'dropdown_y', property='value')),
+  #this translates your list of params into function arguments
+  function(dropdown_value_x, dropdown_value_y) {
+    make_analytics(dropdown_value_x, dropdown_value_y)
   })
 
 # Run app

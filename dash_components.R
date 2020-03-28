@@ -1,3 +1,5 @@
+# script to create div components for Group 8 app.R
+
 # title
 title <- htmlDiv(
   className = "pretty_container",
@@ -43,11 +45,11 @@ analytics_header <- htmlDiv(
                'vertical-align'='middle')
 )
 
-# dropdown
+# dropdown for distribution
 dropdownkey <-
   tibble(
-    label = c("Sex", "Age", "Work Class", "Education", "Martial Status", "Race", "Native Country"),
-    value = c("sex", "age", "workclass", "education", "martial_status", "race", "native_country")
+    label = c("Sex", "Age", "Work Class", "Education", "Marital Status", "Race", "Native Country"),
+    value = c("sex", "age", "workclass", "education", "marital_status", "race", "native_country")
   )
 dropdown <- dccDropdown(
   id = "dropdown",
@@ -65,7 +67,54 @@ place_holder <- dccDropdown(
   value = "sex" # set default value
 )
 
+# --- H
+# dropdown for analytics (x)
+dropdownkey_x <-
+  tibble(
+    label = c("Sex", "Age", "Years of Ed.", "Race", "Net Capital Gain", "Hours Worked per Week"),
+    value = c("sex", "age", "education_num",  "race", "net", "hours_per_week")
+  )
+dropdown_x <- dccDropdown(
+  id = "dropdown_x",
+  options = map(1:nrow(dropdownkey_x), function(i) {
+    list(label = dropdownkey_x$label[i], value = dropdownkey_x$value[i])
+  }),
+  value = "age" # set default value
+)
+
+place_holder_x <- dccDropdown(
+  id = "place_holder_x",
+  options = map(1:nrow(dropdownkey_x), function(i) {
+    list(label = dropdownkey_x$label[i], value = dropdownkey_x$value[i])
+  }),
+  value = "age" # set default value
+)
+
+# dropdown for analytics (y)
+dropdownkey_y <-
+  tibble(
+    label = c("Sex", "Age", "Work Class", "Education", "Years of Ed.", "Net Capital Gain", "Hours Worked per Week"),
+    value = c("sex", "age", "workclass", "education", "education_num",  "net", "hours_per_week")
+  )
+dropdown_y <- dccDropdown(
+  id = "dropdown_y",
+  options = map(1:nrow(dropdownkey_y), function(i) {
+    list(label = dropdownkey_y$label[i], value = dropdownkey_y$value[i])
+  }),
+  value = "hours_per_week" # set default value
+)
+
+place_holder_y <- dccDropdown(
+  id = "place_holder_y",
+  options = map(1:nrow(dropdownkey_y), function(i) {
+    list(label = dropdownkey_y$label[i], value = dropdownkey_y$value[i])
+  }),
+  value = "hours_per_week" # set default value
+)
+# --- 
+
 # sidebars
+# demographics overview
 top_sidebar <- htmlDiv(
       className = "pretty_container",
       list(
@@ -78,11 +127,13 @@ top_sidebar <- htmlDiv(
                       'white-space' = 'pre-line')
 )
 
+# analytics
 bottom_sidebar <- htmlDiv(
   className = "pretty_container",
   list(
-    htmlP("Select the plot variable:"),
-    place_holder,
+    htmlP("Select the plot variables:"),
+    place_holder_x,
+    place_holder_y,
     htmlBr()
     ), style = list('columnCount' = 1,
                     'height'=500,
@@ -99,9 +150,6 @@ distribution <- htmlDiv(dccGraph(id = "distribution",
                                      'width'="100%",
                                      "marginTop"=75))
 
-# empty plot
-empty <- dccGraph(id = "empty",
-                         figure = make_empty())
 
 # summary table
 table <- dashDataTable(
@@ -116,3 +164,7 @@ table <- dashDataTable(
   data = df_to_list(make_table()),
   style_table = list('height'='auto')
 )
+
+# analytics plot
+analytics <- htmlDiv(dccGraph(id = "analytics",
+                              figure = make_analytics()))
