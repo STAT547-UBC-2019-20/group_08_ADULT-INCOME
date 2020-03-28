@@ -41,8 +41,9 @@ app$layout(
                         className = "pretty_container",
                         list(
                           htmlH3("Financial Summary"),
+                          subpopulation,
                           table
-                        ), style = list("height"=260,
+                        ), style = list("height"=280,
                                         "width"="100%")
                       )
                     ), style = list("width"="20%",
@@ -51,7 +52,7 @@ app$layout(
                     className = "pretty_container",
                     distribution,
                     style = list("width"="80%",
-                                 "height"=600,
+                                 "height"=610,
                                  'margin-left'=50)
                   )
                 ), style = list('display'= 'flex',
@@ -87,14 +88,26 @@ app$layout(
 
 # app call back
 app$callback(
-  #update figure of box_scatter_plot
   output=list(id = 'distribution', property='figure'),
-  #based on values of cut quality
-  params=list(input(id = 'dropdown', property='value')),
-  #this translates your list of params into function arguments
-  function(dropdown_value) {
-    make_distribution(dropdown_value)
+  params=list(input(id = 'dropdown', property='value'),
+              input(id = 'log', property='value')),
+  function(dropdown_value, scale_value) {
+    make_distribution(dropdown_value, scale_value)
   })
+
+app$callback(output = list(id = 'table', property = 'data'),
+						 params = list(input(id='dropdown', property='value'),
+						               input(id='distribution', property='clickData')),
+						 function(dropdown_value, clickData) {
+						 	make_table(dropdown_value, value = dat[[dropdown_value]][which(dat[[dropdown_value]] == clickData$points[[1]]$customdata)[1]])
+						 	})
+
+app$callback(output = list(id = 'subpopulation', property = 'children'),
+             params = list(input(id='dropdown', property='value'),
+                           input(id='distribution', property='clickData')),
+             function(dropdown_value, clickData) {
+               make_subpopulation(dropdown_value, value = dat[[dropdown_value]][which(dat[[dropdown_value]] == clickData$points[[1]]$customdata)[1]])
+             })
 
 # Run app
 

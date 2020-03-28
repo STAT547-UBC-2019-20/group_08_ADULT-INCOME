@@ -19,8 +19,15 @@ instructions <- htmlDiv(
 "
 Welcome to the dashboard developed by Group 8!
         
-Blah..Blah..Blah,
-Blah..Blah..Blah
+1. Demographics Overview:
+  * choose between 7 different demographic variables to explore the sampling distribution
+  * distribution counts can be toggled between linear or logarithmic scale
+  * click on one of the bars in the distribution plot to understand the financial summary of a particular subpopulation (e.g. all males in the census), default is N/A
+
+2. Analytics:
+  * 
+
+_By Jimmy Liu and Hannah McSorley 2020_
 "
               ))
 )
@@ -65,15 +72,24 @@ place_holder <- dccDropdown(
   value = "sex" # set default value
 )
 
+# distribution_scale
+distribution_scale <- dccRadioItems(id = "log",
+                        options = list(
+                          list(label = "Linear", value = "Linear"),
+                          list(label = "Logarithmic", value = "Logarithmic")
+                        ),
+                        value = "Linear")
 # sidebars
 top_sidebar <- htmlDiv(
       className = "pretty_container",
       list(
         htmlP("Select the distribution plot variable:"),
         dropdown,
-        htmlBr()
+        htmlBr(),
+        htmlP("Select the scale of y-axis:"),
+        distribution_scale
       ), style = list('columnCount' = 1,
-                      'height'=300,
+                      'height'=290,
                       'width'='100%',
                       'white-space' = 'pre-line')
 )
@@ -90,9 +106,13 @@ bottom_sidebar <- htmlDiv(
                     'white-space' = 'pre-line')
 )
 
+# subpopulation header
+subpopulation <- htmlP(make_subpopulation(),
+                       id = 'subpopulation')
+
 # distribution plot
 distribution <- htmlDiv(dccGraph(id = "distribution",
-                         figure = make_distribution()),
+                        figure = make_distribution()),
                         style = list("display"="block",
                                      "margin-right"='auto',
                                      "margin-left"='auto',
@@ -101,7 +121,7 @@ distribution <- htmlDiv(dccGraph(id = "distribution",
 
 # empty plot
 empty <- dccGraph(id = "empty",
-                         figure = make_empty())
+                  figure = make_empty())
 
 # summary table
 table <- dashDataTable(
