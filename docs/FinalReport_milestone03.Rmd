@@ -3,15 +3,15 @@ title: "Adult Income Study: Milestone 03"
 author: "Jimmy Liu and Hannah McSorley"
 date: "2020-03-17"
 output:
-  pdf_document:
-    toc: true
-    toc_depth: 3
-    number_sections: true
   html_document:
     always_allow_html: true
     toc: true
     theme: sandstone
     highlight: zenburn
+  pdf_document:
+    toc: true
+    toc_depth: 3
+    number_sections: true
 ---
 
 ```{r load-library, include = F, warning = F, message = F}
@@ -148,6 +148,11 @@ readRDS(here("data", "lm_age-hrs.RDS")) %>%
   knitr::kable()
 ```
 
+## Discussion & Conclusions
+
+From the 1994 census data on Adult Income, we found negligible correlations between a person's annual net gains and their age, sex, ethnicity, or marital status. We observed the highest median annual net gain for individuals with professional school education (compared to high school, college, undergraduate, or graduate degrees). Individuals who worked long hours (50-75 hrs/week) showed a broader range of net gain values with a higher median than those who worked less than 50 or more than 75 hours per week. Aside from net gain, we saw an increase in hours worked during early career for persons under 30 years of age. The increase in hours worked per week and the age of the worker had a loosely linear relationship defined by the equation $y = -18.9 + 2.4x$ (R^2^ = 0.332). 
+
+In general, we noticed the 1994 Adult Income data was biased towards US-born, white, middle-aged, men employed in private-sector jobs. It would be interesting to complete further data analysis on a similar but more diverse and representative dataset. Additionally, the income values included in the Adult Income dataset were binary and categorical (above or below $50K), and it's possible that more interesting patterns could be teased out if actual income values were available.
 
 ## References
 
