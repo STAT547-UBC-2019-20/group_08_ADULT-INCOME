@@ -22,7 +22,7 @@ Welcome to the dashboard developed by Group 8!
 1. Demographics Overview:
   * choose between 7 different demographic variables to explore the sampling distribution
   * distribution counts can be toggled between linear or logarithmic scale
-  * click on one of the bars in the distribution plot, to understand the financial summary of a particular subpopulation (e.g. all males in the census)
+  * click on one of the bars in the distribution plot to understand the financial summary of a particular subpopulation (e.g. all males in the census), default is N/A
 
 2. Analytics:
   * 

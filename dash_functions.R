@@ -15,7 +15,7 @@ make_distribution <- function(variable = "sex", scale = "Linear") {
     labs(
       x = dropdownkey$label[which(dropdownkey$value == variable)],
       y = "Count",
-      title = glue("Distribution of ", dropdownkey$label[which(dropdownkey$value == variable)])
+      title = glue("Sampling distribution of ", dropdownkey$label[which(dropdownkey$value == variable)])
     ) +
     theme_bw(14)
   
