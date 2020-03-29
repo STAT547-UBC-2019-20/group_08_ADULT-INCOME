@@ -43,8 +43,8 @@ Do you notice any interesting patterns in the data? Do you think this data was r
     ))
 )
 
-# Demographics ---
-# demographics header
+# Headers
+## demographics header
 demographics_header <- htmlDiv(
   className = "pretty_container",
   list(htmlH2("Demographics Overview")),
@@ -53,7 +53,18 @@ demographics_header <- htmlDiv(
                )
 )
 
-# dropdown for distribution
+## analytics header
+analytics_header <- htmlDiv(
+  className = "pretty_container",
+  list(htmlH2("Analytics")),
+  style = list('background-color'='',
+               'height'=30,
+               'vertical-align'='middle')
+)
+
+
+# Dropdowns
+## dropdown for distribution
 dropdownkey <-
   tibble(
     label = c("Sex", "Age", "Work Class", "Education", "Marital Status", "Race", "Native Country"),
@@ -68,17 +79,7 @@ dropdown <- dccDropdown(
 )
 
 
-# Analytics ---
-# analytics header
-analytics_header <- htmlDiv(
-  className = "pretty_container",
-  list(htmlH2("Analytics")),
-  style = list('background-color'='',
-               'height'=30,
-               'vertical-align'='middle')
-)
-
-# dropdown for analytics (x variable)
+## dropdown for analytics (x variable)
 dropdownkey_x <-
   tibble(
     label = c("Sex", "Age", "Years of Ed.", "Race", "Net Capital Gain", "Hours Worked per Week"),
@@ -92,7 +93,7 @@ dropdown_x <- dccDropdown(
   value = "age" # set default value
 )
 
-# dropdown for analytics (y variable)
+## dropdown for analytics (y variable)
 dropdownkey_y <-
   tibble(
     label = c("Sex", "Age", "Work Class", "Education", "Years of Ed.", "Net Capital Gain", "Hours Worked per Week"),
@@ -108,7 +109,7 @@ dropdown_y <- dccDropdown(
  
 
 # sidebars
-# demographics overview
+## demographics overview
 top_sidebar <- htmlDiv(
       className = "pretty_container",
       list(
@@ -121,7 +122,7 @@ top_sidebar <- htmlDiv(
                       'white-space' = 'pre-line')
 )
 
-# analytics
+## analytics sidebar
 bottom_sidebar <- htmlDiv(
   className = "pretty_container",
   list(
@@ -135,7 +136,8 @@ bottom_sidebar <- htmlDiv(
                     'white-space' = 'pre-line')
 )
 
-# distribution plot (demographics)
+# plots + tables
+## distribution plot (demographics)
 distribution <- htmlDiv(dccGraph(id = "distribution",
                          figure = make_distribution()),
                         style = list("display"="block",
@@ -145,7 +147,7 @@ distribution <- htmlDiv(dccGraph(id = "distribution",
                                      "marginTop"=75))
 
 
-# summary table (demographics)
+## summary table (demographics)
 table <- dashDataTable(
   id = "table",
   columns = lapply(colnames(make_table()), 
@@ -159,6 +161,17 @@ table <- dashDataTable(
   style_table = list('height'='auto')
 )
 
-# analytics plot
+## analytics plot
 analytics <- htmlDiv(dccGraph(id = "analytics",
                               figure = make_analytics()))
+
+# analytics slider
+slider <- dccSlider(
+  id = 'analytics_slider',
+  min = 0,
+  max = length(unique(dat$net))-1,
+  #marks = unique(dat$net),
+  value = length(unique(dat$net))-1 )
+
+
+# radio buttons

@@ -50,7 +50,6 @@ make_analytics <- function(variable_x = "age", variable_y = "hours_per_week") {
   p2 <- dat %>%
     filter(!!sym(variable_x) != "?",
            !!sym(variable_y) != "?") %>% 
-    #count(!!sym(variable)) %>%
     ggplot(aes(x = !!sym(variable_x), y = !!sym(variable_y))) +
     geom_jitter(alpha = 0.6) +  
     labs(
@@ -64,3 +63,14 @@ make_analytics <- function(variable_x = "age", variable_y = "hours_per_week") {
   
   ggplotly(p2)
 }
+
+# create an interactive slider
+# isolates a range of numeric values for analytics plot -- not operational yet
+make_slider <- function(variable_x = "age") {
+  slider <- dat %>% 
+    filter(!!sym(variable_x) != "?")  
+    
+}
+
+# create radio buttons
+# to select binary identifiers
