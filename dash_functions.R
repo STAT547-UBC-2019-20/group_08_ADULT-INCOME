@@ -1,3 +1,5 @@
+# functions to create plots and tables for Group 8 app.R
+
 # load library
 suppressPackageStartupMessages(library(tidyverse))
 suppressPackageStartupMessages(library(plotly))
@@ -66,12 +68,35 @@ make_table <- function(variable = "sex", value = "Male") {
   summary
 }
 
-# create empty graph
-make_empty <- function() {
-  p <- dat %>% 
-    ggplot(aes(x = sex, y = age))
-  ggplotly(p)
+# create analytics graph 
+make_analytics <- function(variable_x = "age", variable_y = "hours_per_week") {
+  p2 <- dat %>%
+    filter(!!sym(variable_x) != "?",
+           !!sym(variable_y) != "?") %>% 
+    ggplot(aes(x = !!sym(variable_x), y = !!sym(variable_y))) +
+    geom_jitter(alpha = 0.6) +  
+    labs(
+      x = dropdownkey_x$label[which(dropdownkey_x$value == variable_x)],
+      y = dropdownkey_y$label[which(dropdownkey_y$value == variable_y)],
+      title = glue(dropdownkey_x$label[which(dropdownkey_x$value == variable_x)],
+                   " vs. ",
+                   dropdownkey_y$label[which(dropdownkey_y$value == variable_y)])
+    ) +
+    theme_bw(14)
+  
+  ggplotly(p2)
 }
+
+# create an interactive slider
+# isolates a range of numeric values for analytics plot -- not operational yet
+make_slider <- function(selection = "net") {
+  slider <- dat %>% 
+    filter(!!sym(selection) != "?")  
+    
+}
+
+# create radio buttons
+# to select binary identifiers
 
 # make subpopulation text
 make_subpopulation <- function(variable = "sex", value = "Not Selected") {
