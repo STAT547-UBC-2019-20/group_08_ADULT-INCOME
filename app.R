@@ -67,24 +67,27 @@ app$layout(
           htmlDiv( # bottom component contents
             list(
               bottom_sidebar, # sidebar
+              
               # bottom component plot
               htmlDiv( 
                 className = "pretty_container",
                 analytics,  # plot
-                style = list('width'='80%')  # plot style
+                style = list('width'='80%',
+                             'height' = '95%',
+                             'align-items' = 'left')  # plot style
               ),
-              htmlDiv( # slider try
-                className = "pretty_container", # need a container?
+              htmlDiv( # adding slider -----------------------------------------------
                 slider,
-                style = list('width'='80%')  # slider style to match plot?
-              )
+                style = list('width'='80%',
+                             'height' = '5%',
+                             'align-items' = 'left')  # slider style 
+              ) # slider try -----------------------------------------------
             ), style = list('display'='flex',
-                            'width'='100%',
-                            'height'="100%"),  # sidebar style
+                            'width'='100%'),  # sidebar style
             
           )
         ), style = list('width'='100%',
-                        'height'='50%') # bottom half of app
+                        'height'='50%') # styling lower half of app
       )
     ), style = list('display' = 'block',
                     'margin-left' = 'auto',

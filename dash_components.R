@@ -165,13 +165,19 @@ table <- dashDataTable(
 analytics <- htmlDiv(dccGraph(id = "analytics",
                               figure = make_analytics()))
 
-# analytics slider
+# analytics slider --- this is not dynamic (and also not right)
 slider <- dccSlider(
-  id = 'analytics_slider',
-  min = 0,
-  max = length(unique(dat$net))-1,
-  #marks = unique(dat$net),
-  value = length(unique(dat$net))-1 )
+  id = 'slider',
+  min = min(dat$net)-144,
+  max = max(dat$net)+1,
+  marks = list(
+    '-4500' = list("label" = '-$4500'),
+    '0' = list("label" = '$0'),
+    '2500' = list("label" = '$2500'),
+    '5000' = list("label" = '$5000'),
+    '10000' = list("label" = '$10000')),
+  #value = length(unique(dat$net)),
+  vertical = FALSE
+  )
 
 
-# radio buttons
