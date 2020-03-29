@@ -36,6 +36,14 @@ instructions <- htmlDiv(
     htmlH2("Instructions"),
     dccMarkdown(
       "
+1. Demographics Overview:
+  * choose between 7 different demographic variables to explore the sampling distribution
+  * distribution counts can be toggled between linear or logarithmic scale
+  * click on one of the bars in the distribution plot to understand the financial summary of a particular subpopulation (e.g. all males in the census), default is N/A
+
+2. Analytics:
+  * 
+
 Use the dropdown menus to select variables, and further explore relationships in the data by narrowing the range of numeric data with the slider.
       
 Do you notice any interesting patterns in the data? Do you think this data was representative of all 1994 adult income earners?      
@@ -108,6 +116,13 @@ dropdown_y <- dccDropdown(
 )
  
 
+# distribution_scale
+distribution_scale <- dccRadioItems(id = "log",
+                        options = list(
+                          list(label = "Linear", value = "Linear"),
+                          list(label = "Logarithmic", value = "Logarithmic")
+                        ),
+                        value = "Linear")
 # sidebars
 ## demographics overview
 top_sidebar <- htmlDiv(
@@ -115,9 +130,11 @@ top_sidebar <- htmlDiv(
       list(
         htmlP("Select the distribution plot variable:"),
         dropdown,
-        htmlBr()
+        htmlBr(),
+        htmlP("Select the scale of y-axis:"),
+        distribution_scale
       ), style = list('columnCount' = 1,
-                      'height'=300,
+                      'height'=290,
                       'width'='100%',
                       'white-space' = 'pre-line')
 )
@@ -136,16 +153,19 @@ bottom_sidebar <- htmlDiv(
                     'white-space' = 'pre-line')
 )
 
+# subpopulation header
+subpopulation <- htmlP(make_subpopulation(),
+                       id = 'subpopulation')
+
 # plots + tables
 ## distribution plot (demographics)
 distribution <- htmlDiv(dccGraph(id = "distribution",
-                         figure = make_distribution()),
+                        figure = make_distribution()),
                         style = list("display"="block",
                                      "margin-right"='auto',
                                      "margin-left"='auto',
                                      'width'="100%",
                                      "marginTop"=75))
-
 
 ## summary table (demographics)
 table <- dashDataTable(
