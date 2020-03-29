@@ -108,7 +108,7 @@ app$callback(
     make_distribution(dropdown_value)
     })
   
-# app call back (analytics)  -- I think there's an error here - graph is not interactive.
+# app call back -- analytics dropdown  
 app$callback(
   # update analytics figure
   output=list(id = 'analytics', property='figure'),
@@ -118,6 +118,17 @@ app$callback(
   #this translates your list of params into function arguments
   function(x_selection, y_selection) {
     make_analytics(x_selection, y_selection)
+  })
+
+# app call back -- analytics slider ---- not operational 
+app$callback(
+  # update analytics figure
+  output=list(id = 'analytics', property='figure'),
+  #based on variables selected 
+  params=list(input(id = 'slider', property='value')),
+  #this translates your list of params into function arguments
+  function(selection) {
+    make_slider(selection)
   })
 
 # Run app

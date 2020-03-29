@@ -66,9 +66,9 @@ make_analytics <- function(variable_x = "age", variable_y = "hours_per_week") {
 
 # create an interactive slider
 # isolates a range of numeric values for analytics plot -- not operational yet
-make_slider <- function(variable_x = "age") {
+make_slider <- function(selection = "net") {
   slider <- dat %>% 
-    filter(!!sym(variable_x) != "?")  
+    filter(!!sym(selection) != "?")  
     
 }
 
