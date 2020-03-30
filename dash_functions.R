@@ -5,8 +5,29 @@ suppressPackageStartupMessages(library(tidyverse))
 suppressPackageStartupMessages(library(plotly))
 suppressPackageStartupMessages(library(glue))
 suppressPackageStartupMessages(library(ggpubr))
+suppressPackageStartupMessages(library(scales))
 
-# create distribution plots
+### interactive slider
+## isolates a range of numeric values for analytics plot
+# retrieve x-axis slider upper limits, lower limits, and steps
+variable_limits_key <- tibble(variable = c("age", "education_num",  "net", "hours_per_week"),
+                              upper_limit = c(90, 16, 99999, 99),
+                              lower_limit = c(17, 1, -4536, 1),
+                              steps = c(1, 1, 1000, 1)
+)
+
+get_x_slider_limits <- function(variable_x = "hours_per_week") {
+  variable_limits_key %>% 
+    filter(variable == variable_x)
+}
+
+# retrieve y-axis slider upper limits, lower limits, and steps
+get_y_slider_limits <- function(variable_y = "net") {
+  variable_limits_key %>% 
+    filter(variable == variable_y)
+}
+
+### create distribution plots
 make_distribution <- function(variable = "sex", scale = "Linear") {
   
   p <- dat %>%
@@ -34,7 +55,7 @@ ggplotly(p) %>%
   layout(clickmode = 'event+select')
 }
 
-# create summary table
+### create summary table
 make_table <- function(variable = "sex", value = "Male") {
   filter <- dat %>%
     filter(!!sym(variable) == value) %>%
@@ -68,41 +89,48 @@ make_table <- function(variable = "sex", value = "Male") {
   summary
 }
 
-# create analytics graph 
-make_analytics <- function(variable_x = "age", variable_y = "hours_per_week") {
-  p2 <- dat %>%
-    filter(!!sym(variable_x) != "?",
-           !!sym(variable_y) != "?") %>% 
-    ggplot(aes(x = !!sym(variable_x), y = !!sym(variable_y))) +
-    geom_jitter(alpha = 0.6) +  
+## make subpopulation text
+make_subpopulation <- function(variable = "sex", value = "Not Selected") {
+  if_else(variable == "education_num", 
+          glue("Subpopulation: ", as.character(value), " years"),
+          if_else(variable == "age",
+                  glue("Subpopulation: ", as.character(value), " years old"),
+                  glue("Subpopulation: ", as.character(value)))
+  )
+}
+
+### create analytics graph 
+make_analytics <- function(variable_x = "hours_per_week", variable_y = "net", color_variable = "sex",
+                           x_lower_lim=get_x_slider_limits()$lower_limit, x_upper_lim=get_x_slider_limits()$upper_limit,
+                           y_lower_lim=get_y_slider_limits()$lower_limit, y_upper_lim=get_y_slider_limits()$upper_limit) {
+  p2 <- dat %>% 
+    ggplot(aes(x = !!sym(variable_x), y = !!sym(variable_y), color = !!sym(color_variable))) +
+    geom_point(alpha = 0.6) +  
     labs(
       x = dropdownkey_x$label[which(dropdownkey_x$value == variable_x)],
       y = dropdownkey_y$label[which(dropdownkey_y$value == variable_y)],
       title = glue(dropdownkey_x$label[which(dropdownkey_x$value == variable_x)],
                    " vs. ",
-                   dropdownkey_y$label[which(dropdownkey_y$value == variable_y)])
+                   dropdownkey_y$label[which(dropdownkey_y$value == variable_y)]),
+      color = dropdownkey_color$label[which(dropdownkey_color$value == color_variable)]
     ) +
     theme_bw(14)
   
+  if (variable_x == "net") {
+    p2 <- p2 + scale_x_continuous(limits = c(x_lower_lim, x_upper_lim),
+                                  labels = label_dollar())
+  } else {
+    p2 <- p2 + scale_x_continuous(limits = c(x_lower_lim, x_upper_lim))
+  }
+  
+  if (variable_y == "net") {
+    p2 <- p2 + scale_y_continuous(limits = c(y_lower_lim, y_upper_lim),
+                                  labels = label_dollar())
+  } else {
+    p2 <- p2 + scale_y_continuous(limits = c(y_lower_lim, y_upper_lim)) 
+  }
+
   ggplotly(p2)
 }
 
-# create an interactive slider
-# isolates a range of numeric values for analytics plot -- not operational yet
-make_slider <- function(selection = "net") {
-  slider <- dat %>% 
-    filter(!!sym(selection) != "?")  
-    
-}
 
-# create radio buttons
-# to select binary identifiers
-
-# make subpopulation text
-make_subpopulation <- function(variable = "sex", value = "Not Selected") {
-  if (variable == "age") {
-    glue("Subpopulation: ", as.character(value), " years old")
-  } else {
-    glue("Subpopulation: ", as.character(value))
-  }
-}
