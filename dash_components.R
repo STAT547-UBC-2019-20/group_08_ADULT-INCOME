@@ -75,8 +75,8 @@ analytics_header <- htmlDiv(
 ## dropdown for distribution
 dropdownkey <-
   tibble(
-    label = c("Sex", "Age", "Work Class", "Education", "Marital Status", "Race", "Native Country"),
-    value = c("sex", "age", "workclass", "education", "marital_status", "race", "native_country")
+    label = c("Sex", "Age", "Work Class", "Years of Ed.", "Marital Status", "Race", "Native Country"),
+    value = c("sex", "age", "workclass", "education_num", "marital_status", "race", "native_country")
   )
 dropdown <- dccDropdown(
   id = "dropdown",
@@ -90,31 +90,44 @@ dropdown <- dccDropdown(
 ## dropdown for analytics (x variable)
 dropdownkey_x <-
   tibble(
-    label = c("Sex", "Age", "Years of Ed.", "Race", "Net Capital Gain", "Hours Worked per Week"),
-    value = c("sex", "age", "education_num",  "race", "net", "hours_per_week")
+    label = c("Age", "Years of Ed.","Net Capital Gain", "Hours Worked per Week"),
+    value = c("age", "education_num",  "net", "hours_per_week")
   )
 dropdown_x <- dccDropdown(
   id = "dropdown_x",
   options = map(1:nrow(dropdownkey_x), function(i) {
     list(label = dropdownkey_x$label[i], value = dropdownkey_x$value[i])
   }),
-  value = "age" # set default value
+  value = "hours_per_week" # set default value
 )
 
 ## dropdown for analytics (y variable)
 dropdownkey_y <-
   tibble(
-    label = c("Sex", "Age", "Work Class", "Education", "Years of Ed.", "Net Capital Gain", "Hours Worked per Week"),
-    value = c("sex", "age", "workclass", "education", "education_num",  "net", "hours_per_week")
+    label = c("Age", "Years of Ed.","Net Capital Gain", "Hours Worked per Week"),
+    value = c("age", "education_num",  "net", "hours_per_week")
   )
 dropdown_y <- dccDropdown(
   id = "dropdown_y",
   options = map(1:nrow(dropdownkey_y), function(i) {
     list(label = dropdownkey_y$label[i], value = dropdownkey_y$value[i])
   }),
-  value = "hours_per_week" # set default value
+  value = "net" # set default value
 )
- 
+
+## dropdown for analytics (y variable)
+dropdownkey_color <-
+  tibble(
+    label = c("Race", "Sex", "Marital Status"),
+    value = c("race", "sex", "marital_status")
+  )
+dropdown_color <- dccDropdown(
+  id = "dropdown_color",
+  options = map(1:nrow(dropdownkey_color), function(i) {
+    list(label = dropdownkey_color$label[i], value = dropdownkey_color$value[i])
+  }),
+  value = "sex" # set default value
+)
 
 # distribution_scale
 distribution_scale <- dccRadioItems(id = "log",
@@ -123,6 +136,26 @@ distribution_scale <- dccRadioItems(id = "log",
                           list(label = "Logarithmic", value = "Logarithmic")
                         ),
                         value = "Linear")
+
+## slider
+# x-axis
+slider_x <- dccRangeSlider(
+  id='slider_x',
+  min=get_x_slider_limits()$lower_limit,
+  max=get_x_slider_limits()$upper_limit,
+  step=get_x_slider_limits()$steps,
+  value=list(get_x_slider_limits()$lower_limit+2, get_x_slider_limits()$upper_limit-2)
+)
+
+# y-axis
+slider_y <- dccRangeSlider(
+  id='slider_y',
+  min=get_y_slider_limits()$lower_limit,
+  max=get_y_slider_limits()$upper_limit,
+  step=get_y_slider_limits()$steps,
+  value=list(get_y_slider_limits()$lower_limit+2000, get_y_slider_limits()$upper_limit-2000)
+)
+
 # sidebars
 ## demographics overview
 top_sidebar <- htmlDiv(
@@ -144,9 +177,20 @@ bottom_sidebar <- htmlDiv(
   className = "pretty_container",
   list(
     htmlP("Select the plot variables:"),
+    htmlLabel("x-axis"),
     dropdown_x,
+    htmlBr(),
+    htmlLabel("y-axis"),
     dropdown_y,
-    htmlBr()
+    htmlBr(),
+    htmlLabel("Colour by"),
+    dropdown_color,
+    htmlP("Adjust x-axis range:"),
+    slider_x,
+    htmlDiv(id='select_slider_x'),
+    htmlP("Adjust y-axis range:"),
+    slider_y,
+    htmlDiv(id='select_slider_y')
     ), style = list('columnCount' = 1,
                     'height'=500,
                     'width'="20.5%",
@@ -183,21 +227,26 @@ table <- dashDataTable(
 
 ## analytics plot
 analytics <- htmlDiv(dccGraph(id = "analytics",
-                              figure = make_analytics()))
+                              figure = make_analytics()),
+                     style = list("display"="block",
+                                  "margin-right"='auto',
+                                  "margin-left"='auto',
+                                  'width'="100%",
+                                  'marginTop'=25))
 
-# analytics slider --- this is not dynamic (and also not right)
-slider <- dccSlider(
-  id = 'slider',
-  min = min(dat$net)-144,
-  max = max(dat$net)+1,
-  marks = list(
-    '-4500' = list("label" = '-$4500'),
-    '0' = list("label" = '$0'),
-    '2500' = list("label" = '$2500'),
-    '5000' = list("label" = '$5000'),
-    '10000' = list("label" = '$10000')),
-  #value = length(unique(dat$net)),
-  vertical = FALSE
-  )
+# # analytics slider --- this is not dynamic (and also not right)
+# slider <- dccSlider(
+#   id = 'slider',
+#   min = min(dat$net)-144,
+#   max = max(dat$net)+1,
+#   marks = list(
+#     '-4500' = list("label" = '-$4500'),
+#     '0' = list("label" = '$0'),
+#     '2500' = list("label" = '$2500'),
+#     '5000' = list("label" = '$5000'),
+#     '10000' = list("label" = '$10000')),
+#   #value = length(unique(dat$net)),
+#   vertical = FALSE
+#   )
 
 
