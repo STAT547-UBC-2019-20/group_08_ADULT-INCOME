@@ -95,3 +95,6 @@ __Usage Scenario__
 
 Pat is interested in understanding how personal attributes and socioeconomic position are associated with annual financial gains. They want to [explore] a census dataset to [compare] attributes (e.g., age, sex, marital status, education and work hours) with annual net gain amounts to [identify] patterns relating monetary benefits to personal and socioeconomic details. When Pat logs on to the “1994 Adult Income Census Data App”, they will see an overview of all the available variables in the dataset, according to the number of instances (persons) associated with each demographic category. They can filter variables to narrow the range of personal attributes to compare to net annual gains, and/or rank census participants according to their predicted annual income (over or under $50K). When Pat does so, they may notice that there are no apparent links between the available personal attributes and net annual gain. They may also notice that the data is dominated by a specific demographic, which may encourage them to pursue the collection of more representative and diverse demographic data in future census.
    
+### Milestone 5: Dashboard 
+
+To run our Dash app, clone or download this project repository and run the command ```Rscript app.R```
