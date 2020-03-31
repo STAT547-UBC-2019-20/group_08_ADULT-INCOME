@@ -42,9 +42,10 @@ app$layout(
                         className = "pretty_container",
                         list(
                           htmlH3("Financial Summary"),
+                          htmlP("click a bar on the plot to select a sub-population for financial summary"), # new
                           subpopulation,
                           table
-                        ), style = list("height"=280,
+                        ), style = list("height"=370,  # was 280
                                         "width"="100%")
                       )
                     ), style = list("width"="20%",
@@ -68,21 +69,18 @@ app$layout(
           htmlDiv( # bottom component contents
             list(
               bottom_sidebar, # sidebar
-              
-              # bottom component plot
-              htmlDiv( 
+              htmlDiv( # bottom component plot
                 className = "pretty_container",
                 analytics,  # plot
                 style = list('width'='80%',
                              'height' = 500,
-                             'align-items' = 'left')  # plot style
+                             'align-items' = 'left')
               )
             ), style = list('display'='flex',
-                            'width'='100%'),  # sidebar style
-            
+                            'width'='100%'),  
           )
         ), style = list('width'='100%',
-                        'height'='50%') # styling lower half of app
+                        'height'='50%') 
       )
     ), style = list('display' = 'block',
                     'margin-left' = 'auto',
@@ -92,7 +90,9 @@ app$layout(
   )
 )
 
-# app call back (demographics)
+# callbacks:
+
+# demographics dropdown
 app$callback(
   output=list(id = 'distribution', property='figure'),
   params=list(input(id = 'dropdown', property='value'),
@@ -101,7 +101,7 @@ app$callback(
     make_distribution(dropdown_value, scale_value)
   })
   
-# app call back -- analytics dropdown  
+# analytics dropdown  
 app$callback(
   # update analytics figure
   output=list(id = 'analytics', property='figure'),
@@ -117,6 +117,7 @@ app$callback(
                    as.numeric(x_slider_lim[1]), as.numeric(x_slider_lim[2]), as.numeric(y_slider_lim[1]), as.numeric(y_slider_lim[2]))
   })
 
+# financial summary table (demographics)
 app$callback(output = list(id = 'table', property = 'data'),
 						 params = list(input(id='dropdown', property='value'),
 						               input(id='distribution', property='clickData')),
@@ -124,6 +125,7 @@ app$callback(output = list(id = 'table', property = 'data'),
 						 	make_table(dropdown_value, value = dat[[dropdown_value]][which(dat[[dropdown_value]] == clickData$points[[1]]$customdata)[1]])
 						 	})
 
+# sub-population click data (demographics)
 app$callback(output = list(id = 'subpopulation', property = 'children'),
              params = list(input(id='dropdown', property='value'),
                            input(id='distribution', property='clickData')),
@@ -131,6 +133,9 @@ app$callback(output = list(id = 'subpopulation', property = 'children'),
                make_subpopulation(dropdown_value, value = dat[[dropdown_value]][which(dat[[dropdown_value]] == clickData$points[[1]]$customdata)[1]])
              })
 
+# analytics slider:
+
+# x-axis slider
 app$callback(
   output(id = 'select_slider_x', property='children'),
   params=list(input(id='slider_x', property='value')),
@@ -138,6 +143,7 @@ app$callback(
     sprintf('You have selected [%0.1f, %0.1f]', value[1], value[2])
   })
 
+# y-axis slider 
 app$callback(
   output(id = 'select_slider_y', property='children'),
   params=list(input(id='slider_y', property='value')),
@@ -145,6 +151,7 @@ app$callback(
     sprintf('You have selected [%1.0f, %1.0f]', value[1], value[2])
   })
 
+# x-axis slider link to dropdown (bounds)
 app$callback(
   output(id = 'slider_x', property = 'value'),
   params=list(input(id='dropdown_x', property='value')),
@@ -152,6 +159,7 @@ app$callback(
     list(get_x_slider_limits(value)$lower_limit, get_x_slider_limits(value)$upper_limit)
   })
 
+# x-axis slider link to dropdown (min)
 app$callback(
   output(id = 'slider_x', property = 'min'),
   params=list(input(id='dropdown_x', property='value')),
@@ -159,6 +167,7 @@ app$callback(
     get_x_slider_limits(value)$lower_limit
   })
 
+# x-axis slider link to dropdown (max)
 app$callback(
   output(id = 'slider_x', property = 'max'),
   params=list(input(id='dropdown_x', property='value')),
@@ -166,6 +175,7 @@ app$callback(
     get_x_slider_limits(value)$upper_limit
   })
 
+# x-axis slider link to dropdown (steps)
 app$callback(
   output(id = 'slider_x', property = 'step'),
   params=list(input(id='dropdown_x', property='value')),
@@ -173,6 +183,7 @@ app$callback(
     get_x_slider_limits(value)$steps
   })
 
+# y-axis slider link to dropdown (bounds)
 app$callback(
   output(id = 'slider_y', property = 'value'),
   params=list(input(id='dropdown_y', property='value')),
@@ -180,6 +191,7 @@ app$callback(
     list(get_y_slider_limits(value)$lower_limit, get_y_slider_limits(value)$upper_limit)
   })
 
+# y-axis slider link to dropdown (min)
 app$callback(
   output(id = 'slider_y', property = 'min'),
   params=list(input(id='dropdown_y', property='value')),
@@ -187,6 +199,7 @@ app$callback(
     get_y_slider_limits(value)$lower_limit
   })
 
+# y-axis slider link to dropdown (max)
 app$callback(
   output(id = 'slider_y', property = 'max'),
   params=list(input(id='dropdown_y', property='value')),
@@ -194,14 +207,15 @@ app$callback(
     get_y_slider_limits(value)$upper_limit
   })
 
+# y-axis slider link to dropdown (steps)
 app$callback(
   output(id = 'slider_y', property = 'step'),
   params=list(input(id='dropdown_y', property='value')),
   function(value) {
     get_y_slider_limits(value)$steps
   })
-# Run app
 
+# Run app
 app$run_server(debug = TRUE)
 
 # command to add dash app in Rstudio viewer:
