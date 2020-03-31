@@ -178,7 +178,7 @@ top_sidebar <- htmlDiv(
         htmlP("Select the scale of y-axis:"),
         distribution_scale
       ), style = list('columnCount' = 1,
-                      'height'=200,  # was 290
+                      'height'=290,  # was 290
                       'width'='100%',
                       'white-space' = 'pre-line')
 )
@@ -220,7 +220,7 @@ distribution <- htmlDiv(dccGraph(id = "distribution",
                                      "margin-right"='auto',
                                      "margin-left"='auto',
                                      'width'="100%",
-                                     "marginTop"=75))
+                                     "marginTop"=125))
 
 ## summary table (demographics)
 table <- dashDataTable(
