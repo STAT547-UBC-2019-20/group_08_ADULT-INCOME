@@ -25,6 +25,8 @@ Milestone 2 focused on running scripts through command line (or RStudio terminal
    * docopt
    * ggpmisc
    * cowplot
+   * ggpubr
+   * scales
 
 3. __Run the scripts under in the following order via command-line__
 
