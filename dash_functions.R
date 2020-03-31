@@ -105,7 +105,7 @@ make_analytics <- function(variable_x = "hours_per_week", variable_y = "net", co
                            y_lower_lim=get_y_slider_limits()$lower_limit, y_upper_lim=get_y_slider_limits()$upper_limit) {
   p2 <- dat %>% 
     ggplot(aes(x = !!sym(variable_x), y = !!sym(variable_y), color = !!sym(color_variable))) +
-    geom_point(alpha = 0.6) +  
+    geom_jitter(alpha = 0.6) +  
     labs(
       x = dropdownkey_x$label[which(dropdownkey_x$value == variable_x)],
       y = dropdownkey_y$label[which(dropdownkey_y$value == variable_y)],
