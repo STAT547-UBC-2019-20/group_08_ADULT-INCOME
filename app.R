@@ -41,11 +41,11 @@ app$layout(
                       htmlDiv(
                         className = "pretty_container",
                         list(
-                          htmlH3("Financial Summary"),
-                          htmlP("click a bar on the plot to select a sub-population for financial summary"), # new
-                          subpopulation,
-                          table
-                        ), style = list("height"=370,  # was 280
+                            htmlH3("Financial Summary"),
+                            htmlLabel("Click on a bar from the plot to select a subpopulation for its financial summary"), # new
+                            subpopulation,
+                            table
+                        ), style = list("height"=350,  # was 280
                                         "width"="100%")
                       )
                     ), style = list("width"="20%",
@@ -54,7 +54,7 @@ app$layout(
                     className = "pretty_container",
                     distribution,
                     style = list("width"="80%",
-                                 "height"=610,
+                                 "height"=680,
                                  'margin-left'=50)
                   )
             ), style = list('display'= 'flex',
