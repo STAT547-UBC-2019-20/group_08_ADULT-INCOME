@@ -28,7 +28,7 @@ get_y_slider_limits <- function(variable_y = "net") {
 }
 
 ### create distribution plots
-make_distribution <- function(variable = "sex", scale = "Linear") {
+make_distribution <- function(variable = "age", scale = "Linear") {
   
   p <- dat %>%
     filter(!!sym(variable) != "?") %>% 
@@ -82,8 +82,8 @@ make_table <- function(variable = "sex", value = "Male") {
   summary$Statistics[c(1,2,3,4,5)] <- c("Minimum net gain ($)",
                                         "Median net gain ($)",
                                         "Maximum net gain ($)",
-                                        "<=50K net gain (%)", 
-                                        ">50K net gain (%)")
+                                        "<= $50K net gain (%)", 
+                                        "> $50K net gain (%)")
   
   
   summary
