@@ -7,6 +7,7 @@ suppressPackageStartupMessages(library(glue))
 suppressPackageStartupMessages(library(ggpubr))
 suppressPackageStartupMessages(library(scales))
 
+
 ### interactive slider
 ## isolates a range of numeric values for analytics plot
 # retrieve x-axis slider upper limits, lower limits, and steps
@@ -28,7 +29,7 @@ get_y_slider_limits <- function(variable_y = "net") {
 }
 
 ### create distribution plots
-make_distribution <- function(variable = "sex", scale = "Linear") {
+make_distribution <- function(variable = "age", scale = "Linear") {
   
   p <- dat %>%
     filter(!!sym(variable) != "?") %>% 
@@ -42,7 +43,7 @@ make_distribution <- function(variable = "sex", scale = "Linear") {
     ) +
     theme_bw(14)
   
-  if (variable %in% c("native_country", "education")) {
+  if (variable %in% c("native_country", "education", "marital_status")) {
     p <- p + rotate_x_text()
   }
   
@@ -82,15 +83,15 @@ make_table <- function(variable = "sex", value = "Male") {
   summary$Statistics[c(1,2,3,4,5)] <- c("Minimum net gain ($)",
                                         "Median net gain ($)",
                                         "Maximum net gain ($)",
-                                        "<=50K net gain (%)", 
-                                        ">50K net gain (%)")
+                                        "Under $50K income (%)", 
+                                        "Over $50K income (%)")
   
   
   summary
 }
 
 ## make subpopulation text
-make_subpopulation <- function(variable = "sex", value = "Not Selected") {
+make_subpopulation <- function(variable = "age", value = "Not Selected") {
   if_else(variable == "education_num", 
           glue("Subpopulation: ", as.character(value), " years"),
           if_else(variable == "age",

@@ -23,8 +23,7 @@ Welcome to the dashboard developed by UBC STAT 547 Group 8!
 
 This app allows folks to explore data from the 1994 Adult Income Census.
 
-Below, you can _interactively visualize_ the demographics of participants included in the '94 census and see a financial summary based on groups of the population. 
-In the 'Analytics' section, you can compare variables such as education level, age, sex, hours worked, ethnicity or annual net gain.
+Below, you can _interactively visualize_ the demographics of participants included in the '94 census and see a financial summary based on groups of the population. In the 'Analytics' section, you can compare variables and colour by groupings. 
 
       "
     ))
@@ -49,7 +48,7 @@ _Visualize the distribution of available data_
 2. Analytics:
 
 _Explore relationships in the 1994 Adult Income Census data_
-  * select variables from the dropdown menus to plot variables on the _x_ and _y_ axes
+  * select variables from the dropdown menus to plot on the _x_ and _y_ axes
   * choose a variable in the _'colour by'_ menu to use for colour-coding data on the plot
   * use the sliders to isolate the range of data plotted on each axes
    
@@ -92,7 +91,9 @@ dropdown <- dccDropdown(
   options = map(1:nrow(dropdownkey), function(i) {
     list(label = dropdownkey$label[i], value = dropdownkey$value[i])
   }),
-  value = "age" # set default value
+  value = "age", # set default value
+  searchable = FALSE,
+  clearable = FALSE
 )
 
 
@@ -107,7 +108,9 @@ dropdown_x <- dccDropdown(
   options = map(1:nrow(dropdownkey_x), function(i) {
     list(label = dropdownkey_x$label[i], value = dropdownkey_x$value[i])
   }),
-  value = "hours_per_week" # set default value
+  value = "hours_per_week", # set default value
+  searchable = FALSE, 
+  clearable = FALSE
 )
 
 ## dropdown for analytics (y variable)
@@ -121,7 +124,9 @@ dropdown_y <- dccDropdown(
   options = map(1:nrow(dropdownkey_y), function(i) {
     list(label = dropdownkey_y$label[i], value = dropdownkey_y$value[i])
   }),
-  value = "net" # set default value
+  value = "net", # set default value
+  searchable = FALSE, 
+  clearable = FALSE
 )
 
 ## style - dropdown for analytics (y variable)
@@ -135,7 +140,9 @@ dropdown_color <- dccDropdown(
   options = map(1:nrow(dropdownkey_color), function(i) {
     list(label = dropdownkey_color$label[i], value = dropdownkey_color$value[i])
   }),
-  value = "sex" # set default value
+  value = "sex", # set default value
+  searchable = FALSE, 
+  clearable = FALSE
 )
 
 # Radio Buttons (Demographics)
