@@ -51,6 +51,7 @@ _Explore relationships in the 1994 Adult Income Census data_
   * select variables from the dropdown menus to plot on the _x_ and _y_ axes
   * choose a variable in the _'colour by'_ menu to use for colour-coding data on the plot
   * use the sliders to isolate the range of data plotted on each axes
+  * the x and y-axis variables cannot be the same
    
 Do you notice any interesting patterns in the data? 
 
@@ -185,7 +186,7 @@ top_sidebar <- htmlDiv(
         htmlP("Select the scale of y-axis:"),
         distribution_scale
       ), style = list('columnCount' = 1,
-                      'height'=290,  # was 290
+                      'height'=330,
                       'width'='100%',
                       'white-space' = 'pre-line')
 )
