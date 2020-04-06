@@ -45,7 +45,7 @@ app$layout(
                             htmlLabel("Click on a bar from the plot to select a subpopulation for its financial summary"),
                             subpopulation,
                             table
-                        ), style = list("height"=370,
+                            ), style = list("height"=370,
                                         "width"="100%")
                       )
                     ), style = list("width"="20%",
