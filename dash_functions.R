@@ -7,6 +7,7 @@ suppressPackageStartupMessages(library(glue))
 suppressPackageStartupMessages(library(ggpubr))
 suppressPackageStartupMessages(library(scales))
 
+
 ### interactive slider
 ## isolates a range of numeric values for analytics plot
 # retrieve x-axis slider upper limits, lower limits, and steps
@@ -42,7 +43,7 @@ make_distribution <- function(variable = "age", scale = "Linear") {
     ) +
     theme_bw(14)
   
-  if (variable %in% c("native_country", "education")) {
+  if (variable %in% c("native_country", "education", "marital_status")) {
     p <- p + rotate_x_text()
   }
   
