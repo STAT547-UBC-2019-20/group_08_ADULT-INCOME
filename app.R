@@ -41,16 +41,11 @@ app$layout(
                       htmlDiv(
                         className = "pretty_container",
                         list(
-                          htmlH3("Financial Summary"),
-                          htmlP("Click a bar on the plot to select a sub-population for financial summary"),
-                          table,
-                          subpopulation
-                        ), style = list("height"=370,
                             htmlH3("Financial Summary"),
                             htmlLabel("Click on a bar from the plot to select a subpopulation for its financial summary"),
-                            subpopulation,
-                            table
-                        ), style = list("height"=350,
+                            table,
+                            subpopulation
+                        ), style = list("height"=370,
                                         "width"="100%")
                       )
                     ), style = list("width"="20%",
