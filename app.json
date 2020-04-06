@@ -1,0 +1,9 @@
+{
+  "name": "Testing deployment of DashR app to heroku",
+  "description": "This app shows 1994 census data, in a 2020 kind of way.",
+  "keywords": [
+    "heroku",
+    "R deployment",
+    "Dash R"
+],
+}
