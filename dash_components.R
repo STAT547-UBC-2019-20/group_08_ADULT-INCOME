@@ -23,8 +23,7 @@ Welcome to the dashboard developed by UBC STAT 547 Group 8!
 
 This app allows folks to explore data from the 1994 Adult Income Census.
 
-Below, you can _interactively visualize_ the demographics of participants included in the '94 census and see a financial summary based on groups of the population. 
-In the 'Analytics' section, you can compare variables such as education level, age, sex, hours worked, ethnicity or annual net gain.
+Below, you can _interactively visualize_ the demographics of participants included in the '94 census and see a financial summary based on groups of the population. In the 'Analytics' section, you can compare variables and colour by groupings. 
 
       "
     ))

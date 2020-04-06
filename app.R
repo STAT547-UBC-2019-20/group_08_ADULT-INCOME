@@ -42,9 +42,9 @@ app$layout(
                         className = "pretty_container",
                         list(
                           htmlH3("Financial Summary"),
-                          htmlP("click a bar on the plot to select a sub-population for financial summary"), # new
-                          subpopulation,
-                          table
+                          htmlP("Click a bar on the plot to select a sub-population for financial summary"),
+                          table,
+                          subpopulation
                         ), style = list("height"=370,  # was 280
                                         "width"="100%")
                       )

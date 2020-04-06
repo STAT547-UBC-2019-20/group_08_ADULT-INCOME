@@ -83,15 +83,15 @@ make_table <- function(variable = "sex", value = "Male") {
   summary$Statistics[c(1,2,3,4,5)] <- c("Minimum net gain ($)",
                                         "Median net gain ($)",
                                         "Maximum net gain ($)",
-                                        "<= $50K net gain (%)", 
-                                        "> $50K net gain (%)")
+                                        "Under $50K income (%)", 
+                                        "Over $50K income (%)")
   
   
   summary
 }
 
 ## make subpopulation text
-make_subpopulation <- function(variable = "sex", value = "Not Selected") {
+make_subpopulation <- function(variable = "age", value = "Not Selected") {
   if_else(variable == "education_num", 
           glue("Subpopulation: ", as.character(value), " years"),
           if_else(variable == "age",
