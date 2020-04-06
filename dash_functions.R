@@ -28,6 +28,32 @@ get_y_slider_limits <- function(variable_y = "net") {
     filter(variable == variable_y)
 }
 
+# create disabled options in dropdown_x given values in dropdown_y
+disable_options_x <- function(variable_y = "net") {
+  options <- map(1:nrow(dropdownkey_x), function(i) {
+    list(label = dropdownkey_x$label[i], value = dropdownkey_x$value[i])
+  })
+  n <- which(dropdownkey_x$value == variable_y) # map variable_y to options list position/index
+  
+  # disable value in options
+  options[[n]]["disabled"] <- TRUE
+  # return
+  options
+}
+
+# create disabled options in dropdown_y given values in dropdown_x
+disable_options_y <- function(variable_x = "hours_per_week") {
+  options <- map(1:nrow(dropdownkey_y), function(i) {
+    list(label = dropdownkey_y$label[i], value = dropdownkey_y$value[i])
+  })
+  n <- which(dropdownkey_y$value == variable_x) # map variable_y to options list position/index
+  
+  # disable value in options
+  options[[n]]["disabled"] <- TRUE
+  # return
+  options
+}
+
 ### create distribution plots
 make_distribution <- function(variable = "age", scale = "Linear") {
   
