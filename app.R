@@ -42,10 +42,10 @@ app$layout(
                         className = "pretty_container",
                         list(
                             htmlH3("Financial Summary"),
-                            htmlLabel("Click on a bar from the plot to select a subpopulation for its financial summary"), # new
+                            htmlLabel("Click on a bar from the plot to select a subpopulation for its financial summary"),
                             subpopulation,
                             table
-                        ), style = list("height"=350,  # was 280
+                        ), style = list("height"=370,
                                         "width"="100%")
                       )
                     ), style = list("width"="20%",
@@ -54,8 +54,8 @@ app$layout(
                     className = "pretty_container",
                     distribution,
                     style = list("width"="80%",
-                                 "height"=680,
-                                 'margin-left'=50)
+                                 "height"=740,
+                                 'margin-left'=60)
                   )
             ), style = list('display'= 'flex',
                             'height'="100%")
@@ -116,6 +116,26 @@ app$callback(
     make_analytics(x_selection, y_selection, color_selection,
                    as.numeric(x_slider_lim[1]), as.numeric(x_slider_lim[2]), as.numeric(y_slider_lim[1]), as.numeric(y_slider_lim[2]))
   })
+
+# disable options in dropdown_y
+app$callback(
+  # update available dropdown options in dropdown_y given dropdown_x
+  output=list(id = 'dropdown_y', property="options"),
+  params=list(input(id = 'dropdown_x', property="value")),
+  function(x_value) {
+    disable_options_y(x_value)
+  }
+)
+
+# disable options in dropdown_x
+app$callback(
+  # update available dropdown options in dropdown_x given dropdown_y
+  output=list(id = 'dropdown_x', property="options"),
+  params=list(input(id = 'dropdown_y', property="value")),
+  function(y_value) {
+    disable_options_x(y_value)
+  }
+)
 
 # financial summary table (demographics)
 app$callback(output = list(id = 'table', property = 'data'),

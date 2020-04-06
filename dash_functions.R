@@ -7,6 +7,7 @@ suppressPackageStartupMessages(library(glue))
 suppressPackageStartupMessages(library(ggpubr))
 suppressPackageStartupMessages(library(scales))
 
+
 ### interactive slider
 ## isolates a range of numeric values for analytics plot
 # retrieve x-axis slider upper limits, lower limits, and steps
@@ -27,8 +28,34 @@ get_y_slider_limits <- function(variable_y = "net") {
     filter(variable == variable_y)
 }
 
+# create disabled options in dropdown_x given values in dropdown_y
+disable_options_x <- function(variable_y = "net") {
+  options <- map(1:nrow(dropdownkey_x), function(i) {
+    list(label = dropdownkey_x$label[i], value = dropdownkey_x$value[i])
+  })
+  n <- which(dropdownkey_x$value == variable_y) # map variable_y to options list position/index
+  
+  # disable value in options
+  options[[n]]["disabled"] <- TRUE
+  # return
+  options
+}
+
+# create disabled options in dropdown_y given values in dropdown_x
+disable_options_y <- function(variable_x = "hours_per_week") {
+  options <- map(1:nrow(dropdownkey_y), function(i) {
+    list(label = dropdownkey_y$label[i], value = dropdownkey_y$value[i])
+  })
+  n <- which(dropdownkey_y$value == variable_x) # map variable_y to options list position/index
+  
+  # disable value in options
+  options[[n]]["disabled"] <- TRUE
+  # return
+  options
+}
+
 ### create distribution plots
-make_distribution <- function(variable = "sex", scale = "Linear") {
+make_distribution <- function(variable = "age", scale = "Linear") {
   
   p <- dat %>%
     filter(!!sym(variable) != "?") %>% 
@@ -42,7 +69,7 @@ make_distribution <- function(variable = "sex", scale = "Linear") {
     ) +
     theme_bw(14)
   
-  if (variable %in% c("native_country", "education")) {
+  if (variable %in% c("native_country", "education", "marital_status")) {
     p <- p + rotate_x_text()
   }
   
@@ -82,15 +109,15 @@ make_table <- function(variable = "sex", value = "Male") {
   summary$Statistics[c(1,2,3,4,5)] <- c("Minimum net gain ($)",
                                         "Median net gain ($)",
                                         "Maximum net gain ($)",
-                                        "<=50K net gain (%)", 
-                                        ">50K net gain (%)")
+                                        "Under $50K income (%)", 
+                                        "Over $50K income (%)")
   
   
   summary
 }
 
 ## make subpopulation text
-make_subpopulation <- function(variable = "sex", value = "Not Selected") {
+make_subpopulation <- function(variable = "age", value = "Not Selected") {
   if_else(variable == "education_num", 
           glue("Subpopulation: ", as.character(value), " years"),
           if_else(variable == "age",
