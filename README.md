@@ -98,3 +98,9 @@ Pat is interested in understanding how personal attributes and socioeconomic pos
 ### Milestone 5: Dashboard 
 
 To run our Dash app, clone or download this project repository and run the command ```Rscript app.R```
+
+### Milestone 6: Complete App 
+
+Our Dash app was updated based on feedback, bug fixes were finalized, and the app was deployed online.
+
+___View our finalized app here:___ https://group08-1994-adult-income.herokuapp.com/
